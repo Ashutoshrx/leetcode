@@ -35,54 +35,110 @@ class ExtendThread {
   }
 }
 
+//class Q {
+//  int num;
+//  boolean isAssigned = false;
+//
+//  public synchronized void put(int n) {   ////PUT METHOD
+//    while (isAssigned) {
+//      try {
+//        wait();
+//      } catch (InterruptedException e) {
+//        throw new RuntimeException(e);
+//      }
+//    }
+//    System.out.println("PUT: " + n);
+//    this.num = n;
+//    this.isAssigned = true;
+//    notify();
+//  }
+//
+//  public synchronized void get() {     /////GET METHOD
+//    while (!isAssigned) {
+//      try {
+//        wait();
+//      } catch (InterruptedException e) {
+//        throw new RuntimeException(e);
+//      }
+//    }
+//    System.out.println("GET: " + num);
+//    this.isAssigned = false;
+//    notify();
+//  }
+//
+//
+//}
+//
+//class Producer implements Runnable {
+//  Q q;
+//
+//  public Producer(Q q) {
+//    this.q = q;
+//    Thread t = new Thread(this, "Producer");
+//    t.start();
+//  }
+//
+//  @Override
+//  public void run() {
+//    int i = 0;
+//    while (true) {
+//      q.put(i++);
+//      try {
+//        Thread.sleep(1000);
+//      } catch (InterruptedException e) {
+//        throw new RuntimeException(e);
+//      }
+//    }
+//  }
+//}
+//
+//class Consumer implements Runnable {
+//  Q q;
+//
+//  public Consumer(Q q) {
+//    this.q = q;
+//    Thread t = new Thread(this, "Consumer");
+//    t.start();
+//  }
+//
+//  @Override
+//  public void run() {
+//    while (true) {
+//      q.get();
+//      try {
+//        Thread.sleep(1000);
+//      } catch (InterruptedException e) {
+//        throw new RuntimeException(e);
+//      }
+//    }
+//  }
+//}
+//https://www.youtube.com/watch?v=A1tnVMpWHh8&list=PLsyeobzWxl7rmuFYRpkqLanwoG4pQQ7oW&index=9
 class Q {
-  int num;
-  boolean isAssigned = false;
+  int data;
 
-  public synchronized void put(int n) {   ////PUT METHOD
-    while (isAssigned) {
-      try {
-        wait();
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
-    }
-    System.out.println("PUT: " + n);
-    this.num = n;
-    this.isAssigned = true;
-    notify();
+  public void put(int n) {
+    System.out.println("PUT:" + n);
+    this.data = n;
   }
 
-  public synchronized void get() {     /////GET METHOD
-    while (!isAssigned) {
-      try {
-        wait();
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
-    }
-    System.out.println("GET: " + num);
-    this.isAssigned = false;
-    notify();
+  public void get() {
+    System.out.println("GET:" + data);
   }
-
-
 }
 
-class Producer implements Runnable {
+class Consumer implements Runnable {
   Q q;
 
-  public Producer(Q q) {
+  public Consumer(Q q) {
     this.q = q;
-    Thread t = new Thread(this, "Producer");
-    t.start();
+    run();
   }
 
   @Override
   public void run() {
-    int i = 0;
     while (true) {
-      q.put(i++);
+      q.get();
       try {
         Thread.sleep(1000);
       } catch (InterruptedException e) {
@@ -92,19 +148,19 @@ class Producer implements Runnable {
   }
 }
 
-class Consumer implements Runnable {
+class Producer implements Runnable {
   Q q;
 
-  public Consumer(Q q) {
+  public Producer(Q q) {
     this.q = q;
-    Thread t = new Thread(this, "Consumer");
-    t.start();
+    run();
   }
 
   @Override
   public void run() {
+    int i = 0;
     while (true) {
-      q.get();
+      q.put(i);
       try {
         Thread.sleep(1000);
       } catch (InterruptedException e) {

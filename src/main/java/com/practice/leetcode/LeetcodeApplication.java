@@ -1,14 +1,11 @@
 package com.practice.leetcode;
 
-import com.practice.leetcode.solutions.linkedlist.LinkedList;
-import com.practice.leetcode.solutions.trees.BinaryTree;
-import com.practice.leetcode.solutions.trees.TreeNode;
-
-import static com.practice.leetcode.solutions.TreeSolutions.sortedArrayToBST;
+import static com.practice.leetcode.solutions.StringSolutions.passThePillow;
+import static com.practice.leetcode.solutions.StringSolutions.singleNumber;
 
 public class LeetcodeApplication {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws CloneNotSupportedException {
 //		StringSolutions.lengthOfLastWord("Hello World");
 //		StringSolutions.isPalindrome("Marge, let's \\\"[went].\\\" I await {news} telegram.");
 //		StringSolutions.isValid("()[]{}");
@@ -84,7 +81,7 @@ public class LeetcodeApplication {
 //    int b = trapWithNSpaceComplexity(new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1});
 //    int x = trap(new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1});
 
-    BinaryTree tree = new BinaryTree();
+   /* BinaryTree tree = new BinaryTree();
     tree.insert(1);
     tree.insert(2);
     tree.insert(3);
@@ -92,10 +89,10 @@ public class LeetcodeApplication {
     tree.insert(null);
     tree.insert(null);
     tree.insert(5);
-//    tree.insert(8);
-//    tree.traverseInOrder();
-//    tree.getHeight();
-//    tree.levelOrderTraversal();
+    tree.insert(8);
+    tree.traverseInOrder();
+    tree.getHeight();
+    tree.levelOrderTraversal();*/
 //    tree.showLevelsOfTree();
 //      tree.viewRightOfBinaryTree();
     /*System.out.println();
@@ -123,7 +120,25 @@ public class LeetcodeApplication {
 //    System.out.println(firstRepeatingCharacter("Ashutosh")); ///FIXME interview question
 //    System.out.println(scoreOfString("zaz"));
 //    System.out.println(isMatch("aa","a*"));
-    TreeNode res = sortedArrayToBST(new int[]{-10, -3, 0, 5, 9});
+//    TreeNode res = sortedArrayToBST(new int[]{-10, -3, 0, 5, 9});
+//    System.out.println(res);
+//    addBinary("11", "1");
+    int res = singleNumber(new int[]{4, 1, 2, 1, 2});
+   /* List<String> res = sortBasedOnStringSize(new ArrayList<>() {{
+      add("Ashutosh");
+      add("Satapathy");
+      add("Ronnie");
+    }});
+//    System.out.println(res);
+    Student student1 = new Student("Ashutosh", "Satapathy", new ListNode(3));
+//    Student student2 = student1;
+    Student student2 = (Student) student1.clone();
+    student2.node = new ListNode(14);
+    System.out.println(student1);
+    System.out.println(student2);
+    System.out.println(student1 == student2);
+    System.out.println(student1.equals(student2));*/
+//    int res = passThePillow(3,2);
     System.out.println(res);
   }
 

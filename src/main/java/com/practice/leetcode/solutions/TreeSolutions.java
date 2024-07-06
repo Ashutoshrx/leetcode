@@ -187,23 +187,24 @@ public class TreeSolutions {
    * @return Problem 108: Convert Sorted Array to Binary Search Tree
    */
   public static TreeNode sortedArrayToBST(int[] nums) {
-    TreeNode root = null;
+    TreeNode root = new TreeNode(0);
     for (int i : nums) {
-      insertToBST(root, i);
+      root = insertToBST(root, i);
     }
     return root;
   }
 
-  private static void insertToBST(TreeNode root, int data) {
+  private static TreeNode insertToBST(TreeNode root, int data) {
     if (root == null) {
-      new TreeNode(data);
+      root = new TreeNode(data);
     } else {
-      if (root.left == null) {
-        root.left = new TreeNode(data);
+      if (data < root.data) {
+        root.left = insertToBST(root.left, data);
       } else {
-        root.right = new TreeNode(data);
+        root.right = insertToBST(root.right, data);
       }
     }
+    return root;
   }
 
 }

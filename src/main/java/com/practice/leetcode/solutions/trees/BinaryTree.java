@@ -182,4 +182,71 @@ public class BinaryTree {
       }
     }
   }
+
+  public void traverseInOrder() {
+    System.out.println("\n-----IN ORDER-----");
+    traverseInOrderRec(root);
+    System.out.println("\n-----PRE ORDER-----");
+    traversePreOrderRec(root);
+    System.out.println("\n-----POST ORDER-----");
+    traversePostOrderRec(root);
+  }
+
+  private void traversePostOrderRec(TreeNode root) {
+    if (root != null) {
+      traverseInOrderRec(root.left);
+      traverseInOrderRec(root.right);
+      System.out.print(root.data + ", ");
+    }
+  }
+
+  private void traversePreOrderRec(TreeNode root) {
+    if (root != null) {
+      System.out.print(root.data + ", ");
+      traverseInOrderRec(root.left);
+      traverseInOrderRec(root.right);
+    }
+
+  }
+
+  private void traverseInOrderRec(TreeNode root) {
+    if (root != null) {
+      traverseInOrderRec(root.left);
+      System.out.print(root.data + ", ");
+      traverseInOrderRec(root.right);
+    }
+  }
+
+  public void getHeight() {
+    int count = 0;
+    int height = getHeightRec(root, count);
+    System.out.println("\nHeight is:" + height);
+  }
+
+  private int getHeightRec(TreeNode root, int count) {
+    if (root != null) {
+      count = Math.max(getHeightRec(root.left, count + 1), getHeightRec(root.right, count + 1));
+    }
+    return count;
+  }
+
+  public void levelOrderTraversal() {
+    System.out.println("\n LEVEL ORDER TRAVERSAL");
+    if (root != null) {
+      Queue<TreeNode> treeNodeQueue = new LinkedList<>();
+      treeNodeQueue.offer(root);
+      while (!treeNodeQueue.isEmpty()) {
+        TreeNode current = treeNodeQueue.poll();
+        System.out.print(current.data + ", ");
+        if (current.left != null) {
+          treeNodeQueue.offer(current.left);
+        }
+        if (current.right != null) {
+          treeNodeQueue.offer(current.right);
+        }
+      }
+    }
+  }
+
+
 }

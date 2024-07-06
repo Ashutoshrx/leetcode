@@ -423,8 +423,7 @@ public class StringSolutions {
   public static String makeGood(String s) {
     for (int i = 0; i < s.length() - 1; i++) {
       System.out.println((int) s.charAt(i));
-      if ((int) s.charAt(i) - (int) s.charAt(i + 1) == 32 ||
-              (int) s.charAt(i + 1) - (int) s.charAt(i) == 32) {
+      if ((int) s.charAt(i) - (int) s.charAt(i + 1) == 32 || (int) s.charAt(i + 1) - (int) s.charAt(i) == 32) {
         return makeGood(s.substring(0, i) + s.substring(i + 2));
       }
     }
@@ -441,9 +440,7 @@ public class StringSolutions {
     Arrays.sort(deck);
     int length = deck.length;
     int[] res = new int[length];
-    Queue<Integer> queue = IntStream.range(0, length)
-            .boxed()
-            .collect(Collectors.toCollection(LinkedList::new));
+    Queue<Integer> queue = IntStream.range(0, length).boxed().collect(Collectors.toCollection(LinkedList::new));
     for (int i = 0; i < length - 1; i++) {
       System.out.println("Peek:" + queue.peek());
       res[queue.poll()] = deck[i];
@@ -597,8 +594,7 @@ public class StringSolutions {
    */
   public static String reversePrefix(String word, char ch) {
     int found = word.indexOf(ch);
-    return new StringBuilder().append(word.substring(0, found + 1)).reverse().
-            append(word.substring(found + 1)).toString();
+    return new StringBuilder().append(word.substring(0, found + 1)).reverse().append(word.substring(found + 1)).toString();
 
   }
 
@@ -679,4 +675,53 @@ public class StringSolutions {
     return stack.isEmpty();
   }
 
+  /**
+   * @param a
+   * @param b
+   * @return Problem: 67
+   * @Input 11{1011} & 1{0001}= 12{1100}
+   */
+  public static String addBinary(String a, String b) {
+    a = Integer.toBinaryString(Integer.parseInt(a));
+    b = Integer.toBinaryString(Integer.parseInt(b));
+    System.out.println(a);
+    return "";
+  }
+
+  public static int singleNumber_notBetterApproach(int[] nums) {
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int num : nums) {
+      map.put(num, map.getOrDefault(num, 0) + 1);
+    }
+    System.out.println(map);
+    return map.entrySet().stream().filter(x -> x.getValue().equals(1))
+            .map(Map.Entry::getKey).findFirst().orElse(0);
+  }
+
+  public static int singleNumber(int[] nums) {
+//    4, 1, 2, 1, 2 {0100,0001,0010,0010}====0000
+    int result = 0;
+    for (int num : nums) {
+      result ^= num;
+    }
+    return result;
+  }
+
+  /**
+   * @param n
+   * @param time
+   * @return Problem 2562: Pass the pillow
+   */
+  public static int passThePillow(int n, int time) {
+    var direction = 1;
+    int currentPerson = 1;
+    while (time > 0) {
+      currentPerson += direction;
+      if (currentPerson == n || currentPerson == 1) {
+        direction = direction * -1;
+      }
+      time--;
+    }
+    return currentPerson;
+  }
 }

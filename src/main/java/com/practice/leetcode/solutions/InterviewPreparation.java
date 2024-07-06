@@ -68,4 +68,13 @@ public class InterviewPreparation {
     System.out.println(map);
     return null;
   }
+
+  /*
+  sort a list of string based on their length
+   */
+  public static List<String> sortBasedOnStringSize(List<String> names) {
+    names.sort((a, b) -> (a.length() >= b.length()) ?
+            1 : -1);
+    return names;
+  }
 }
