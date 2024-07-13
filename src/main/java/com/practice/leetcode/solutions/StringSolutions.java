@@ -694,8 +694,7 @@ public class StringSolutions {
       map.put(num, map.getOrDefault(num, 0) + 1);
     }
     System.out.println(map);
-    return map.entrySet().stream().filter(x -> x.getValue().equals(1))
-            .map(Map.Entry::getKey).findFirst().orElse(0);
+    return map.entrySet().stream().filter(x -> x.getValue().equals(1)).map(Map.Entry::getKey).findFirst().orElse(0);
   }
 
   public static int singleNumber(int[] nums) {
@@ -724,4 +723,93 @@ public class StringSolutions {
     }
     return currentPerson;
   }
+
+  /**
+   * @param numBottles
+   * @param numExchange
+   * @return Problem:1518 Water bottles
+   */
+  public static int numWaterBottles(int numBottles, int numExchange) {
+    int res = numBottles;
+    while (numBottles >= numExchange) {
+      int newBottles = numBottles / numExchange;
+      numBottles = newBottles + (numBottles % numExchange);
+      res += newBottles;
+    }
+    return res;
+  }
+
+  /**
+   * @param n
+   * @param k
+   * @return Problem 1823: Find the winner of the game
+   */
+  public static int findTheWinnerLessEfficient(int n, int k) {
+    Queue<Integer> queue = new LinkedList<>();
+    for (int i = 1; i <= n; i++) {
+      queue.add(i);
+    }
+    int current = 1;
+    while (queue.size() > 1) {
+      if (current < k) {
+        queue.offer(queue.poll());
+        current++;
+      } else {
+        queue.poll();
+        current = 1;
+      }
+    }
+    return queue.peek();
+  }
+
+  public static int findTheWinner(int n, int k) {
+    int winner = 0;
+    for (int i = 1; i <= n; i++) {
+      winner = (winner + k) % i;
+      System.out.println(winner);
+    }
+    return winner + 1;
+  }
+
+  /**
+   * @param s
+   * @param x
+   * @param y
+   * @return Problem 1717: Maximum Scope from removing substring
+   */
+  public static int maximumGain(String s, int x, int y) {
+    int max = Math.max(x, y);
+    int min = Math.min(x, y);
+    char first = max == x ? 'a' : 'b';
+    char second = max == x ? 'b' : 'a';
+
+    int totalPoints = 0;
+    Stack<Character> characters = new Stack<>();
+    Stack<Character> remaining = new Stack<>();
+    for (int i = 0; i < s.length(); i++) {
+      if (!characters.isEmpty()) {
+        if (characters.peek() == first && s.charAt(i) == second) {
+          characters.pop();
+          totalPoints += max;
+        } else {
+          characters.push(s.charAt(i));
+        }
+      } else {
+        characters.push(s.charAt(i));
+      }
+    }
+    System.out.println(characters);
+    while (!characters.isEmpty()) {
+      Character curr = characters.pop();
+      if ((!remaining.isEmpty() && remaining.peek() == first) && curr == second) {
+        remaining.pop();
+        totalPoints += min;
+      } else {
+        remaining.push(curr);
+      }
+    }
+    System.out.println(remaining);
+    return totalPoints;
+  }
+
 }

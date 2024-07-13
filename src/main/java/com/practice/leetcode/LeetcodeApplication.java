@@ -1,7 +1,7 @@
 package com.practice.leetcode;
 
-import static com.practice.leetcode.solutions.StringSolutions.passThePillow;
-import static com.practice.leetcode.solutions.StringSolutions.singleNumber;
+import static com.practice.leetcode.solutions.StringSolutions.maximumGain;
+import static com.practice.leetcode.solutions.StringSolutions.numWaterBottles;
 
 public class LeetcodeApplication {
 
@@ -123,7 +123,9 @@ public class LeetcodeApplication {
 //    TreeNode res = sortedArrayToBST(new int[]{-10, -3, 0, 5, 9});
 //    System.out.println(res);
 //    addBinary("11", "1");
-    int res = singleNumber(new int[]{4, 1, 2, 1, 2});
+//    int res = singleNumber(new int[]{4, 1, 2, 1, 2});
+    int res = numWaterBottles(15, 4);
+//    System.out.println(res);
    /* List<String> res = sortBasedOnStringSize(new ArrayList<>() {{
       add("Ashutosh");
       add("Satapathy");
@@ -139,8 +141,32 @@ public class LeetcodeApplication {
     System.out.println(student1 == student2);
     System.out.println(student1.equals(student2));*/
 //    int res = passThePillow(3,2);
-    System.out.println(res);
-  }
+//    System.out.println(res);
+    /*Student student = new Student("Ash", "Sat");
+    Immutable immutable = new Immutable("Ashutosh", "Satapathy", student);
+    System.out.println(immutable);
+    Student student1 = immutable.getStudent();
+    student1.setFirstName("Ronnie");
+    System.out.println(immutable);*/
+//    int theWinner = findTheWinner(5, 2);
+//    System.out.println(theWinner);
+    /*String string = "Hello. How are you?";
+    char str1[] = string.toCharArray();
+    char str2[] = new char[21];
+    int pos;
 
+    for(pos=0; pos<18; pos++);
+    {
+      str2[pos] = str1[pos];
+    }
+
+    System.out.print(str1);
+    System.out.print(str2);
+
+  }*/
+//    System.out.println(maximumGain("paaaabdbabfbybbbtaaab", 8132, 1776));
+    System.out.println(maximumGain("aabbrtababbabmaaaeaabeawmvaataabnaabbaaaybbbaabbabbbjpjaabbtabbxaaavsmmnblbbabaeuasvababjbbabbabbasxbbtgbrbbajeabbbfbarbagha", 8484, 4096));
+//    System.out.println(maximumGain("cdbcbbaaabab", 4, 5));
+  }
 
 }
