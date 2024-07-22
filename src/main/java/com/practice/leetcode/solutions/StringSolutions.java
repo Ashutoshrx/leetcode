@@ -812,4 +812,65 @@ public class StringSolutions {
     return totalPoints;
   }
 
+  /**
+   * @param nums1
+   * @param m
+   * @param nums2
+   * @param n
+   * @Problem: 88(Merge two sorted arrays)
+   */
+  public static void merge(int[] nums1, int m, int[] nums2, int n) {
+    var p = m + n - 1;
+    var i = m - 1;
+    var j = n - 1;
+    while (j >= 0) {
+      if (i >= 0 && nums1[i] > nums2[j]) {
+        nums1[p] = nums1[i];
+        i--;
+      } else {
+        nums1[p] = nums2[j];
+        j--;
+      }
+      p--;
+    }
+    for (int ix : nums1) {
+      System.out.print(ix);
+    }
+    System.out.println("\n");
+  }
+
+  /**
+   * @param s
+   * @return Problem 1190: Reverse Substring between Each pair of Parenthesis
+   */
+  /*public static String reverseParentheses(String s) {
+    var start = 0;
+    var end = 0;
+    for (char c : s.toCharArray()) {
+      Stack<String> characters = new Stack<>();
+      if (c == '(') {
+        characters.push()
+      }
+    }*/
+
+  /**
+   * @param names
+   * @param heights
+   * @return Problem: 2418: Sort the People
+   */
+  public static String[] sortPeople(String[] names, int[] heights) {
+    int n = names.length;
+    Map<Integer, String> mapping = new HashMap<>();
+    for (int i = 0; i < n; ++i) {
+      mapping.put(heights[i], names[i]);
+    }
+    Arrays.sort(heights);
+    int j = 0;
+    for (int i = n-1; i >=0; i--) {
+      names[j] = mapping.get(heights[i]);
+      j++;
+    }
+    return names;
+  }
+
 }

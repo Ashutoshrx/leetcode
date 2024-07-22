@@ -2,6 +2,8 @@ package com.practice.leetcode.solutions;
 
 import com.practice.leetcode.solutions.linkedlist.ListNode;
 
+import java.util.HashMap;
+
 public class LinkedListSolutions {
   /**
    * @param list1
@@ -140,6 +142,40 @@ public class LinkedListSolutions {
       current = head.next;
     }
     current.show();
+  }
+
+  /**
+   * @param head
+   * @return Problem: 206: Reverse a linked List
+   */
+  public static ListNode reverseList(ListNode head) {
+    ListNode prev = null;
+    ListNode current = head;
+    while (current != null) {
+      ListNode nextOfCurrentNode = current.next;
+      ListNode temp = prev;
+      prev = current;
+      prev.next = temp;
+      current = nextOfCurrentNode;
+    }
+    return prev;
+  }
+
+  /**
+   * @param head
+   * @return Problem: 141: Linked List Cycle
+   */
+  public static boolean hasCycle(ListNode head) {
+    HashMap<Integer, Integer> hashMap = new HashMap<>();
+    ListNode temp = head;
+    while (temp != null) {
+      hashMap.put(temp.val, hashMap.getOrDefault(temp.val, 0) + 1);
+      if (hashMap.get(temp.val) > 1) {
+        return true;
+      }
+      temp = temp.next;
+    }
+    return false;
   }
 }
 

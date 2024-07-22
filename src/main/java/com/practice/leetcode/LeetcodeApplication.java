@@ -1,9 +1,18 @@
 package com.practice.leetcode;
 
-import static com.practice.leetcode.solutions.StringSolutions.maximumGain;
-import static com.practice.leetcode.solutions.StringSolutions.numWaterBottles;
+import com.practice.leetcode.dto.Student;
+import com.practice.leetcode.solutions.InterviewPreparation;
+import com.practice.leetcode.solutions.linkedlist.ListNode;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static com.practice.leetcode.solutions.LinkedListSolutions.hasCycle;
+import static com.practice.leetcode.solutions.StringSolutions.*;
 
 public class LeetcodeApplication {
+
+  String x = "Ashutosh";
 
   public static void main(String[] args) throws CloneNotSupportedException {
 //		StringSolutions.lengthOfLastWord("Hello World");
@@ -124,7 +133,7 @@ public class LeetcodeApplication {
 //    System.out.println(res);
 //    addBinary("11", "1");
 //    int res = singleNumber(new int[]{4, 1, 2, 1, 2});
-    int res = numWaterBottles(15, 4);
+//    int res = numWaterBottles(15, 4);
 //    System.out.println(res);
    /* List<String> res = sortBasedOnStringSize(new ArrayList<>() {{
       add("Ashutosh");
@@ -165,8 +174,17 @@ public class LeetcodeApplication {
 
   }*/
 //    System.out.println(maximumGain("paaaabdbabfbybbbtaaab", 8132, 1776));
-    System.out.println(maximumGain("aabbrtababbabmaaaeaabeawmvaataabnaabbaaaybbbaabbabbbjpjaabbtabbxaaavsmmnblbbabaeuasvababjbbabbabbasxbbtgbrbbajeabbbfbarbagha", 8484, 4096));
 //    System.out.println(maximumGain("cdbcbbaaabab", 4, 5));
+    merge(new int[]{4, 0, 0, 0, 0, 0}, 1, new int[]{1, 2, 3, 5, 6}, 5);
+//    reverseList(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))));
+//    boolean sameTree = isSameTree(new TreeNode(1, new TreeNode(2), new TreeNode(3)), new TreeNode(1, new TreeNode(2),
+//            new TreeNode(3)));
+//    System.out.println(sameTree);
+//    TreeNode binaryTree = createBinaryTree(new int[][]{{20, 15, 1}, {0, 17, 0}, {50, 20, 1}, {50, 80, 0}, {80, 19, 1}});
+//    System.out.println(binaryTree);
+//            "This");
+//    hasCycle(new ListNode(3,new ListNode(2)));
+//    String[] res = sortPeople(new String[]{"Mary","John","Emma"}, new int[]{180,165,170});
   }
 
 }

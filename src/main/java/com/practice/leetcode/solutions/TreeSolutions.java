@@ -2,10 +2,7 @@ package com.practice.leetcode.solutions;
 
 import com.practice.leetcode.solutions.trees.TreeNode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class TreeSolutions {
   /**
@@ -205,6 +202,24 @@ public class TreeSolutions {
       }
     }
     return root;
+  }
+
+
+  /**
+   * @param p
+   * @param q
+   * @return Problem:100: Same Tree
+   */
+  public static boolean isSameTree(TreeNode p, TreeNode q) {
+    if (p != null && q != null) {
+      if (Objects.equals(p.data, q.data)) {
+        return isSameTree(p.left, q.left) &&
+                isSameTree(q.right, q.right);
+      } else {
+        return false;
+      }
+    }
+    return true;
   }
 
 }

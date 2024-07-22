@@ -1,6 +1,8 @@
 package com.practice.leetcode.solutions;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class InterviewPreparation {
   /**
@@ -76,5 +78,23 @@ public class InterviewPreparation {
     names.sort((a, b) -> (a.length() >= b.length()) ?
             1 : -1);
     return names;
+  }
+
+  public static void removeConsecutiveLetters(String data) {
+    System.out.println(data);
+//    System.out.println(data.replaceAll("[^a-zA-z0-9]","#"));
+//    System.out.println(data.replaceAll("\\D","#"));
+//    System.out.println(data.replaceAll(" ","#"));
+//    System.out.println(data.replaceAll("\\s{2}",""));
+    Set<String > x= new HashSet<>();
+    String previous;
+    do {
+      previous = data;
+      System.out.println("Inside");
+      data = data.replaceAll("(.)\\1", "$1");
+    } while (!data.equals(previous));
+    System.out.println(data);
+//    System.out.println(data.replaceAll("(+)\\1", "$1"));
+
   }
 }
