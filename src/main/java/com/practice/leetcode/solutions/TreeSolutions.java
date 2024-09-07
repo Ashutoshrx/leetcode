@@ -1,5 +1,7 @@
 package com.practice.leetcode.solutions;
 
+import com.practice.leetcode.solutions.linkedlist.ListNode;
+import com.practice.leetcode.solutions.trees.NArrayNode;
 import com.practice.leetcode.solutions.trees.TreeNode;
 
 import java.util.*;
@@ -221,5 +223,40 @@ public class TreeSolutions {
     }
     return true;
   }
+
+  /**
+   * @param root
+   * @return Problem:590 N- ary Tree Postorder Traversal
+   */
+
+  public static List<Integer> postorder(NArrayNode root) {
+    List<Integer> res = new ArrayList<>();
+    if (root != null) {
+      Stack<NArrayNode> stack = new Stack<>();
+      stack.push(root);
+      while (!stack.isEmpty()) {
+        NArrayNode curr = stack.pop();
+        if (curr.children != null) {
+          for (NArrayNode node : curr.children) {
+            stack.push(node);
+          }
+        }
+        System.out.println(curr.val);
+        res.add(curr.val);
+      }
+      Collections.reverse(res);
+    }
+    return res;
+  }
+
+  /*public static List<Integer> preorder(NArrayNode root) {
+
+  }
+
+  public static List<Integer> inorder(NArrayNode root) {
+
+  }*/
+
+
 
 }

@@ -2,7 +2,11 @@ package com.practice.leetcode.solutions;
 
 import com.practice.leetcode.solutions.linkedlist.ListNode;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.Stack;
+import java.util.stream.Collectors;
 
 public class LinkedListSolutions {
   /**
@@ -164,6 +168,7 @@ public class LinkedListSolutions {
   /**
    * @param head
    * @return Problem: 141: Linked List Cycle
+   * @ERROR Some test cases are failing
    */
   public static boolean hasCycle(ListNode head) {
     HashMap<Integer, Integer> hashMap = new HashMap<>();
@@ -176,6 +181,131 @@ public class LinkedListSolutions {
       temp = temp.next;
     }
     return false;
+  }
+
+  /**
+   * @param nums
+   * @param head
+   * @return Problem: 3217: Delete nodes from linkedList Present in array
+   */
+  public static ListNode modifiedList(int[] nums, ListNode head) {
+    Set<Integer> set = Arrays.stream(nums).boxed().collect(Collectors.toSet());
+    ListNode dummy = new ListNode(0, head);
+    ListNode curr = head;
+    ListNode prev = dummy;
+    while (curr != null) {
+      if (set.contains(curr.val)) {
+        prev.next = curr.next;
+      } else {
+        prev = prev.next;
+      }
+      curr = curr.next;
+    }
+    return dummy.next;
+  }
+
+  /**
+   * @param head
+   * @return Problem: 143 Reorder Lists
+   * Not Working
+   */
+  public static void reorderList(ListNode head) {
+    ListNode dummy = new ListNode(0, head);
+    ListNode second = dummy.next;
+    ListNode curr = head;
+    ListNode lastNode;
+    while (curr.next != null) {
+      System.out.println(curr.val);
+      curr = curr.next;
+    }
+    curr.next = second;
+//    curr.next = second;
+    dummy.next = curr;
+//    head.next=lastNode;
+    dummy.show();
+  }
+
+  /**
+   * @param head
+   * @return Problem: 234: Palindrome Linked List
+   */
+  public static boolean isPalindrome(ListNode head) {
+    Stack<Integer> stack = new Stack<>();
+    ListNode current = head;
+    ListNode temp = head;
+    while (current != null) {
+      stack.push(current.val);
+      current = current.next;
+    }
+    while (temp != null && temp.val == stack.pop()) {
+      temp = temp.next;
+    }
+    return stack.isEmpty();
+  }
+
+  /**
+   * @param head
+   * @param val
+   * @return Problem: 203: Remove linked List elements
+   */
+  public static ListNode removeElements(ListNode head, int val) {
+    ListNode dummy = new ListNode(0, head);
+    ListNode previous = dummy;
+    ListNode current = head;
+    while (current != null) {
+      if (val == current.val) {
+        previous.next = current.next;
+      } else {
+        previous = current;
+      }
+      current = current.next;
+    }
+    return dummy.next;
+  }
+
+  /**
+   * @param head
+   * @return Problem: 876: Middle of Linked List
+   */
+  public static ListNode middleNode(ListNode head) {
+    ListNode p1 = head;
+    ListNode p2 = head;
+    while (p2 != null) {
+      ListNode next = p2.next;
+      if (next == null) {
+        return p1;
+      }
+      p1 = p1.next;
+      p2 = next.next;
+    }
+    return p1;
+  }
+
+  /**
+   * @param head
+   * @param left
+   * @param right
+   * @return Problem 92: Reverse Linked List II
+   */
+  public static ListNode reverseBetween(ListNode head, int left, int right) {
+    ListNode dummy = new ListNode(0, head);
+    ListNode initialPrev = dummy;
+    ListNode current = head;
+    ListNode previous = null;
+    for (int i = 0; i < left - 1; i++) {
+      initialPrev = current;
+      current = current.next;
+    }
+    for (int i = 0; i < right - left + 1; i++) {
+      ListNode restNodes = current.next;
+      ListNode temp = previous;
+      previous = current;
+      previous.next = temp;
+      current = restNodes;
+    }
+    initialPrev.next.next = current;
+    initialPrev.next = previous;
+    return dummy.next;
   }
 }
 

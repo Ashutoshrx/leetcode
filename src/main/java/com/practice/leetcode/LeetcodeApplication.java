@@ -1,14 +1,8 @@
 package com.practice.leetcode;
 
-import com.practice.leetcode.dto.Student;
-import com.practice.leetcode.solutions.InterviewPreparation;
 import com.practice.leetcode.solutions.linkedlist.ListNode;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static com.practice.leetcode.solutions.LinkedListSolutions.hasCycle;
-import static com.practice.leetcode.solutions.StringSolutions.*;
+import static com.practice.leetcode.solutions.LinkedListSolutions.reverseBetween;
 
 public class LeetcodeApplication {
 
@@ -44,15 +38,17 @@ public class LeetcodeApplication {
 //    System.out.println(b);
 
 
-    /*LinkedList list = new LinkedList();
+   /* LinkedList list = new LinkedList();
     list.insert("Ashu");
     list.insert("Tosh");
     list.insert("ToDeleteThis");
     list.insert("Pathy");
+
     list.insertAtStart("Ronnie");
     list.insertAt(3, "Sata");
-    list.replaceAt(4, "Replaced");
-    list.deleteAt(4);
+
+    list.replaceAt(3, "Replaced");
+    list.deleteAt(3);
     list.show();*/
 
     /*Stack myStack = new Stack();
@@ -175,7 +171,8 @@ public class LeetcodeApplication {
   }*/
 //    System.out.println(maximumGain("paaaabdbabfbybbbtaaab", 8132, 1776));
 //    System.out.println(maximumGain("cdbcbbaaabab", 4, 5));
-    merge(new int[]{4, 0, 0, 0, 0, 0}, 1, new int[]{1, 2, 3, 5, 6}, 5);
+//    merge(new int[]{4, 0, 0, 0, 0, 0}, 1, new int[]{1, 2, 3, 5, 6}, 5);
+//    merge(new int[]{1, 2, 3, 0, 0, 0}, 3, new int[]{2, 5, 6}, 3);
 //    reverseList(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))));
 //    boolean sameTree = isSameTree(new TreeNode(1, new TreeNode(2), new TreeNode(3)), new TreeNode(1, new TreeNode(2),
 //            new TreeNode(3)));
@@ -185,6 +182,42 @@ public class LeetcodeApplication {
 //            "This");
 //    hasCycle(new ListNode(3,new ListNode(2)));
 //    String[] res = sortPeople(new String[]{"Mary","John","Emma"}, new int[]{180,165,170});
+//    frequencySort(new int[]{1, 1, 2, 2, 2, 3});
+//    frequencySort(new int[]{2, 3, 1, 3, 2});
+//    frequencySort(new int[]{-1, 1, -6, 4, 5, -6, 1, 4, 1});
+//    int i = minimumDeletions("aababbab");
+//    int i = minimumDeletions("bbaaaaabb");
+//    boolean i = canBeEqual(new int[]{1, 2, 3, 4}, new int[]{2, 4, 1, 3});
+//    int i = rangeSum(new int[]{1, 2, 3, 4}, 4, 1, 5);
+//    String i = kthDistinct(new String[]{"d", "b", "c", "b", "c", "a"}, 2);
+//    int i= (30*6)+(98)+(29*6)+(27*6)+(31*6)+(29*6);
+//    String i = numberToWords(12);
+//    String i = numberToWords(950);
+//    var i = construct2DArray(new int[]{1, 2, 3, 4},2,2);
+//    var i = construct2DArray(new int[]{3},1,2);
+//    var i = construct2DArray(new int[]{1,2},1,1);
+//    boolean i = containsDuplicate(new int[]{1, 2, 3, 1});
+//    String i = numberToWords(979);
+//    var i = findMedianSortedArrays(new int[]{1, 2}, new int[]{3, 4});
+//    var i = findMedianSortedArrays(new int[]{1, 3}, new int[]{2});
+//    var i = chalkReplacer(new int[]{3, 4, 1, 2}, 25);
+//    var i = chalkReplacer(new int[]{5,1,5}, 22);
+//    var i = validPath(3, new int[][]{{0, 1}, {2, 3}, {4, 5}}, 0, 2);
+//    var i = validPath(3, new int[][]{{0, 1}, {1, 2}, {2, 0}}, 0, 2);
+//    printNumberTriangular(6);
+    /*var i = postorder(new NArrayNode(1,
+            List.of(new NArrayNode(3, List.of(new NArrayNode(5), new NArrayNode(6))),
+                    new NArrayNode(2),
+                    new NArrayNode(4))));*/
+//    int[] i = missingRolls(new int[]{1,2,3,4}, 6, 4);
+//    var i = postorder(null);
+//    var i = modifiedList(new int[]{1, 2}, new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4)))));
+//    i.show();
+//    reorderList(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4)))));
+    /*var i = middleNode(new ListNode(1, new ListNode(2,
+            new ListNode(3, new ListNode(4)))));*/
+    var i = reverseBetween(new ListNode(1, new ListNode(2, new ListNode(3,
+            new ListNode(4, new ListNode(5))))), 2, 4);
+    i.show();
   }
-
 }

@@ -7,6 +7,42 @@ import java.util.stream.IntStream;
 
 public class StringSolutions {
 
+  static Map<Integer, String> onesMap = new HashMap<>() {
+    {
+      put(1, "One");
+      put(2, "Two");
+      put(3, "Three");
+      put(4, "Four");
+      put(5, "Five");
+      put(6, "Six");
+      put(7, "Seven");
+      put(8, "Eight");
+      put(9, "Nine");
+      put(10, "Ten");
+      put(11, "Eleven");
+      put(12, "Twelve");
+      put(13, "Thirteen");
+      put(14, "Fourteen");
+      put(15, "Fifteen");
+      put(16, "Sixteen");
+      put(17, "Seventeen");
+      put(18, "Eighteen");
+      put(19, "Nineteen");
+    }
+  };
+  static Map<Integer, String> tensMap = new HashMap<>() {
+    {
+      put(20, "Twenty");
+      put(30, "Thirty");
+      put(40, "Forty");
+      put(50, "Fifty");
+      put(60, "Sixty");
+      put(70, "Seventy");
+      put(80, "Eighty");
+      put(90, "Ninety");
+    }
+  };
+
   public static void lengthOfLastWord(String s) {
     String[] s1 = s.split(" ");
     System.out.println(s1[s1.length - 1].length());
@@ -145,7 +181,6 @@ public class StringSolutions {
     return reverse(A, 0, length - 1);
   }
 
-
   public static int[] reverse(int[] items, int leftIndex, int rightIndex) {
     while (leftIndex < rightIndex) {
       int temp = items[leftIndex];
@@ -197,6 +232,21 @@ public class StringSolutions {
     return mid;
   }
 
+  //TODO
+    /* public static String excelSheetColumnTitle(int columnNumber) {
+    StringBuilder s = new StringBuilder();
+    while (columnNumber > 0) {
+      int remainder = (columnNumber - 1) % 26;
+      System.out.println(remainder);
+      s.append((char) remainder);
+
+      if (remainder == 0) {
+        break;
+      }
+    }
+    return s.toString();
+  }*/
+
   /*1 2 3 --- 1 2 4*/
   public static int[] plusOne(int[] digits) {
     StringBuilder num = new StringBuilder();
@@ -226,21 +276,6 @@ public class StringSolutions {
     digits[0] = 1;
     return digits;
   }
-
-  //TODO
-    /* public static String excelSheetColumnTitle(int columnNumber) {
-    StringBuilder s = new StringBuilder();
-    while (columnNumber > 0) {
-      int remainder = (columnNumber - 1) % 26;
-      System.out.println(remainder);
-      s.append((char) remainder);
-
-      if (remainder == 0) {
-        break;
-      }
-    }
-    return s.toString();
-  }*/
 
   /**
    * ()->true
@@ -773,6 +808,20 @@ public class StringSolutions {
 
   /**
    * @param s
+   * @return Problem 1190: Reverse Substring between Each pair of Parenthesis
+   */
+  /*public static String reverseParentheses(String s) {
+    var start = 0;
+    var end = 0;
+    for (char c : s.toCharArray()) {
+      Stack<String> characters = new Stack<>();
+      if (c == '(') {
+        characters.push()
+      }
+    }*/
+
+  /**
+   * @param s
    * @param x
    * @param y
    * @return Problem 1717: Maximum Scope from removing substring
@@ -840,20 +889,6 @@ public class StringSolutions {
   }
 
   /**
-   * @param s
-   * @return Problem 1190: Reverse Substring between Each pair of Parenthesis
-   */
-  /*public static String reverseParentheses(String s) {
-    var start = 0;
-    var end = 0;
-    for (char c : s.toCharArray()) {
-      Stack<String> characters = new Stack<>();
-      if (c == '(') {
-        characters.push()
-      }
-    }*/
-
-  /**
    * @param names
    * @param heights
    * @return Problem: 2418: Sort the People
@@ -866,11 +901,330 @@ public class StringSolutions {
     }
     Arrays.sort(heights);
     int j = 0;
-    for (int i = n-1; i >=0; i--) {
+    for (int i = n - 1; i >= 0; i--) {
       names[j] = mapping.get(heights[i]);
       j++;
     }
     return names;
   }
 
+  /**
+   * @param nums
+   * @return Problem: 1636. Sort Array by Increasing Frequency
+   */
+  public static int[] frequencySort(int[] nums) {
+    int[] frequencies = new int[nums.length];
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i : nums) {
+      map.put(i, map.getOrDefault(i, 0) + 1);
+    }
+    System.out.println(map);
+    List<Integer> collect = map.entrySet().stream().sorted((o1, o2) -> {
+      int freq = o1.getValue().compareTo(o2.getValue());
+      if (freq != 0) {
+        return freq;
+      } else {
+        return o1.getKey().compareTo(o2.getKey()) >= 1 ? -1 : 1;
+      }
+    }).map(Map.Entry::getKey).toList();
+    System.out.println(collect);
+    int index = 0;
+    for (int i : collect) {
+      for (int j = 0; j < map.get(i); j++) {
+        frequencies[index++] = i;
+      }
+    }
+    System.out.println(Arrays.toString(frequencies));
+    return frequencies;
+  }
+
+  /**
+   * @param s
+   * @return Problem: 1653: Minimum Strings to make string balanced
+   */
+  public static int minimumDeletions(String s) {
+    int count = 0;
+    Stack<Character> characters = new Stack<>();
+    for (char c : s.toCharArray()) {
+      characters.push(c);
+    }
+    while (!characters.isEmpty()) {
+      Character curr = characters.pop();
+      if (curr == 'a' && (!characters.isEmpty() && characters.peek() == 'b')) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  /**
+   * @param target
+   * @param arr
+   * @return Problem: 1460
+   */
+  public static boolean canBeEqual(int[] target, int[] arr) {
+    Map<Integer, Integer> map = new HashMap<>();
+    if (target.length != arr.length) {
+      return false;
+    }
+    for (int i = 0; i < target.length; i++) {
+      map.put(target[i], map.getOrDefault(target[i], 0) + 1);
+      map.put(arr[i], map.getOrDefault(arr[i], 0) - 1);
+    }
+    for (int i : map.values()) {
+      if (i > 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
+   * @param nums
+   * @param n
+   * @param left
+   * @param right
+   * @return Problem:1508
+   */
+  public static int rangeSum(int[] nums, int n, int left, int right) {
+    int len = (n * (n + 1)) / 2;
+    long mod = 1000000007L;
+    int[] newArr = new int[len];
+    int sum = 0, i = 0, j = i, k = 0;
+    while (k < len) {
+      var internalSum = 0;
+      for (int x = i; x <= j; x++) {
+        internalSum += nums[x];
+      }
+      newArr[k] = (int) (internalSum % mod);
+      k++;
+      j++;
+      if (j == n) {
+        j = ++i;
+      }
+    }
+    Arrays.sort(newArr);
+    System.out.println(Arrays.toString(newArr));
+    for (int l = left - 1; l < right; l++) {
+      sum += newArr[l];
+    }
+    return (int) (sum % mod);
+  }
+
+  /**
+   * @param word
+   * @return Problem:3016
+   */
+  public static int minimumPushes(String word) {
+//    @TODO
+    var cost = 0;
+    Map<Character, Integer> map = new HashMap<>();
+    for (char c : word.toCharArray()) {
+      map.put(c, map.getOrDefault(c, 0) + 1);
+    }
+    return 0;
+  }
+
+  /**
+   * @param num
+   * @return Problem: 273- Integer to English words
+   */
+  public static String numberToWords(int num) {
+    List<String> res = new ArrayList<>();
+    if (num == 0) {
+      return "Zero";
+    }
+    /*int i = 0;
+    while (num > 0) {
+      String[] arr = new String[]{" Thousand", " Million", " Billion"};
+      var digit = num % 1000;
+      var dig = num / 1000;
+      res.add(numberToWordConverter(dig));
+      res.add(arr[i]);
+      res.add(numberToWordConverter(digit));
+      i++;
+      num /= 1000;
+    }*/
+    return numberToWordConverter(num);
+//    return String.join(" ", res);
+  }
+
+  private static String numberToWordConverter(int num) {
+    List<String> res = new ArrayList<>();
+    while (num > 10) {
+      if (num < 19) {
+        return onesMap.get(num);
+      } else if (num < 100 && num > 20) {
+        var dig = num % 10;
+        num /= 10;
+        res.add(tensMap.get(num * 10));
+        res.add(onesMap.get(dig));
+      } else {
+        res.add(onesMap.get(num / 100));
+        res.add("Hundred");
+        num %= 100;
+      }
+    }
+    return String.join(" ", res);
+  }
+
+  /**
+   * @param original
+   * @param m
+   * @param n
+   * @return Problem: 2022: Convert 1D array to 2D array
+   */
+  public static int[][] construct2DArray(int[] original, int m, int n) {
+    if (m * n != original.length) {
+      return new int[0][0];
+    }
+    int[][] res = new int[m][n];
+    int row = 0, col = 0;
+    for (int i : original) {
+      if (col >= n) {
+        col = 0;
+        row++;
+      }
+      res[row][col++] = i;
+    }
+    return res;
+  }
+
+  /**
+   * @param nums1
+   * @param nums2
+   * @return Problem: 4: Median of Two Sorted Arrays
+   */
+  public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+    int i = 0, j = 0;
+    int totalLength = nums1.length + nums2.length;
+    int firstPosition = totalLength / 2;
+    int firstPositionVal = 0;
+    int secondPosition = totalLength / 2 - 1;
+    int secondPositionVal = 0;
+    int index = 0;
+    while (i < nums1.length && j < nums2.length) {
+      if (nums1[i] < nums2[j]) {
+        if (firstPosition == index) {
+          firstPositionVal = nums1[i];
+        }
+        if (secondPosition == index) {
+          secondPositionVal = nums1[i];
+        }
+        i++;
+      } else {
+        if (firstPosition == index) {
+          firstPositionVal = nums2[j];
+        }
+        if (secondPosition == index) {
+          secondPositionVal = nums2[j];
+        }
+        j++;
+      }
+      index++;
+    }
+    while (i < nums1.length) {
+      if (firstPosition == index) {
+        firstPositionVal = nums1[i];
+      }
+      if (secondPosition == index) {
+        secondPositionVal = nums1[i];
+      }
+      i++;
+      index++;
+    }
+    while (j < nums2.length) {
+      if (firstPosition == index) {
+        firstPositionVal = nums2[j];
+      }
+      if (secondPosition == index) {
+        secondPositionVal = nums2[j];
+      }
+      j++;
+      index++;
+    }
+    return totalLength % 2 != 0 ? firstPositionVal :
+            (double) (firstPositionVal + secondPositionVal) / 2;
+
+  }
+
+  /**
+   * @param chalk
+   * @param k
+   * @return Problem: 1894: Find the student that will replace the chalk
+   */
+  public static int chalkReplacer(int[] chalk, int k) {
+    int sum = Arrays.stream(chalk).reduce(0, Integer::sum);
+    int remainingChalk = k % sum;
+    for (int studentIndex = 0; studentIndex < chalk.length; studentIndex++) {
+      if (remainingChalk < chalk[studentIndex]) {
+        return studentIndex;
+      }
+      remainingChalk -= chalk[studentIndex];
+    }
+    return 0;
+  }
+
+  /**
+   * @param rolls
+   * @param mean
+   * @param n
+   * @return Problem: 2028 Find Missing Observations
+   */
+  public static int[] missingRolls(int[] rolls, int mean, int n) {
+    int[] res = new int[n];
+    int k = 0;
+    int m = rolls.length;
+    int currentSum = Arrays.stream(rolls).reduce(0, Integer::sum);
+    int totalSum = mean * (n + m);
+    int missingSum = totalSum - currentSum;
+    while (n > 0) {
+      res[k] = Math.min(Math.min(missingSum, missingSum - n + 1), 6);
+      if (res[k] < 0) {
+        return new int[0];
+      }
+      missingSum -= res[k++];
+      n--;
+    }
+    if (missingSum > 0) {
+      return new int[0];
+    }
+    return res;
+  }
+
+
+//https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions
+
+  /**
+   * @param nums
+   * @param target
+   * @return Two Sum Problem: Problem:1,{2,7,11,15}->9
+   */
+  public static int[] twoSum(int[] nums, int target) {
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i = 0; i < nums.length; i++) {
+      var complement = target - nums[i];
+      if (map.containsKey(complement)) {
+        return new int[]{map.get(complement), i};
+      }
+      map.put(nums[i], i);
+    }
+    System.out.println(map);
+    return null;
+  }
+
+  /**
+   * @param nums
+   * @return Problem:217
+   */
+  public static boolean containsDuplicate(int[] nums) {
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i : nums) {
+      map.put(i, map.getOrDefault(i, 0) + 1);
+      if (map.get(i) > 1) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

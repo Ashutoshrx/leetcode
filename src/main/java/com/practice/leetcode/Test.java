@@ -36,16 +36,18 @@ public class Test {
 //    System.out.println(a.equals(b));  //true
 //    System.out.println(c == d);       //false
 //    System.out.println(c.equals(d));  //true
-//    System.out.println(a == c);         //false
-//    System.out.println(a.equals(c));  //true
+    System.out.println(a == c);         //false
+    System.out.println(a.equals(c));  //true
+    System.out.println(a.hashCode());
+    System.out.println(c.hashCode());
 
     A obj1= new A("Ashutosh",12);
     A obj2= new A("Ashutosh",12);
 
-    System.out.println(obj1.hashCode());
-    System.out.println(obj2.hashCode());
-    System.out.println(obj1.equals(obj2));
-    System.out.println(obj1==obj2);
+//    System.out.println(obj1.hashCode());
+//    System.out.println(obj2.hashCode());
+//    System.out.println(obj1.equals(obj2));
+//    System.out.println(obj1==obj2);
   }
 
   public static void get() {
