@@ -265,7 +265,7 @@ public class StringSolutions {
 
   public static int[] plusOnePartTwo(int[] digits) {
     System.out.println("Input:" + Arrays.toString(digits));
-    for (int i = digits.length - 1; i > 0; i--) {
+    for (int i = digits.length - 1; i >= 0; i--) {
       if (digits[i] < 9) {
         digits[i] += 1;
         return digits;
@@ -1226,5 +1226,36 @@ public class StringSolutions {
       }
     }
     return false;
+  }
+
+  /**
+   * @param nums
+   * @return Problem: 2419: Longest SubArray with Maximum Bitwise AND
+   * Kaden's Algorithm
+   */
+  public static int longestSubarray(int[] nums) {
+    int max = 0;
+    int currentMax = Arrays.stream(nums).max().getAsInt();
+    int size = 0;
+    for (int i : nums) {
+      if (i > currentMax) {
+        currentMax = i;
+        size = 1;
+      } else if (i == currentMax) {
+        size += 1;
+      } else {
+        size = 0;
+      }
+      max = Math.max(max, size);
+    }
+    return max;
+  }
+
+  /**
+   * @param s
+   * @return Problem : 1371: Longest Substring Containing vowels in even count
+   */
+  public static int findTheLongestSubstring(String s) {
+return 0;
   }
 }

@@ -1,6 +1,9 @@
 package com.practice.leetcode;
 
-import java.util.Objects;
+import com.practice.leetcode.dto.Student;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 class A {
   String name;
@@ -40,9 +43,15 @@ public class Test {
     System.out.println(a.equals(c));  //true
     System.out.println(a.hashCode());
     System.out.println(c.hashCode());
+    Map<Character, Long> collect = b.chars().mapToObj(value -> (char) value).collect(Collectors.groupingBy(character -> character,
+            Collectors.counting()));
+    Map.Entry<Character, Long> max =
+            b.chars().mapToObj(val -> (char) val).collect(Collectors.groupingBy(val -> val,
+                            Collectors.counting())).entrySet().stream().
+                    max(Map.Entry.comparingByValue()).get();
 
-    A obj1= new A("Ashutosh",12);
-    A obj2= new A("Ashutosh",12);
+    A obj1 = new A("Ashutosh", 12);
+    A obj2 = new A("Ashutosh", 12);
 
 //    System.out.println(obj1.hashCode());
 //    System.out.println(obj2.hashCode());
@@ -51,6 +60,10 @@ public class Test {
   }
 
   public static void get() {
-
+    List<Student> students = new ArrayList<>();
+    Map.Entry<String, Long> stringLongEntry = students.stream().collect(Collectors.groupingBy(Student::getFirstName, Collectors.counting())).entrySet()
+            .stream().max(Map.Entry.comparingByValue()).get();
+    students.stream().collect(Collectors.groupingBy(Student::getFirstName,
+            Collectors.maxBy(Comparator.comparing(s -> s.getLastName().length()))));
   }
 }

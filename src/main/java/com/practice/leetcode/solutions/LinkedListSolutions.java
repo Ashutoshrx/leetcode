@@ -307,5 +307,29 @@ public class LinkedListSolutions {
     initialPrev.next = previous;
     return dummy.next;
   }
+
+  /**
+   * @param head
+   * @return Problem:2807: Insert Greatest Common Divisors in LinkedList
+   */
+  public static ListNode insertGreatestCommonDivisors(ListNode head) {
+    ListNode dummy = new ListNode(0,head);
+    ListNode current = head;
+    while (current.next != null) {
+      ListNode gcd = new ListNode(gcdByEuclidsAlgorithm(current.val, current.next.val));
+      System.out.println(gcd.val);
+      gcd.next = current.next;
+      current.next = gcd;
+      current = current.next.next;
+    }
+    return dummy.next;
+  }
+
+  private static int gcdByEuclidsAlgorithm(int n1, int n2) {
+    if (n2 == 0) {
+      return n1;
+    }
+    return gcdByEuclidsAlgorithm(n2, n1 % n2);
+  }
 }
 

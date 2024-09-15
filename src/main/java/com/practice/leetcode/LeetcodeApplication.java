@@ -2,7 +2,7 @@ package com.practice.leetcode;
 
 import com.practice.leetcode.solutions.linkedlist.ListNode;
 
-import static com.practice.leetcode.solutions.LinkedListSolutions.reverseBetween;
+import static com.practice.leetcode.solutions.LinkedListSolutions.insertGreatestCommonDivisors;
 
 public class LeetcodeApplication {
 
@@ -216,8 +216,16 @@ public class LeetcodeApplication {
 //    reorderList(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4)))));
     /*var i = middleNode(new ListNode(1, new ListNode(2,
             new ListNode(3, new ListNode(4)))));*/
-    var i = reverseBetween(new ListNode(1, new ListNode(2, new ListNode(3,
-            new ListNode(4, new ListNode(5))))), 2, 4);
+//    var i = swapPairs(new ListNode(1, new ListNode(2, new ListNode(3,
+//            new ListNode(4)))));
+//    i.show();
+//    rotate(new int[]{-1, -100, 3, 99}, 2);
+//    maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4});
+//    rotate(new int[]{1, 2, 3, 4, 5, 6, 7}, 3);
+//    int[] ints = plusOnePartTwo(new int[]{1, 9, 9});
+//    int i = longestSubarray(new int[]{1, 2, 3, 3, 2, 2});
+    ListNode i = insertGreatestCommonDivisors(new ListNode(18, new ListNode(6, new ListNode(10, new ListNode(3)))));
+//    System.out.println(i);
     i.show();
   }
 }

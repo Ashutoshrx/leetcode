@@ -1,8 +1,6 @@
 package com.practice.leetcode.solutions;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class InterviewPreparation {
   /**
@@ -86,7 +84,7 @@ public class InterviewPreparation {
 //    System.out.println(data.replaceAll("\\D","#"));
 //    System.out.println(data.replaceAll(" ","#"));
 //    System.out.println(data.replaceAll("\\s{2}",""));
-    Set<String > x= new HashSet<>();
+    Set<String> x = new HashSet<>();
     String previous;
     do {
       previous = data;
@@ -96,5 +94,59 @@ public class InterviewPreparation {
     System.out.println(data);
 //    System.out.println(data.replaceAll("(+)\\1", "$1"));
 
+  }
+
+  public static boolean isAnagram(String s, String t) {
+    Map<Character, Integer> map = new HashMap<>();
+    if (s.length() != t.length()) {
+      return false;
+    }
+    for (int i = 0; i < s.length(); i++) {
+      map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+      map.put(t.charAt(i), map.getOrDefault(t.charAt(i), 0) - 1);
+    }
+    for (var i : map.values()) {
+      if (i > 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
+   * @param nums
+   * @param k    Problem:189: Rotate Array:
+   */
+  public static void rotate(int[] nums, int k) {
+    int length = nums.length;
+    reverseNumbers(nums, 0, k);
+    reverseNumbers(nums, k + 1, length - 1);
+    reverseNumbers(nums, 0, length - 1);
+    System.out.println(Arrays.toString(nums));
+  }
+
+  private static void reverseNumbers(int[] nums, int startIndex, int endIndex) {
+    while (startIndex < endIndex) {
+      nums[startIndex] = nums[startIndex] ^ nums[endIndex];
+      nums[endIndex] = nums[endIndex] ^ nums[startIndex];
+      nums[startIndex] = nums[startIndex] ^ nums[endIndex];
+      startIndex++;
+      endIndex--;
+    }
+  }
+
+  /**
+   * @param nums
+   * @return Problem: 53: maximum subarray
+   * Kaden's Algorithm
+   */
+  public static int maxSubArray(int[] nums) {
+    int maxSubSum = Integer.MIN_VALUE, currentSum = 0;
+    for (int i : nums) {
+      currentSum += i;
+      maxSubSum = Math.max(currentSum, maxSubSum);
+      currentSum = Math.max(0, currentSum);
+    }
+    return maxSubSum;
   }
 }
