@@ -1,8 +1,12 @@
 package com.practice.leetcode;
 
-import com.practice.leetcode.solutions.linkedlist.ListNode;
+import com.practice.leetcode.solutions.stacks.CustomStack;
 
-import static com.practice.leetcode.solutions.LinkedListSolutions.insertGreatestCommonDivisors;
+import java.beans.Customizer;
+import java.util.Arrays;
+
+import static com.practice.leetcode.solutions.InterviewPreparation.findMaxAverage;
+import static com.practice.leetcode.solutions.InterviewPreparation.maxSlidingWindow;
 
 public class LeetcodeApplication {
 
@@ -224,8 +228,31 @@ public class LeetcodeApplication {
 //    rotate(new int[]{1, 2, 3, 4, 5, 6, 7}, 3);
 //    int[] ints = plusOnePartTwo(new int[]{1, 9, 9});
 //    int i = longestSubarray(new int[]{1, 2, 3, 3, 2, 2});
-    ListNode i = insertGreatestCommonDivisors(new ListNode(18, new ListNode(6, new ListNode(10, new ListNode(3)))));
-//    System.out.println(i);
-    i.show();
+//    ListNode i = insertGreatestCommonDivisors(new ListNode(18, new ListNode(6, new ListNode(10, new ListNode(3)))));
+//    var i = uncommonFromSentences("this apple is sweet", "this apple is sour");
+//    var i = shortestPalindrome("abcd");
+    /*List<Double> i = averageOfLevels(new TreeNode(3, new TreeNode(1, new TreeNode(0), new TreeNode(2)), new TreeNode(5,
+            new TreeNode(4), new TreeNode(6))));*/
+//    int[] i = maxSlidingWindow(new int[]{8, 7, 6, 9}, 2);
+//    int[] i = maxSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3);
+//    System.out.println(Arrays.toString(i));
+    /*CustomStack customStack= new CustomStack(3);
+    customStack.push(1);
+    customStack.push(2);
+    customStack.pop();
+    customStack.push(2);
+    customStack.push(3);
+    customStack.push(4);
+    customStack.increment(5,100);
+    customStack.increment(2,100);
+    customStack.pop();
+    customStack.pop();
+    customStack.pop();
+    customStack.pop();*/
+    double i = findMaxAverage(new int[]{1, 12, -5, -6, 50, 3}, 4);
+//    double i = findMaxAverage(new int[]{-1}, 1);
+//    double i = findMaxAverage(new int[]{1,2,3,4,5}, 2);
+    System.out.println(i);
+//    i.show();
   }
 }

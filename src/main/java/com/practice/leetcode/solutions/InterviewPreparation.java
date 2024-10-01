@@ -149,4 +149,53 @@ public class InterviewPreparation {
     }
     return maxSubSum;
   }
+
+  /**
+   * @param nums
+   * @param k
+   * @return Problem: 239, Sliding window Maximum
+   */
+  public static int[] maxSlidingWindow(int[] nums, int k) {
+    int n = nums.length;
+    Deque<Integer> deque = new ArrayDeque<>();
+    int[] res = new int[n - k + 1];
+    int left = 0, index = 0, right = 0;
+    while (right < n) {
+      while (!deque.isEmpty() && nums[right] >= nums[deque.peekLast()]) {
+        deque.pollLast();
+      }
+      deque.offer(right);
+      System.out.println(deque);
+
+      if (right + 1 >= k) {
+        res[index++] = nums[deque.peekFirst()];
+        left++;
+      }
+      if (left > deque.peekFirst()) {
+        deque.pollFirst();
+      }
+      right++;
+    }
+    return res;
+  }
+
+  /**
+   * @param nums
+   * @param k
+   * @return Problem: 643: Maximum Average SubArray 1
+   */
+  public static double findMaxAverage(int[] nums, int k) {
+    int maxSum = 0;
+    int i = 0;
+    for (; i < k; i++) {
+      maxSum += nums[i];
+    }
+    double maxAvg = maxSum / (double) k;
+    for (; i < nums.length; i++) {
+      maxSum -= nums[i - k];
+      maxSum += nums[i];
+      maxAvg = Math.max(maxAvg, maxSum / (double) k);
+    }
+    return maxAvg;
+  }
 }

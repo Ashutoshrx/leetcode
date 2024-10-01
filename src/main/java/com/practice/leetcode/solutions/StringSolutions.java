@@ -1192,6 +1192,55 @@ public class StringSolutions {
     return res;
   }
 
+  public static String[] uncommonFromSentences(String s1, String s2) {
+    Map<String, Integer> map = new HashMap<>();
+    List<String> res = new ArrayList<>();
+    int k = 0;
+    for (String i : s1.split(" ")) {
+      map.put(i, map.getOrDefault(i, 0) + 1);
+    }
+    for (String i : s2.split(" ")) {
+      map.put(i, map.getOrDefault(i, 0) + 1);
+    }
+    System.out.println(map);
+    for (var entry : map.entrySet()) {
+      if (entry.getValue() == 1) {
+        res.add(entry.getKey());
+      }
+    }
+    return res.toArray(new String[0]);
+  }
+
+  /**
+   * @param s
+   * @return Problem : 214: Shortest Palindrome
+   */
+  public static String shortestPalindrome(String s) {
+    int i = 0;
+    int j = s.length() - 1;
+    while (i < j) {
+      if (s.charAt(i) != s.charAt(j)) {
+        s = s.charAt(j) + s;
+        System.out.println(s);
+        i = 0;
+        j = s.length() - 1;
+      }
+      i++;
+      j--;
+    }
+    return s;
+  }
+
+  private static boolean isPalindromeRec(String s) {
+    int i = 0;
+    int length = s.length() - 1;
+    while (i < length / 2) {
+      if (s.charAt(i++) != s.charAt(length--)) {
+        return true;
+      }
+    }
+    return false;
+  }
 
 //https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions
 
@@ -1256,6 +1305,48 @@ public class StringSolutions {
    * @return Problem : 1371: Longest Substring Containing vowels in even count
    */
   public static int findTheLongestSubstring(String s) {
-return 0;
+    return 0;
   }
+
+  /**
+   * @param s
+   * @param dictionary
+   * @return Problem: 2707: Extra characters in a String
+   */
+  public static int minExtraChar(String s, String[] dictionary) {
+    List<String> dic = Arrays.asList(dictionary);
+    int j = 0, i = 1;
+    while (i < s.length()) {
+      if (dic.contains(s.substring(j, i))) {
+        System.out.println(s.substring(j, i));
+        s = s.replaceAll(s.substring(j, i), "");
+      }
+      j++;
+    }
+    return s.length();
+  }
+
+  /**
+   * @param nums
+   * @param k
+   * @param x
+   * @return Problem: 2653: Sliding SubArray Beauty
+   */
+  /*public int[] getSubarrayBeauty(int[] nums, int k, int x) {
+    int n = nums.length;
+    int[] res = new int[n - k + 1];
+    int left = 0, right = 0, index = 0;
+    Set<Integer> set = new TreeSet<>();
+    while (right < n) {
+      if (nums[right] <= 0) {
+        set.add(nums[right]);
+      }
+      if (right + 1 > k) {
+        set.remove();
+      }
+      right++;
+    }
+    return res;
+  }
+*/
 }

@@ -1,6 +1,5 @@
 package com.practice.leetcode.solutions;
 
-import com.practice.leetcode.solutions.linkedlist.ListNode;
 import com.practice.leetcode.solutions.trees.NArrayNode;
 import com.practice.leetcode.solutions.trees.TreeNode;
 
@@ -257,6 +256,40 @@ public class TreeSolutions {
 
   }*/
 
+  /**
+   * @param root
+   * @return Problem: 637: Average of Levels in Binary Tree
+   */
+  public static List<Double> averageOfLevels(TreeNode root) {
+    List<Double> res = new ArrayList<>();
+    Queue<TreeNode> queue = new LinkedList<>();
+    if (root != null) {
+      res.add(Double.valueOf(root.data));
+    }
+    queue.offer(root);
+    while (!queue.isEmpty()) {
+      double count = 0, sum = 0;
+      int length = queue.size();
+      for (int i = 0; i < length; i++) {
+        TreeNode current = queue.poll();
+        if (current.left != null) {
+          count++;
+          sum += current.left.data;
+          queue.offer(current.left);
+        }
+        if (current.right != null) {
+          count++;
+          sum += current.right.data;
+          queue.offer(current.right);
+        }
+      }
+      System.out.println(sum / count);
+      if (count > 0) {
+        res.add(sum / count);
+      }
+    }
+    return res;
+  }
 
 
 }
