@@ -313,7 +313,7 @@ public class LinkedListSolutions {
    * @return Problem:2807: Insert Greatest Common Divisors in LinkedList
    */
   public static ListNode insertGreatestCommonDivisors(ListNode head) {
-    ListNode dummy = new ListNode(0,head);
+    ListNode dummy = new ListNode(0, head);
     ListNode current = head;
     while (current.next != null) {
       ListNode gcd = new ListNode(gcdByEuclidsAlgorithm(current.val, current.next.val));
@@ -330,6 +330,46 @@ public class LinkedListSolutions {
       return n1;
     }
     return gcdByEuclidsAlgorithm(n2, n1 % n2);
+  }
+
+  /**
+   * @param head
+   * @return Problem: 328: Odd Even Linked List
+   */
+  public static ListNode oddEvenList(ListNode head) {
+    ListNode odd = head;
+    ListNode even = head.next;
+    ListNode evenHead = even;
+    while (even != null && even.next != null) {
+      odd.next = even.next;
+      odd = odd.next;
+      even.next = odd.next;
+      even = even.next;
+    }
+    odd.next = evenHead;
+    return head;
+  }
+
+  /**
+   * @param head
+   * @return Problem: 2095: Delete the middle  node of the linkedList
+   */
+  public static ListNode deleteMiddle(ListNode head) {
+    ListNode dummy = new ListNode(0, head);
+    ListNode current = dummy.next;
+    ListNode slow = head, fast = head;
+    ListNode prev = null;
+    while (fast != null && fast.next != null) {
+      prev = slow;
+      slow = slow.next;
+      fast = fast.next.next;
+      current = current.next;
+    }
+    if (prev == null) {
+      return null;
+    }
+    prev.next = slow.next;
+    return head;
   }
 }
 

@@ -629,7 +629,7 @@ public class StringSolutions {
    */
   public static String reversePrefix(String word, char ch) {
     int found = word.indexOf(ch);
-    return new StringBuilder().append(word.substring(0, found + 1)).reverse().append(word.substring(found + 1)).toString();
+    return new StringBuilder().append(word, 0, found + 1).reverse().append(word.substring(found + 1)).toString();
 
   }
 
@@ -1327,26 +1327,85 @@ public class StringSolutions {
   }
 
   /**
-   * @param nums
-   * @param k
-   * @param x
-   * @return Problem: 2653: Sliding SubArray Beauty
+   * @param s
+   * @return Problem: 151: Reverse Words in a string
    */
-  /*public int[] getSubarrayBeauty(int[] nums, int k, int x) {
-    int n = nums.length;
-    int[] res = new int[n - k + 1];
-    int left = 0, right = 0, index = 0;
-    Set<Integer> set = new TreeSet<>();
-    while (right < n) {
-      if (nums[right] <= 0) {
-        set.add(nums[right]);
-      }
-      if (right + 1 > k) {
-        set.remove();
-      }
-      right++;
+  public static String reverseWords(String s) {
+    s = s.replaceAll(" *", "");
+    String[] split = s.split(" ");
+    int len = split.length - 1;
+    for (int i = 0; i < len / 2; i++) {
+      String temp = split[i];
+      split[i] = split[len - i];
+      split[len - i] = temp;
     }
-    return res;
+    System.out.println(Arrays.toString(split));
+    return Arrays.stream(split).filter(Objects::nonNull).collect(Collectors.joining(" "));
   }
-*/
+
+  /**
+   * @param s
+   * @param k
+   * @return Problem: 1456: maximum number of vowels in a substring of given length
+   */
+  public static int maxVowels(String s, int k) {
+    List<Character> vowels = List.of('a', 'e', 'i', 'o', 'u');
+    int currentCount = 0, maxCount = 0, i = 0;
+    for (; i < k; i++) {
+      if (vowels.contains(s.charAt(i))) {
+        currentCount += 1;
+      }
+    }
+    maxCount = Math.max(currentCount, maxCount);
+    for (; i < s.length(); i++) {
+      if (vowels.contains(s.charAt(i))) {
+        currentCount += 1;
+      }
+      if (vowels.contains(s.charAt(i - k))) {
+        currentCount -= 1;
+      }
+      maxCount = Math.max(currentCount, maxCount);
+    }
+    return maxCount;
+  }
+
+  /**
+   * @param arr
+   * @return Problem: 1331: Rank Transform of an Array
+   */
+  public static int[] arrayRankTransform(int[] arr) {
+    int[] copy = Arrays.copyOf(arr, arr.length);
+    Map<Integer, Integer> map = new HashMap<>();
+    Arrays.sort(copy);
+    for (int i : copy) {
+      map.putIfAbsent(i, map.size() + 1);
+    }
+    System.out.println(Arrays.toString(copy));
+    System.out.println(map);
+    for (int i = 0; i < arr.length; i++) {
+      arr[i] = map.get(arr[i]);
+    }
+    return arr;
+  }
+
+  /**
+   * @param nums
+   * @param p
+   * @return Problem: 1590: Make sum divisible by p
+   */
+  public int minSubarray(int[] nums, int p) {
+    int totalSum = 0;
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i : nums) {
+      totalSum += i;
+      map.put(i, totalSum);
+    }
+    if (totalSum % p == 0) {
+      return 0;
+    } else {
+      int reminder = totalSum % p;
+      map.remove(reminder);
+    }
+    return map.size();
+  }
 }

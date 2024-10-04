@@ -1,12 +1,8 @@
 package com.practice.leetcode;
 
-import com.practice.leetcode.solutions.stacks.CustomStack;
+import com.practice.leetcode.solutions.linkedlist.ListNode;
 
-import java.beans.Customizer;
-import java.util.Arrays;
-
-import static com.practice.leetcode.solutions.InterviewPreparation.findMaxAverage;
-import static com.practice.leetcode.solutions.InterviewPreparation.maxSlidingWindow;
+import static com.practice.leetcode.solutions.LinkedListSolutions.deleteMiddle;
 
 public class LeetcodeApplication {
 
@@ -249,10 +245,16 @@ public class LeetcodeApplication {
     customStack.pop();
     customStack.pop();
     customStack.pop();*/
-    double i = findMaxAverage(new int[]{1, 12, -5, -6, 50, 3}, 4);
+//    double i = findMaxAverage(new int[]{1, 12, -5, -6, 50, 3}, 4);
 //    double i = findMaxAverage(new int[]{-1}, 1);
 //    double i = findMaxAverage(new int[]{1,2,3,4,5}, 2);
-    System.out.println(i);
-//    i.show();
+//    System.out.println(i);
+//    String s = reverseWords("a good   example");
+//    ListNode i = deleteMiddle(new ListNode(1, new ListNode(2, new ListNode(3))));
+//    ListNode i = deleteMiddle(new ListNode(1, new ListNode(3, new ListNode(4, new ListNode(7, new ListNode(1,
+//            new ListNode(2,new ListNode(6))))))));
+    ListNode i= deleteMiddle(new ListNode(1));
+//    System.out.println(i);
+    i.show();
   }
 }
