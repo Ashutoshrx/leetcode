@@ -1393,7 +1393,7 @@ public class StringSolutions {
    * @param p
    * @return Problem: 1590: Make sum divisible by p
    */
-  public int minSubarray(int[] nums, int p) {
+  public static int minSubarray(int[] nums, int p) {
     int totalSum = 0;
     Map<Integer, Integer> map = new HashMap<>();
     for (int i : nums) {
@@ -1407,5 +1407,33 @@ public class StringSolutions {
       map.remove(reminder);
     }
     return map.size();
+  }
+
+  /**
+   * @param word1
+   * @param word2
+   * @return Problem: 1768: Merge Strings alternatively
+   */
+  public static String mergeAlternately(String word1, String word2) {
+    int i = 0, j = 0;
+    StringBuilder res = new StringBuilder();
+    int lengthOfWord2 = word2.length();
+    int lengthOfWord1 = word1.length();
+    while (i < lengthOfWord1 && j < lengthOfWord2) {
+      if (i == j) {
+        res.append(word1.charAt(i));
+        i++;
+      } else {
+        res.append(word2.charAt(j));
+        j++;
+      }
+    }
+    if (i < lengthOfWord1) {
+      res.append(word1.substring(i));
+    }
+    if (j < lengthOfWord2) {
+      res.append(word2.substring(j));
+    }
+    return res.toString();
   }
 }

@@ -371,5 +371,79 @@ public class LinkedListSolutions {
     prev.next = slow.next;
     return head;
   }
+
+  /**
+   * @param head
+   * @return Problem: 2130: Maximum Twin Sum of a Linked List
+   */
+  public static int pairSum(ListNode head) {
+    ListNode slow = head, fast = head;
+    ListNode prev = null;
+    int maxSum = 0, currentSum = 0;
+    while (fast != null && fast.next != null) {
+      fast = fast.next.next;
+      slow = slow.next;
+    }
+    while (slow != null) {
+      ListNode next = slow.next;
+      ListNode temp = prev;
+      prev = slow;
+      prev.next = temp;
+      slow = next;
+    }
+    while (prev != null) {
+      currentSum += prev.val + head.val;
+      head = head.next;
+      prev = prev.next;
+      maxSum = Math.max(currentSum, maxSum);
+      currentSum = 0;
+    }
+    return maxSum;
+  }
+
+  /**
+   * @param head
+   * @return Problem:24: Swap Nodes in Pairs
+   */
+  public static ListNode swapPairs(ListNode head) {
+    ListNode p1 = head;
+    ListNode p2 = head.next;
+    while (p2 != null && p1 != null) {
+      p1.val = p2.val ^ p1.val;
+      p2.val = p1.val ^ p2.val;
+      p1.val = p2.val ^ p1.val;
+      p1 = p2.next;
+      if (p1 != null) {
+        p2 = p1.next;
+      }
+    }
+    return head;
+  }
+
+  /**
+   * @param head
+   * @param k
+   * @return Problem: 1721: Swapping nodes in a LinkedList
+   */
+  public static ListNode swapNodes(ListNode head, int k) {
+    ListNode fast = head;
+    ListNode slow = head;
+    ListNode firstNode = null;
+    for (int i = 0; i < k; i++) {
+      firstNode = fast;
+      fast = fast.next;
+    }
+    while (fast != null && fast.next != null) {
+      slow = slow.next;
+      fast = fast.next;
+    }
+    slow = slow.next;
+    if (slow != null) {
+      int temp= firstNode.val;
+      firstNode.val = slow.val;
+      slow.val = temp;
+    }
+    return head;
+  }
 }
 
