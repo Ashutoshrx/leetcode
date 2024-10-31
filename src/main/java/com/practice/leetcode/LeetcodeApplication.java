@@ -1,9 +1,6 @@
 package com.practice.leetcode;
 
-import com.practice.leetcode.solutions.linkedlist.ListNode;
-
-import static com.practice.leetcode.solutions.LinkedListSolutions.swapNodes;
-import static com.practice.leetcode.solutions.StringSolutions.mergeAlternately;
+import static com.practice.leetcode.solutions.StringSolutions.maxOperations;
 
 public class LeetcodeApplication {
 
@@ -254,7 +251,10 @@ public class LeetcodeApplication {
 //    var i = swapNodes(new ListNode(1,new ListNode(2)), 2);
 //    ListNode i = deleteMiddle(new ListNode(1, new ListNode(3, new ListNode(4, new ListNode(7, new ListNode(1,
 //            new ListNode(2,new ListNode(6))))))));
-    String i = mergeAlternately("ab", "pqrs");
+//    var i = minimumSteps("010010");
+//    moveZeroes(new int[]{0, 1, 0, 3, 12});
+//    var i = maxOperations(new int[]{1, 2, 3, 4}, 5);
+    var i = maxOperations(new int[]{2, 5, 4, 4, 1, 3, 4, 4, 1, 4, 4, 1, 2, 1, 2, 2, 3, 2, 4, 2}, 3);
     System.out.println(i);
 //    i.show();
   }

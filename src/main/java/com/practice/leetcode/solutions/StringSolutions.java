@@ -1436,4 +1436,214 @@ public class StringSolutions {
     }
     return res.toString();
   }
+
+  /**
+   * @param s
+   * @return Problem: 345: Reverse Vowels of a String
+   */
+  public static String reverseVowels(String s) {
+    StringBuilder lowerCase = new StringBuilder(s);
+    int left = 0, right = lowerCase.length() - 1;
+    int i = Integer.MIN_VALUE, j = Integer.MIN_VALUE;
+    while (left < right) {
+      if (lowerCase.charAt(left) == 'a' || lowerCase.charAt(left) == 'e' || lowerCase.charAt(left) == 'i'
+              || lowerCase.charAt(left) == 'o' || lowerCase.charAt(left) == 'u' || lowerCase.charAt(left) == 'A' ||
+              lowerCase.charAt(left) == 'E' || lowerCase.charAt(left) == 'I'
+              || lowerCase.charAt(left) == 'O' || lowerCase.charAt(left) == 'U') {
+        i = left;
+      } else {
+        left++;
+      }
+      if (lowerCase.charAt(right) == 'a' || lowerCase.charAt(right) == 'e' || lowerCase.charAt(right) == 'i'
+              || lowerCase.charAt(right) == 'o' || lowerCase.charAt(right) == 'u' ||
+              lowerCase.charAt(right) == 'A' || lowerCase.charAt(right) == 'E' || lowerCase.charAt(right) == 'I'
+              || lowerCase.charAt(right) == 'O' || lowerCase.charAt(right) == 'U') {
+        j = right;
+      } else {
+        right--;
+      }
+      if (i >= 0 && j > 0) {
+        char temp = s.charAt(i);
+        lowerCase.setCharAt(i, s.charAt(j));
+        lowerCase.setCharAt(j, temp);
+        i = Integer.MIN_VALUE;
+        j = Integer.MIN_VALUE;
+        left++;
+        right--;
+      }
+    }
+    return lowerCase.toString();
+  }
+
+  /**
+   * @param nums
+   * @param k
+   * @return Problem: 2530 Maximal Scrore After Applying K operations
+   */
+  public static long maxKelements(int[] nums, int k) {
+    long score = 0;
+    PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(Comparator.reverseOrder());
+    int i = 0;
+    for (; i < nums.length; i++) {
+      priorityQueue.offer(nums[i]);
+    }
+    while (k > 0) {
+      System.out.println(priorityQueue.peek());
+      Double popped = Double.valueOf(priorityQueue.poll());
+      score += popped;
+      priorityQueue.offer((int) Math.ceil(popped / 3));
+      k--;
+    }
+    return score;
+  }
+
+  /**
+   * @param s
+   * @return Problem: 2938: Separate Black and White Balls
+   * TODO to be done once you learn quick sort
+   */
+  public static long minimumSteps(String s) {
+    int length = s.length();
+    int left = 0;
+    long res = 0;
+    for (int right = 0; right < length; right++) {
+      if (s.charAt(right) == '0') {
+        res += (right - left);
+        left++;
+      }
+    }
+    return res;
+  }
+
+  /**
+   * @param nums
+   * @return Problem: 75: Sort Colors
+   */
+  public static int[] sortArrayQuickSort(int[] nums) {
+    quickSortRecursively(nums, 0, nums.length - 1);
+    return nums;
+  }
+
+  private static void quickSortRecursively(int[] nums, int low, int high) {
+    if (low < high) {
+      int pivot = getPivot(nums, low, high);
+      quickSortRecursively(nums, low, pivot - 1);
+      quickSortRecursively(nums, pivot + 1, high);
+    }
+  }
+
+  private static int getPivot(int[] nums, int low, int high) {
+    int i = low - 1;
+    int pivot = nums[high];
+    for (int j = low; j < high; j++) {
+      if (nums[j] < pivot) {
+        int temp = nums[j];
+        nums[j] = nums[++i];
+        nums[i] = temp;
+      } else {
+
+      }
+    }
+    int temp = nums[high];
+    nums[high] = nums[++i];
+    nums[i] = temp;
+    return i;
+  }
+
+  /**
+   * @param nums Problem: 283: Move Zeroes
+   */
+  public static void moveZeroes(int[] nums) {
+    int zero = 0;
+    for (int nonZero = 0; nonZero < nums.length; nonZero++) {
+      if (nums[nonZero] != 0 && zero != nonZero) {
+        nums[zero] ^= nums[nonZero];
+        nums[nonZero] ^= nums[zero];
+        nums[zero] ^= nums[nonZero];
+        zero++;
+      } else if (nums[zero] != 0) {
+        zero++;
+      }
+    }
+    System.out.println(Arrays.toString(nums));
+  }
+
+  /**
+   * @param s
+   * @param t
+   * @return Problem: 392 IsSubSequence
+   */
+  public static boolean isSubsequence(String s, String t) {
+    int right = 0, left = 0;
+    if (!s.isEmpty() && !t.isEmpty()) {
+      while (right < t.length() && left < s.length()) {
+        if (t.charAt(right) == s.charAt(left)) {
+          System.out.println("Found 1 match");
+          left++;
+        }
+        right++;
+        if (left == s.length()) {
+          return true;
+        }
+      }
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * @param height
+   * @return Problem:11 Container with most water
+   */
+  public static int maxArea(int[] height) {
+    int maxArea = 0;
+    int left = 0, right = height.length - 1;
+    while (left < right) {
+      int width = right - left;
+      int area = width * Math.min(height[right], height[left]);
+      maxArea = Math.max(maxArea, area);
+      if (height[left] > height[right]) {
+        right--;
+      } else {
+        left++;
+      }
+    }
+    return maxArea;
+  }
+
+  /**
+   * @param nums
+   * @param k
+   * @return Problem: 1679: Max number of K sum pairs
+   */
+  public static int maxOperations(int[] nums, int k) {
+    int count = 0;
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int num : nums) {
+      if (map.containsKey(num) && map.get(num) > 0) {
+        count++;
+        map.put(num, map.get(num) - 1);
+      } else {
+        map.put(k - num, map.getOrDefault(k - num, 0) + 1);
+      }
+    }
+    return count;
+  }
+
+  /**
+   * @param s
+   * @return Problem: 2390: Removing Stars From a String
+   */
+  public static String removeStars(String s) {
+    Stack<Character> stack = new Stack<>();
+    for (char i : s.toCharArray()) {
+      if (i != '*') {
+        stack.push(i);
+      } else {
+        stack.pop();
+      }
+    }
+    return stack.stream().collect(StringBuilder::new, StringBuilder::append, StringBuilder::append).reverse().toString();
+  }
+
 }
