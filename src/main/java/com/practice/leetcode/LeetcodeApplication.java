@@ -1,6 +1,7 @@
 package com.practice.leetcode;
 
-import static com.practice.leetcode.solutions.StringSolutions.maxOperations;
+import static com.practice.leetcode.solutions.StringSolutions.maximumSubarraySum;
+import static com.practice.leetcode.solutions.StringSolutions.minSubArrayLen;
 
 public class LeetcodeApplication {
 
@@ -254,7 +255,15 @@ public class LeetcodeApplication {
 //    var i = minimumSteps("010010");
 //    moveZeroes(new int[]{0, 1, 0, 3, 12});
 //    var i = maxOperations(new int[]{1, 2, 3, 4}, 5);
-    var i = maxOperations(new int[]{2, 5, 4, 4, 1, 3, 4, 4, 1, 4, 4, 1, 2, 1, 2, 2, 3, 2, 4, 2}, 3);
+//    var i = maxOperations(new int[]{2, 5, 4, 4, 1, 3, 4, 4, 1, 4, 4, 1, 2, 1, 2, 2, 3, 2, 4, 2}, 3);
+//    var i = rotateString("abcde", "cdeab");
+//    var i = rotateString("abcde", "abced");
+//    int i = minSubArrayLen(7, new int[]{2, 3, 1, 2, 4, 3});
+//    int i = minSubArrayLen(4, new int[]{1, 4, 4});
+//    var i=maximumSubarraySum(new int[]{1,1,1,7,8,9},3); //24
+//    var i=maximumSubarraySum(new int[]{1,5,4,2,9,9,9},3); //15
+//    var i=maximumSubarraySum(new int[]{9,9,9,1,2,3},3); //12
+    var i=maximumSubarraySum(new int[]{4,4,4},3); //0
     System.out.println(i);
 //    i.show();
   }

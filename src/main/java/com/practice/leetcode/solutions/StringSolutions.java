@@ -1646,4 +1646,105 @@ public class StringSolutions {
     return stack.stream().collect(StringBuilder::new, StringBuilder::append, StringBuilder::append).reverse().toString();
   }
 
+  /**
+   * @param s
+   * @return Problem: 1957: Delete characters to make fancy String
+   */
+  public static String makeFancyString(String s) {
+    int count = 0;
+    char prev = 0;
+    StringBuilder res = new StringBuilder();
+    for (int i = 0; i < s.length(); i++) {
+      if (s.charAt(i) != prev) {
+        count = 1;
+        prev = s.charAt(i);
+      } else {
+        count++;
+      }
+      if (count < 3) {
+        res.append(s.charAt(i));
+      }
+    }
+    return res.toString();
+  }
+
+  /**
+   * @param sentence
+   * @return Problem 2490: Circular Sentence
+   */
+  public static boolean isCircularSentence(String sentence) {
+    String[] words = sentence.split(" ");
+    char prev = words[0].charAt(words[0].length() - 1);
+    for (int right = 1; right < words.length; right++) {
+      String currentWord = words[right];
+      if (currentWord.charAt(0) != prev) {
+        return false;
+      }
+      prev = currentWord.charAt(currentWord.length() - 1);
+    }
+    return words[0].charAt(0) == prev;
+  }
+
+  /**
+   * @param s
+   * @param goal
+   * @return Problem: 796: Rotate String
+   */
+  public static boolean rotateString(String s, String goal) {
+    if (s.length() != goal.length()) {
+      return false;
+    }
+    return (s + s).contains(goal);
+  }
+
+  /**
+   * @param nums
+   * @param target
+   * @return Problem: 209 - Minimum Size SubArray Sum
+   */
+  public static int minSubArrayLen(int target, int[] nums) {
+    int res = Integer.MAX_VALUE;
+    int left = 0, right = 0, sum = 0;
+    while (right < nums.length) {
+      sum += nums[right];
+      while (sum >= target) {
+        sum -= nums[left];
+        res = Math.min(res, right - left);
+        left++;
+      }
+      right++;
+    }
+    return res == Integer.MAX_VALUE ? 0 : res + 1;
+  }
+
+  /**
+   * @param nums
+   * @param k
+   * @return Problem: 2461: Maximum sum of distinct subArrays with length K
+   */
+  public static long maximumSubarraySum(int[] nums, int k) {
+    Map<Integer, Integer> countMap = new HashMap<>();
+    int i = 0;
+    long maxSum = 0, currentSum = 0;
+    for (; i < k; i++) {
+      currentSum += nums[i];
+      countMap.put(nums[i], countMap.getOrDefault(nums[i], 0) + 1);
+    }
+    if (countMap.size() == k) {
+      maxSum = Math.max(maxSum, currentSum);
+    }
+    for (; i < nums.length; i++) {
+      currentSum += nums[i] - nums[i - k];
+      countMap.put(nums[i], countMap.getOrDefault(nums[i], 0) + 1);
+      countMap.put(nums[i - k], countMap.getOrDefault(nums[i - k], 0) - 1);
+      if (countMap.get(nums[i - k]) == 0) {
+        countMap.remove(nums[i - k]);
+      }
+      if (countMap.size() == k) {
+        maxSum = Math.max(maxSum, currentSum);
+      }
+    }
+    return maxSum;
+  }
+
 }
