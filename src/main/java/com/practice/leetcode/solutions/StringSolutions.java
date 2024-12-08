@@ -1747,4 +1747,78 @@ public class StringSolutions {
     return maxSum;
   }
 
+  /**
+   * @param code
+   * @param k
+   * @return Problem: 1652: Defuse the Bomb
+   * Concepts Used: Circular Array, Array, Sliding Window
+   * @Resolution: Unresolved
+   */
+  public static int[] decrypt(int[] code, int k) {
+    int currentSum = 0;
+    int length = code.length;
+    int[] res = new int[length];
+    if (k == 0) {
+      return res;
+    }
+    int j = 0;
+    for (int i = 0; i < length + Math.abs(k) - 1; i++) {
+      currentSum += code[i % length];
+      if (i - j + 1 == Math.abs(k) - 1) {
+        if (k > 0) {
+//          res[(l-1)]
+        }
+        res[i % length] = currentSum;
+//        res[(i + 1) % length] = currentSum;
+        currentSum -= code[i + 1 - Math.abs(k)];
+      }
+    }
+    System.out.println(-1 % 4);
+    return res;
+  }
+
+  /**
+   * @param arr
+   * @return Problem: 1346: Check If N and its double Exists
+   */
+  public static boolean checkIfExist(int[] arr) {
+    Map<Integer, Integer> seen = new HashMap<>();
+    for (int i : arr) {
+      if (seen.get(2 * i) == null && (i % 2 != 0 || seen.get(i / 2) == null)) {
+        seen.put(i, seen.getOrDefault(i, 0) + 1);
+      } else {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * @param gain
+   * @return Problem: 1732: Find the highest altitude
+   */
+  public static int largestAltitude(int[] gain) {
+    int cur = 0, max = 0;
+    for (int i : gain) {
+      cur += i;
+      max = Math.max(max, cur);
+    }
+    return max;
+  }
+
+  /**
+   * @param nums
+   * @return Problem: 724: Find Pivot Index
+   */
+  public static int pivotIndex(int[] nums) {
+    int left = 0, right = Arrays.stream(nums).reduce(0, Integer::sum);
+    for (int i = 0; i < nums.length; i++) {
+      right -= nums[i];
+      if (left == right) {
+        return i;
+      }
+      left += nums[i];
+    }
+    return -1;
+  }
 }

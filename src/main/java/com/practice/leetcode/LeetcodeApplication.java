@@ -1,7 +1,6 @@
 package com.practice.leetcode;
 
-import static com.practice.leetcode.solutions.StringSolutions.maximumSubarraySum;
-import static com.practice.leetcode.solutions.StringSolutions.minSubArrayLen;
+import static com.practice.leetcode.solutions.StringSolutions.pivotIndex;
 
 public class LeetcodeApplication {
 
@@ -263,7 +262,10 @@ public class LeetcodeApplication {
 //    var i=maximumSubarraySum(new int[]{1,1,1,7,8,9},3); //24
 //    var i=maximumSubarraySum(new int[]{1,5,4,2,9,9,9},3); //15
 //    var i=maximumSubarraySum(new int[]{9,9,9,1,2,3},3); //12
-    var i=maximumSubarraySum(new int[]{4,4,4},3); //0
+//    var i=maximumSubarraySum(new int[]{4,4,4},3); //0
+//    var i = decrypt(new int[]{5, 7, 1, 4}, 3);
+//    var i = decrypt(new int[]{2, 4, 9, 3}, -2);
+    var i = pivotIndex(new int[]{1, 7, 3, 6, 5, 6});//7,6,9,8,9
     System.out.println(i);
 //    i.show();
   }
