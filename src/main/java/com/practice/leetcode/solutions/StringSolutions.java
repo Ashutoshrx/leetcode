@@ -1821,4 +1821,27 @@ public class StringSolutions {
     }
     return -1;
   }
+
+  /**
+   * @param asteroids
+   * @return Problem: 735 Asteroid Collision
+   */
+  public static int[] asteroidCollision(int[] asteroids) {
+    Stack<Integer> stack = new Stack<>();
+    for (int asteroid : asteroids) {
+      while (!stack.isEmpty() && (stack.peek() > 0 && asteroid < 0)) {
+        Integer pop = stack.pop();
+        if (Math.abs(pop) > Math.abs(asteroid)) {
+          stack.push(pop);
+          asteroid = 0;
+        } else if (Math.abs(pop) == Math.abs(asteroid)) {
+          asteroid = 0;
+        }
+      }
+      if (asteroid != 0) {
+        stack.push(asteroid);
+      }
+    }
+    return stack.isEmpty() ? new int[0] : stack.stream().mapToInt(Integer::intValue).toArray();
+  }
 }

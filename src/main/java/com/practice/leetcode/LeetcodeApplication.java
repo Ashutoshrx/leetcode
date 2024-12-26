@@ -1,6 +1,8 @@
 package com.practice.leetcode;
 
-import static com.practice.leetcode.solutions.StringSolutions.pivotIndex;
+import com.practice.leetcode.solutions.trees.TreeNode;
+
+import static com.practice.leetcode.solutions.TreeSolutions.deleteNode;
 
 public class LeetcodeApplication {
 
@@ -265,7 +267,14 @@ public class LeetcodeApplication {
 //    var i=maximumSubarraySum(new int[]{4,4,4},3); //0
 //    var i = decrypt(new int[]{5, 7, 1, 4}, 3);
 //    var i = decrypt(new int[]{2, 4, 9, 3}, -2);
-    var i = pivotIndex(new int[]{1, 7, 3, 6, 5, 6});//7,6,9,8,9
+//    var i = pivotIndex(new int[]{1, 7, 3, 6, 5, 6});//7,6,9,8,9
+//    var i = asteroidCollision(new int[]{5,10,-5});
+//    var i = asteroidCollision(new int[]{-2,-1,1,2});
+//    var i = asteroidCollision(new int[]{10,2,-5});
+//    var i = deleteNode(new TreeNode(5, new TreeNode(3, new TreeNode(2), new TreeNode(4)), new TreeNode(6,
+//            new TreeNode(null), new TreeNode(7))), 3);
+    var i = deleteNode(new TreeNode(5, new TreeNode(3, new TreeNode(2), new TreeNode(4)),
+            new TreeNode(6, null, new TreeNode(7))), 5);
     System.out.println(i);
 //    i.show();
   }

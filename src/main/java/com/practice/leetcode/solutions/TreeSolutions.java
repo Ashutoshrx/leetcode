@@ -291,5 +291,87 @@ public class TreeSolutions {
     return res;
   }
 
+  /**
+   * @param root
+   * @return Problem: 515: Find the largest value in each tree row
+   */
+  public static List<Integer> largestValues(TreeNode root) {
+    List<Integer> res = new ArrayList<>();
+    Queue<TreeNode> queue = new LinkedList<>();
+    int max = Integer.MIN_VALUE;
+    queue.offer(root);
+    while (!queue.isEmpty()) {
+      int size = queue.size();
+      for (int i = 0; i < size; i++) {
+        TreeNode current = queue.poll();
+        if (current.right != null) {
+          queue.offer(current.right);
+        }
+        if (current.left != null) {
+          queue.offer(current.left);
+        }
+        max = Math.max(max, current.data);
+      }
+      res.add(max);
+      max = Integer.MIN_VALUE;
+    }
+    return res;
+  }
 
+  /**
+   * @param root
+   * @param val
+   * @return search BST
+   */
+  public static TreeNode searchBST(TreeNode root, int val) {
+    if (root != null) {
+      if (root.data == val) {
+        return root;
+      } else if (val > root.data) {
+        return searchBST(root.right, val);
+      } else {
+        return searchBST(root.left, val);
+      }
+    } else {
+      return null;
+    }
+  }
+
+  /**
+   * @param root
+   * @param key
+   * @return Problem: 450: Delete node in BST
+   */
+  public static TreeNode deleteNode(TreeNode root, int key) {
+    if (root == null) {
+      return null;
+    }
+    if (key < root.data) {
+      root.left = deleteNode(root.left, key);
+    } else if (key > root.data) {
+      root.right = deleteNode(root.right, key);
+    } else {
+      if (root.right == null) {
+        return root.left;
+      } else if (root.left == null) {
+        return root.right;
+      } else {
+        /* Using Minimum Value
+        TreeNode curr = root.right;
+        while (curr.left != null) {
+          curr = curr.left;
+        }
+        root.data = curr.data;
+        root.right = deleteNode(root.right, curr.data);*/
+        //Using Maximum value
+        TreeNode curr = root.left;
+        while (curr.right != null) {
+          curr = curr.right;
+        }
+        root.data = curr.data;
+        root.left = deleteNode(root.left, root.data);
+      }
+    }
+    return root;
+  }
 }
