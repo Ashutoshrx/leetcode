@@ -1,0 +1,30 @@
+1. students.stream().filter(s->"Karnataka".equalIgnoreCase(s.getCity)).sorted(Comparator.comparing(Student::getName))
+.toList();
+
+2. Use of flatmap:
+    students.stream().flatMap(s->s.getContacts().stream()).toList();
+
+3. Group the students by department name:
+	students.stream().collect(Collectors.groupingBy(Student::getDept));
+
+4. Group the students by department name and count them
+	students.stream().collect(Collectors.groupingBy(Student::getDept,Collectors.counting());
+
+5. Group the students by department name and get the max count:
+	students.stream().collect(Collectors.groupingBy(Student::getDept,Collectors.counting)).entrySet().stream().max(Map.Entry.comparingByValue()).get();
+
+6. Find the average age of male and female students
+	students.stream().collect(Collectors.groupingBy(Student::getGender,Collectors.averagingInt(Student::getAge)))
+
+7. Find the highest rank in each department
+	students.stream().collect(Collectors.groupingBy(Student::getDept,Collectors.minBy(Comparator.comparing(Student::getRank))));
+
+8. Find the Second-highest Rank
+	student.stream().sorted(Comparator.comparing(Student::getRank)).skip(1).findFirst().orElse(null);
+
+9. character and its occurrence ,for examples= "Ashutosh"
+	s.chars().mapToObject(c->(char)c).collect(Collectors.groupingBy(c->c,Collectors.counting()));
+
+10. Maximum occurred character in a string
+    s.chars().mapToObject(c->(char)c).collect(Collectors.groupingBy(c->c,Collectors.counting()))
+    .entrySet().stream().max(Map.Entry.comparingByValue());
