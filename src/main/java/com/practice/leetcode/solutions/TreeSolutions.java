@@ -374,4 +374,18 @@ public class TreeSolutions {
     }
     return root;
   }
+
+  /**
+   * @param root
+   * @return Problem: 2415
+   * @description Reverse Odd Levels of Binary Tree
+   */
+  /*public static TreeNode reverseOddLevels(TreeNode root) {
+    Queue<TreeNode> nodeQueue = new LinkedList<>();
+    nodeQueue.offer(root);
+    while(!nodeQueue.isEmpty()){
+      TreeNode current = nodeQueue.poll();
+
+    }
+  }*/
 }

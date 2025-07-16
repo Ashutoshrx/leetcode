@@ -1,8 +1,7 @@
 package com.practice.leetcode;
 
-import com.practice.leetcode.solutions.trees.TreeNode;
-
-import static com.practice.leetcode.solutions.TreeSolutions.deleteNode;
+import static com.practice.leetcode.solutions.StringSolutions.findLucky;
+import static com.practice.leetcode.solutions.StringSolutions.minimumDeletions;//import static com.practice.leetcode.solutions.TreeSolutions.reverseOddLevels;
 
 public class LeetcodeApplication {
 
@@ -273,8 +272,18 @@ public class LeetcodeApplication {
 //    var i = asteroidCollision(new int[]{10,2,-5});
 //    var i = deleteNode(new TreeNode(5, new TreeNode(3, new TreeNode(2), new TreeNode(4)), new TreeNode(6,
 //            new TreeNode(null), new TreeNode(7))), 3);
-    var i = deleteNode(new TreeNode(5, new TreeNode(3, new TreeNode(2), new TreeNode(4)),
-            new TreeNode(6, null, new TreeNode(7))), 5);
+    /*var i = removeNodes(new ListNode(5, new ListNode(2, new ListNode(13,
+            new ListNode(3, new ListNode(8))))));*/
+//    var i= maxScoreSightseeingPair(new int[]{8,1,5,2,6});
+//    int i = DynamicProgramming.climbStairs(3);
+//    int i = DynamicProgramming.triFibonacci(4);
+//    int i = countLargestGroup(13);
+//    int i = countSubarrays(new int[]{1, 2, 1, 4, 1});
+//    int i = countSubarrays(new int[]{-1,-4,-1,4});
+
+    int i = findLucky( new int[]{1,2,2,3,3,3});
+//    var i = reverseOddLevels(new TreeNode(2, new TreeNode(3, new TreeNode(8), new TreeNode(13)), new TreeNode(5,
+//            new TreeNode(21), new TreeNode(34))));
     System.out.println(i);
 //    i.show();
   }

@@ -1,5 +1,6 @@
 package com.practice.leetcode.solutions;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -1143,8 +1144,7 @@ public class StringSolutions {
       j++;
       index++;
     }
-    return totalLength % 2 != 0 ? firstPositionVal :
-            (double) (firstPositionVal + secondPositionVal) / 2;
+    return totalLength % 2 != 0 ? firstPositionVal : (double) (firstPositionVal + secondPositionVal) / 2;
 
   }
 
@@ -1446,18 +1446,12 @@ public class StringSolutions {
     int left = 0, right = lowerCase.length() - 1;
     int i = Integer.MIN_VALUE, j = Integer.MIN_VALUE;
     while (left < right) {
-      if (lowerCase.charAt(left) == 'a' || lowerCase.charAt(left) == 'e' || lowerCase.charAt(left) == 'i'
-              || lowerCase.charAt(left) == 'o' || lowerCase.charAt(left) == 'u' || lowerCase.charAt(left) == 'A' ||
-              lowerCase.charAt(left) == 'E' || lowerCase.charAt(left) == 'I'
-              || lowerCase.charAt(left) == 'O' || lowerCase.charAt(left) == 'U') {
+      if (lowerCase.charAt(left) == 'a' || lowerCase.charAt(left) == 'e' || lowerCase.charAt(left) == 'i' || lowerCase.charAt(left) == 'o' || lowerCase.charAt(left) == 'u' || lowerCase.charAt(left) == 'A' || lowerCase.charAt(left) == 'E' || lowerCase.charAt(left) == 'I' || lowerCase.charAt(left) == 'O' || lowerCase.charAt(left) == 'U') {
         i = left;
       } else {
         left++;
       }
-      if (lowerCase.charAt(right) == 'a' || lowerCase.charAt(right) == 'e' || lowerCase.charAt(right) == 'i'
-              || lowerCase.charAt(right) == 'o' || lowerCase.charAt(right) == 'u' ||
-              lowerCase.charAt(right) == 'A' || lowerCase.charAt(right) == 'E' || lowerCase.charAt(right) == 'I'
-              || lowerCase.charAt(right) == 'O' || lowerCase.charAt(right) == 'U') {
+      if (lowerCase.charAt(right) == 'a' || lowerCase.charAt(right) == 'e' || lowerCase.charAt(right) == 'i' || lowerCase.charAt(right) == 'o' || lowerCase.charAt(right) == 'u' || lowerCase.charAt(right) == 'A' || lowerCase.charAt(right) == 'E' || lowerCase.charAt(right) == 'I' || lowerCase.charAt(right) == 'O' || lowerCase.charAt(right) == 'U') {
         j = right;
       } else {
         right--;
@@ -1843,5 +1837,134 @@ public class StringSolutions {
       }
     }
     return stack.isEmpty() ? new int[0] : stack.stream().mapToInt(Integer::intValue).toArray();
+  }
+
+  public static int countLargestGroup(int n) {
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i = 1; i <= n; i++) {
+      int sum = 0;
+      int temp = i;
+      while (temp > 0) {
+        sum += temp % 10;
+        temp /= 10;
+      }
+      map.put(sum, map.getOrDefault(sum, 0) + 1);
+    }
+    System.out.println(map);
+    int res = 0;
+    int max = map.values().stream().max(Integer::compareTo).orElse(1);
+    for (int x : map.values()) {
+      if (x == max) {
+        res += 1;
+      }
+    }
+    return res;
+  }
+
+  public static int isPrefixOfWord(String sentence, String searchWord) {
+    String[] split = sentence.split(" ");
+    for (int i = 0; i < split.length; i++) {
+      if (split[i].startsWith(searchWord)) {
+        return i + 1;
+      }
+    }
+    return -1;
+  }
+
+  public static int countSubarrays(int[] nums) {
+    System.out.println(BigDecimal.valueOf(-0.5));
+    int res = 0;
+    int i = 0;
+    for (; i <= nums.length - 3; i++) {
+      if (2 * (nums[i] + nums[i + 2]) == nums[i + 1]) {
+        res++;
+      }
+    }
+    return res;
+  }
+
+  /**
+   * @param num
+   * @return
+   * @Problem; 2566: Maximum Difference by ReMapping a digit
+   */
+  public static int minMaxDifference(int num) {
+    var initial = String.valueOf(num);//copying the current number
+    StringBuilder max = new StringBuilder();
+    StringBuilder min = new StringBuilder();
+    char maxReplaced = '0';
+    boolean isMaxReplaced = false;
+    char minReplaced = '9';
+    boolean isMinReplaced = false;
+    for (int i = 0; i < initial.length(); i++) {
+      char current = initial.charAt(i);
+      if (current != '9' && !isMaxReplaced) {
+        maxReplaced = current;
+        isMaxReplaced = true;
+      }
+      if (current != '0' && !isMinReplaced) {
+        minReplaced = current;
+        isMinReplaced = true;
+      }
+      if (current == maxReplaced) {
+        max.append('9');
+      }
+      if (current == minReplaced) {
+        min.append('0');
+      } else {
+        max.append(current);
+      }
+    }
+
+    /*for (int i = 0; i < initial.length(); i++) {
+      char current = initial.charAt(i);
+
+      if (current == minReplaced) {
+        min.append('0');
+      } else {
+        min.append(current);
+      }
+    }*/
+    System.out.println(max);
+    System.out.println(min);
+    return Integer.parseInt(max.toString()) - Integer.parseInt(min.toString());
+  }
+
+  /**
+   * @param word
+   * @param k
+   * @return Problem: 3085:
+   */
+  public static int minimumDeletions(String word, int k) {
+    int res = Integer.MAX_VALUE;
+    Map<Character, Integer> map = new HashMap<>(word.length());
+    for (int i = 0; i < word.length(); i++) {
+      map.put(word.charAt(i), map.getOrDefault(word.charAt(i), 0) + 1);
+    }
+    System.out.println(map);
+    for (int x : map.values()) {
+      int current = 0;
+      for (int a : map.values()) {
+        current += (a < x) ? a : Math.max(0, a - (x + k));
+        System.out.println(current);
+      }
+      res = Math.min(res, current);
+    }
+    return res;
+  }
+
+  public static int findLucky(int[] arr) {
+    HashMap<Integer, Integer> map = new HashMap<>();
+    for (int i : arr) {
+      map.put(i, map.getOrDefault(i, 0) + 1);
+    }
+    System.out.println(map);
+    int res = -1;
+    for (int i : arr) {
+      if (i == map.get(i)) {
+        res = Math.max(i, res);
+      }
+    }
+    return res;
   }
 }

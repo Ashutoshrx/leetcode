@@ -439,11 +439,45 @@ public class LinkedListSolutions {
     }
     slow = slow.next;
     if (slow != null) {
-      int temp= firstNode.val;
+      int temp = firstNode.val;
       firstNode.val = slow.val;
       slow.val = temp;
     }
     return head;
+  }
+
+  /**
+   * @param head
+   * @return Problem:2487: Remove nodes from linkedList
+   */
+  public static ListNode removeNodes(ListNode head) {
+    ListNode reverse = getReverse(head);
+    ListNode current;
+    head = reverse;
+    current = head;
+    int max = current.val;
+    while (current.next != null) {
+      if (current.next.val < max) {
+        current.next = current.next.next;
+      } else {
+        max = current.next.val;
+        current = current.next;
+      }
+    }
+    return getReverse(head);
+  }
+
+  private static ListNode getReverse(ListNode head) {
+    ListNode reverse = null;
+    ListNode current = head;
+    while (current != null) {
+      ListNode temp = reverse;
+      ListNode currentNext = current.next;
+      reverse = current;
+      reverse.next = temp;
+      current = currentNext;
+    }
+    return reverse;
   }
 }
 
