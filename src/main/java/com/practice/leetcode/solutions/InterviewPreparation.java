@@ -1,5 +1,6 @@
 package com.practice.leetcode.solutions;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class InterviewPreparation {
@@ -198,4 +199,44 @@ public class InterviewPreparation {
     }
     return maxAvg;
   }
+
+  /**
+   * @param nums
+   * @return 238. Product of Array Except Self
+   */
+  public static int[] productExceptSelf(int[] nums) {
+    System.out.println(Arrays.toString(nums));
+    int length = nums.length;
+    int[] prefixSum = new int[length];
+    int product = 1;
+    for (int i = 0; i < length; i++) {
+      product *= nums[i];
+      prefixSum[i] = product;
+    }
+    System.out.println(Arrays.toString(prefixSum));
+    product = 1;
+    int[] postfix = new int[length];
+    for (int i = length - 1; i >= 0; i--) {
+      product *= nums[i];
+      postfix[i] = product;
+    }
+    System.out.println(Arrays.toString(postfix));
+    nums[0] = postfix[1];
+    nums[length - 1] = prefixSum[length - 2];
+    for (int i = 1; i < length - 1; i++) {
+//      System.out.println("i,arr[i]: " + i + ":" + prefixSum[i - 1] * postfix[i + 1]);
+      nums[i] = prefixSum[i - 1] * postfix[i + 1];
+    }
+    return nums;
+  }
+
+  /**
+   * @param nums
+   * @return 152. Maximum Product Subarray
+   */
+  public static int maxProduct(int[] nums) {
+    int max = Arrays.stream(nums).max().getAsInt();
+    return max;
+  }
+
 }

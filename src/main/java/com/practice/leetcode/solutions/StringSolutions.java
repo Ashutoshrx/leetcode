@@ -1967,4 +1967,87 @@ public class StringSolutions {
     }
     return res;
   }
+
+  /**
+   * @param s
+   * @return
+   * @Problem: 409: Longest Palindrome
+   * @input abccccdd
+   */
+  public static int longestPalindrome(String s) {
+    if (s.length() == 1) {
+      return 1;
+    }
+    Map<Character, Integer> map = new HashMap<>();
+    int evenCount = 0;
+    int oddCount = 0;
+    boolean isOddExists = false;
+    for (int i = 0; i < s.length(); i++) {
+      map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+    }
+    for (var value : map.values()) {
+      if (value % 2 == 0) {
+        evenCount += value;
+      } else {
+        oddCount++;
+        isOddExists = true;
+      }
+    }
+    if (isOddExists) {
+      return evenCount + 1;
+    }
+    return evenCount - 2;
+  }
+
+  /**
+   * @param s
+   * @return Problem: 394: Decode String
+   */
+  public static String decodeString(String s) {
+    StringBuilder finalResponse = new StringBuilder();
+    Stack<Character> stack = new Stack<>();
+    for (int i = 0; i < s.length(); i++) {
+      if (s.charAt(i) != ']') {
+        stack.push(s.charAt(i));
+      } else {
+        Stack<String> tempStack = new Stack<>();
+        StringBuilder subString = new StringBuilder(finalResponse);
+        while (stack.peek() != '[') {
+          subString.append(stack.pop());
+        }
+        subString.reverse();
+        stack.pop();// removing '['
+        int number = 0;
+        while (!stack.isEmpty() && Character.isDigit(stack.peek())) {
+          number += Character.getNumericValue(stack.pop());
+        }
+        while (number > 0) {
+          tempStack.push(subString.toString());
+          number--;
+        }
+        StringBuilder current = new StringBuilder();
+        while (!tempStack.isEmpty()) {
+          current.append(tempStack.pop());
+        }
+        finalResponse = current;
+      }
+    }
+    return finalResponse.toString();
+  }
+
+  public static boolean isIsomorphic(String s, String t) {
+    Map<Character, Integer> sMap = new HashMap<>();
+    Map<Character, Integer> tMap = new HashMap<>();
+    for (int i = 0; i < s.length(); i++) {
+      if ((sMap.get(t.charAt(i)) != null && sMap.get(t.charAt(i)) != t.charAt(i)) ||
+              (tMap.get(s.charAt(i)) != null && tMap.get(s.charAt(i)) != s.charAt(i))) {
+        return false;
+      }
+      sMap.put(t.charAt(i), sMap.getOrDefault(t.charAt(i), 0) + 1);
+      tMap.put(s.charAt(i), tMap.getOrDefault(s.charAt(i), 0) + 1);
+    }
+    System.out.println(sMap);
+    System.out.println(tMap);
+    return sMap.size() == tMap.size() && sMap.equals(tMap);
+  }
 }

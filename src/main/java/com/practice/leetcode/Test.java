@@ -39,10 +39,10 @@ public class Test {
 //    System.out.println(a.equals(b));  //true
 //    System.out.println(c == d);       //false
 //    System.out.println(c.equals(d));  //true
-    System.out.println(a == c);         //false
-    System.out.println(a.equals(c));  //true
-    System.out.println(a.hashCode());
-    System.out.println(c.hashCode());
+//    System.out.println(a == c);         //false
+//    System.out.println(a.equals(c));  //true
+//    System.out.println(a.hashCode());
+//    System.out.println(c.hashCode());
     Map<Character, Long> collect = b.chars().mapToObj(value -> (char) value).collect(Collectors.groupingBy(character -> character,
             Collectors.counting()));
     Map.Entry<Character, Long> max =
@@ -57,6 +57,17 @@ public class Test {
 //    System.out.println(obj2.hashCode());
 //    System.out.println(obj1.equals(obj2));
 //    System.out.println(obj1==obj2);
+    System.out.println("==============");
+    List<Integer> numbers = List.of(1, 2, 2, 3, 4, 5, 5, 6, 7, 7, 8);
+    Set<Integer> seen = new HashSet<>();
+    Set<Integer> duplicates = numbers.stream()
+            .filter(n -> !seen.add(n)) // add returns false if already exists
+            .collect(Collectors.toSet());
+//    System.out.println(duplicates);
+    var test = numbers.stream()
+            .collect(Collectors.groupingBy(n -> n, Collectors.counting()))
+            .entrySet().stream().filter(e -> e.getValue() > 1).map(Map.Entry::getKey).toList();
+    System.out.println(test);
   }
 
   public static void get() {

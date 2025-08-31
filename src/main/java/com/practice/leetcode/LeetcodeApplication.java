@@ -1,7 +1,12 @@
 package com.practice.leetcode;
 
-import static com.practice.leetcode.solutions.StringSolutions.findLucky;
-import static com.practice.leetcode.solutions.StringSolutions.minimumDeletions;//import static com.practice.leetcode.solutions.TreeSolutions.reverseOddLevels;
+import com.practice.leetcode.concepts.slidingwindow.SlidingWindowProblems;
+import com.practice.leetcode.solutions.InterviewPreparation;
+import com.practice.leetcode.solutions.StringSolutions;
+
+import java.util.Arrays;
+
+import static com.practice.leetcode.solutions.InterviewPreparation.maxSubArray;
 
 public class LeetcodeApplication {
 
@@ -219,7 +224,7 @@ public class LeetcodeApplication {
 //            new ListNode(4)))));
 //    i.show();
 //    rotate(new int[]{-1, -100, 3, 99}, 2);
-//    maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4});
+//    var i = maxSubArray(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4});
 //    rotate(new int[]{1, 2, 3, 4, 5, 6, 7}, 3);
 //    int[] ints = plusOnePartTwo(new int[]{1, 9, 9});
 //    int i = longestSubarray(new int[]{1, 2, 3, 3, 2, 2});
@@ -281,9 +286,25 @@ public class LeetcodeApplication {
 //    int i = countSubarrays(new int[]{1, 2, 1, 4, 1});
 //    int i = countSubarrays(new int[]{-1,-4,-1,4});
 
-    int i = findLucky( new int[]{1,2,2,3,3,3});
+//    var i = SlidingWindowProblems.findLHS(new int[]{1,2,3,4});
+//    var i = SlidingWindowProblems.compress(new char[]{'a'});
+//    var i = SlidingWindowProblems.compress(new char[]{'a', 'a', 'b', 'b', 'c', 'c', 'c'});
+//    var i = SlidingWindowProblems.compress(new char[]{'a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'});
+//    int i = SlidingWindowProblems.lengthOfLongestSubstring("abcabcbb");
+//    int i = SlidingWindowProblems.lengthOfLongestSubstring("pwwkew");
 //    var i = reverseOddLevels(new TreeNode(2, new TreeNode(3, new TreeNode(8), new TreeNode(13)), new TreeNode(5,
 //            new TreeNode(21), new TreeNode(34))));
+//    var i = StringSolutions.longestPalindrome("ccc");
+//    var i = StringSolutions.decodeString("3[a]2[bc]");
+//    var i = StringSolutions.decodeString("3[a2[c]]");
+//    var i = StringSolutions.decodeString("3[a2[bc]]");
+//    var i = StringSolutions.decodeString("[abc]3[cd]ef");
+//    var i = SlidingWindowProblems.longestPalindrome("cbbd");
+//    var i = StringSolutions.isIsomorphic("bbbaaaba","aaabbbba");
+//    var i = StringSolutions.isIsomorphic("egg","add");
+    var i = InterviewPreparation.productExceptSelf(new int[]{1,2,3,4});
+//    var i = InterviewPreparation.maxProduct(new int[]{2,3,-2,4});
+//    var i = InterviewPreparation.maxProduct(new int[]{-2,0,-1});
     System.out.println(i);
 //    i.show();
   }
