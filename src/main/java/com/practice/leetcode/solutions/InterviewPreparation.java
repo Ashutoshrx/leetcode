@@ -1,6 +1,5 @@
 package com.practice.leetcode.solutions;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class InterviewPreparation {
@@ -232,11 +231,44 @@ public class InterviewPreparation {
 
   /**
    * @param nums
-   * @return 152. Maximum Product Subarray
+   * @return Problem:15 3Sum
    */
-  public static int maxProduct(int[] nums) {
-    int max = Arrays.stream(nums).max().getAsInt();
-    return max;
+  public static List<List<Integer>> threeSum(int[] nums) {
+    Arrays.sort(nums);
+    List<List<Integer>> res = new ArrayList<>();
+    for (int i = 0; i < nums.length; i++) {
+      if (i > 0 && nums[i] == nums[i - 1]) {
+        continue;
+      }
+      int left = i + 1, right = nums.length - 1;
+      while (left < right) {
+        int threeSum = nums[i] + nums[left] + nums[right];
+        if (threeSum == 0) {
+          res.add(List.of(nums[i], nums[left], nums[right]));
+          left++;
+          while (nums[left] == nums[left - 1] && left < right) {
+            left++;
+          }
+        } else if (threeSum > 0) {
+          right--;
+        } else {
+          left++;
+        }
+      }
+    }
+    return res;
+  }
+
+  /**
+   * @param nums
+   * @param target
+   * @return Problem: 18 -> 4Sum
+   */
+  public static List<List<Integer>> fourSum(int[] nums, int target) {
+    Arrays.sort(nums);
+    System.out.println(nums);
+
+    return null;
   }
 
 }

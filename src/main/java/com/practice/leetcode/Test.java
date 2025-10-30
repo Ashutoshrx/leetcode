@@ -67,7 +67,10 @@ public class Test {
     var test = numbers.stream()
             .collect(Collectors.groupingBy(n -> n, Collectors.counting()))
             .entrySet().stream().filter(e -> e.getValue() > 1).map(Map.Entry::getKey).toList();
-    System.out.println(test);
+//    System.out.println(test);
+    List<String > strings= List.of("abc","bcd","aef");
+    Map<Character, List<String>> collect1 = strings.stream().collect(Collectors.groupingBy(x -> x.charAt(0)));
+//    System.out.println(collect1);
   }
 
   public static void get() {

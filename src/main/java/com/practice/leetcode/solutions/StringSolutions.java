@@ -2050,4 +2050,131 @@ public class StringSolutions {
     System.out.println(tMap);
     return sMap.size() == tMap.size() && sMap.equals(tMap);
   }
+
+  /**
+   * @param nums
+   * @param k
+   * @return Problem: 347. Top K Frequent Elements
+   */
+  public static int[] topKFrequent(int[] nums, int k) {
+    System.out.println(Arrays.toString(nums));
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i : nums) {
+      map.put(i, map.getOrDefault(i, 0) + 1);
+    }
+    System.out.println(map);
+    int[][] indexes = new int[nums.length][nums.length];
+    int col = 0;
+    for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+      int prev = col <= 0 ? 0 : col - 1;
+      if (indexes[entry.getValue() - 1][prev] == 0) {
+        col = 0;
+      }
+      if (indexes[entry.getValue() - 1][col] == 0) {
+        indexes[entry.getValue() - 1][col] = entry.getKey();
+        col++;
+      }
+    }
+    System.out.println(Arrays.toString(indexes));
+    int[] res = new int[k];
+    int currentLength = 0;
+    int endRow = nums.length - 1;
+    for (int i = indexes.length - 1; i >= 0; i--) {
+      for (int j : indexes[i]) {
+//        if () {
+//
+//        }
+      }
+    }
+
+    /*while (currentLength < k && endRow >= 0) {
+      int endCol = 0;
+      while (endCol < k && indexes[endRow][endCol] != 0) {
+          res[currentLength++] = indexes[endRow][endCol];
+        endCol++;
+      }
+      endRow--;
+    }*/
+    return res;
+  }
+
+
+  public static int[] getNoZeroIntegers(int n) {
+    for (int i = 1; i < n; i++) {
+      int y = n - i;
+      if (y > 9) {
+        boolean isZeroAvailable = false;
+        int tempx = i;
+        int tempy = y;
+        while (tempy != 0) {
+          if (tempy % 10 == 0) {
+            isZeroAvailable = true;
+            break;
+          }
+          tempy /= 10;
+        }
+        while (tempx != 0) {
+          if (tempx % 10 == 0) {
+            isZeroAvailable = true;
+            break;
+          }
+          tempx /= 10;
+        }
+        if (!isZeroAvailable) {
+          return new int[]{i, y};
+        }
+      } else {
+        return new int[]{i, y};
+      }
+    }
+    return new int[2];
+  }
+
+  /**
+   * @param n
+   * @param delay
+   * @param forget
+   * @return Problem: 2327: Number of People Aware of a Secret
+   */
+  public static int peopleAwareOfSecret(int n, int delay, int forget) {
+//    Queue<Integer> peopleList = new LinkedList<>();
+    int peepCount = 0;
+    for (int dayCount = 1; dayCount <= n; dayCount++) {
+//      peopleList.offer(peepCount++);
+      peepCount++;
+      for (int delayCount = 1; delayCount <= delay; delayCount++) {
+        if (dayCount == forget) {
+//          peopleList.poll();
+          peepCount--;
+        }
+        dayCount++;
+      }
+    }
+    return peepCount;
+//    return peopleList.size();
+  }
+
+  /**
+   * @param numBottles
+   * @param numExchange
+   * @return Problem: 3100: Water Bottle-2
+   */
+  public static int maxBottlesDrunk(int numBottles, int numExchange) {
+    int res = 0;
+    int emptyBottles = 0;
+    while (numBottles > 0) {
+      res += numBottles;
+      emptyBottles += numBottles;
+      numBottles = 0;
+      while (emptyBottles >= numExchange) {
+        emptyBottles -= numExchange;
+        numExchange++;
+        numBottles++;
+      }
+    }
+    return res;
+  }
+
+
+
 }

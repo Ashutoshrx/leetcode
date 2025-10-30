@@ -1,12 +1,6 @@
 package com.practice.leetcode;
 
-import com.practice.leetcode.concepts.slidingwindow.SlidingWindowProblems;
 import com.practice.leetcode.solutions.InterviewPreparation;
-import com.practice.leetcode.solutions.StringSolutions;
-
-import java.util.Arrays;
-
-import static com.practice.leetcode.solutions.InterviewPreparation.maxSubArray;
 
 public class LeetcodeApplication {
 
@@ -302,9 +296,21 @@ public class LeetcodeApplication {
 //    var i = SlidingWindowProblems.longestPalindrome("cbbd");
 //    var i = StringSolutions.isIsomorphic("bbbaaaba","aaabbbba");
 //    var i = StringSolutions.isIsomorphic("egg","add");
-    var i = InterviewPreparation.productExceptSelf(new int[]{1,2,3,4});
+//    var i = StringSolutions.topKFrequent(new int[]{1,1,1,2,2,3}, 2);
+//    var i = StringSolutions.topKFrequent(new int[]{1,2,1,2,1,2,3,1,3,2}, 2);
+//    var i = StringSolutions.topKFrequent(new int[]{1}, 1);
+//    var i = StringSolutions.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2);
+//    var i = InterviewPreparation.productExceptSelf(new int[]{1,2,3,4});
 //    var i = InterviewPreparation.maxProduct(new int[]{2,3,-2,4});
-//    var i = InterviewPreparation.maxProduct(new int[]{-2,0,-1});
+//    var i = InterviewPreparation.threeSum(new int[]{0,0,0});
+//    var i = InterviewPreparation.threeSum(new int[]{-1,0,1,2,-1,-4});
+//    var i = StringSolutions.getNoZeroIntegers(1010);
+//    var i = StringSolutions.peopleAwareOfSecret(4,1,3);
+//    var i = StringSolutions.maxBottlesDrunk(13,6);
+
+    var i = InterviewPreparation.fourSum(new int[]{1, 0, -1, 0, -2, 2}, 0);
+//    System.out.println(i);
+//    var i = StringSolutions.getNoZeroIntegers(2);
     System.out.println(i);
 //    i.show();
   }
