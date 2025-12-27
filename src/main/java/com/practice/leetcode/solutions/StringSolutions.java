@@ -2175,6 +2175,84 @@ public class StringSolutions {
     return res;
   }
 
+  public static List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
+    Set<Integer> nums1Set = Arrays.stream(nums1).boxed().collect(Collectors.toSet());
+    Set<Integer> nums2Set = Arrays.stream(nums2).boxed().collect(Collectors.toSet());
+    List<List<Integer>> res = new ArrayList<>();
+    List<Integer> x = new ArrayList<>();
+    for (int i : nums1Set) {
+      if (!nums2Set.contains(i)) {
+        x.add(i);
+      }
+    }
+    res.add(x);
+    List<Integer> y = new ArrayList<>();
+    for (int i : nums2Set) {
+      if (!nums1Set.contains(i)) {
+        y.add(i);
+      }
+    }
+    res.add(y);
+    return res;
+  }
 
+  /**
+   * @param num1
+   * @param num2
+   * @return Problem: 2169. Count Operations to Obtain Zero
+   */
+  public static int countOperations(int num1, int num2) {
+    return countOperationsRecursively(num1, num2, 0);
+  }
+
+  private static int countOperationsRecursively(int num1, int num2, int count) {
+    if (num1 == 0 || num2 == 0) {
+      return count;
+    } else if (num1 >= num2) {
+      num1 -= num2;
+    } else {
+      num2 -= num1;
+    }
+    return countOperationsRecursively(num1, num2, ++count);
+  }
+
+  /**
+   * @param code
+   * @param businessLine
+   * @param isActive
+   * @return Problem: 3606 Coupon Code Validator
+   * @Resolution: Not Solved
+   */
+  public static List<String> validateCoupons(String[] code, String[] businessLine, boolean[] isActive) {
+    Set<String> eligibleBusinessLines = Set.of("electronics", "grocery", "pharmacy", "restaurant");
+    Map<String, String> sortedMap = new TreeMap<>();
+    for (int i = 0; i < code.length; i++) {
+      //negative scenarios
+      if (!isActive[i] || code[i] == null ||
+              !code[i].replace("_", "").matches("^[a-zA-Z0-9]+$") ||
+              !eligibleBusinessLines.contains(businessLine[i])) {
+//        filter out these
+        System.out.println("Invalid");
+      } else {
+        sortedMap.put(businessLine[i], code[i]);
+      }
+    }
+    return sortedMap.values().stream().toList();
+  }
+
+  public static boolean canConstruct(String ransomNote, String magazine) {
+    Map<Character, Integer> map = new HashMap<>();
+    for (int i = 0; i < magazine.length(); i++) {
+      map.put(magazine.charAt(i), map.getOrDefault(magazine.charAt(i), 0) + 1);
+    }
+    for (int i = 0; i < ransomNote.length(); i++) {
+      if (map.get(ransomNote.charAt(i)) != null && map.get(ransomNote.charAt(i)) > 0) {
+        map.put(ransomNote.charAt(i), map.get(ransomNote.charAt(i)) - 1);
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }
 
 }

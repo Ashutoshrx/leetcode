@@ -308,10 +308,23 @@ public class LeetcodeApplication {
 //    var i = StringSolutions.peopleAwareOfSecret(4,1,3);
 //    var i = StringSolutions.maxBottlesDrunk(13,6);
 
-    var i = InterviewPreparation.fourSum(new int[]{1, 0, -1, 0, -2, 2}, 0);
+//    var i = InterviewPreparation.fourSum(new int[]{1, 0, -1, 0, -2, 2}, 0);
 //    System.out.println(i);
 //    var i = StringSolutions.getNoZeroIntegers(2);
-    System.out.println(i);
+//    var i = StringSolutions.countOperations(2,3);
+//    var i = StringSolutions.validateCoupons(new String[]{"SAVE20", "", "PHARMA5", "SAVE@20"},
+//            new String[]{"restaurant", "grocery", "pharmacy", "restaurant"}, new boolean[]{true, true, true, true});
+//    var i = StringSolutions.validateCoupons(new String[]{},new String[]{},new boolean[]{});
+//    var i = StringSolutions.validateCoupons(new String[]{"GROCERY15", "ELECTRONICS_50", "DISCOUNT10"}
+//            , new String[]{"grocery", "electronics", "invalid"}, new boolean[]{false, true, true});
+//    System.out.println(Arrays.toString("Qf80NjqTYp4".split("\\d")));
+//    System.out.println(GreedyAlgoDemo.minimumBoxes(new int[]{5, 5, 5}, new int[]{2, 4, 2, 7}));
+//    System.out.println(GreedyAlgoDemo.minimumBoxes(new int[]{1, 3, 2}, new int[]{4, 3, 1, 5, 2}));
+//    System.out.println(GreedyAlgoDemo.maximumHappinessSum(new int[]{1, 3, 2}, 2));
+//    System.out.println(GreedyAlgoDemo.maximumHappinessSum(new int[]{1, 1, 1,1}, 2));
+//    System.out.println(GreedyAlgoDemo.bestClosingTime("YYNY"));
+    System.out.println(InterviewPreparation.bestClosingTime("YYNY"));
+//    System.out.println(i);
 //    i.show();
   }
 }

@@ -261,14 +261,62 @@ public class InterviewPreparation {
 
   /**
    * @param nums
-   * @param target
-   * @return Problem: 18 -> 4Sum
+   * @Problem: 283: Move Zeroes
+   * @Input [0, 1, 0, 3, 12]
+   * @output [[1, 12, 3, 0, 0]]
    */
-  public static List<List<Integer>> fourSum(int[] nums, int target) {
-    Arrays.sort(nums);
-    System.out.println(nums);
+  public static void moveZeroes(int[] nums) {
+    int i = 0, zero = 0;
+    while (i < nums.length) {
+      if (nums[i] != 0) {
+        int temp = nums[i];
+        nums[i] = nums[zero];
+        nums[zero] = temp;
+        zero++;
+      }
+      i++;
+    }
+    System.out.println(Arrays.toString(nums));
+  }
 
-    return null;
+  /**
+   * @param customers
+   * @return Problem: 2483- Minimum Penalty for a shop
+   * @Approach- PrefixSum
+   */
+  public static int bestClosingTime(String customers) {
+    System.out.println(Arrays.toString(customers.split("")));
+    //Y Y N Y
+    //0 0 0 1 1
+    //3 2 1 1 0
+    int minPenalty = Integer.MAX_VALUE, index = 0;
+    int n = customers.length();
+    int[] prefixN = new int[n + 1];
+    int[] postY = new int[n + 1];
+    for (int j = 1; j < n + 1; j++) {
+      System.out.println("custX: " + customers.charAt(j - 1));
+      prefixN[j] = prefixN[j - 1];
+      if (customers.charAt(j - 1) == 'N') {
+        prefixN[j]++;
+      }
+    }
+    for (int j = n - 1; j >= 0; j--) {
+      System.out.println("custY: " + customers.charAt(j));
+      postY[j] = postY[j + 1];
+      if (customers.charAt(j) == 'Y') {
+        postY[j]++;
+      }
+    }
+    System.out.println(Arrays.toString(prefixN));
+    System.out.println(Arrays.toString(postY));
+    for (int i = 0; i < prefixN.length; i++) {
+      int currentSum = prefixN[i] + postY[i];
+      if (currentSum < minPenalty) {
+        minPenalty = currentSum;
+        index = i;
+      }
+    }
+    return index;
   }
 
 }

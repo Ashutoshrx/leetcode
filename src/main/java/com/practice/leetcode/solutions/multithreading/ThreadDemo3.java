@@ -6,12 +6,12 @@ class ThreadDemo3 {
     Paper2 paper = new Paper2();
     Thread t1 = new Thread(() -> pen.writeWithPaper(paper), "Thread-1");
     Thread t2 = new Thread(() -> {
-      synchronized (pen) {
+//      synchronized (pen) {
         paper.writeWithPaper(pen);
-      }
+//      }
     }, "Thread-2");
-//    t1.start();
-//    t2.start();
+    t1.start();
+    t2.start();
   }
 
 
