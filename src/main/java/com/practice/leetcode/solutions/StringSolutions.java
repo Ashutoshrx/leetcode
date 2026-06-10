@@ -2255,4 +2255,119 @@ public class StringSolutions {
     return true;
   }
 
+  /**
+   * @param nums
+   * @return Problem: 961: N-Repeated elements in size 2N Array
+   */
+  public static int repeatedNTimes(int[] nums) {
+    int length = nums.length;
+    int n = length / 2;
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i : nums) {
+      map.put(i, map.getOrDefault(i, 0) + 1);
+    }
+    return map.entrySet().stream().filter(entry -> entry.getValue().equals(n))
+            .map(Map.Entry::getKey).findFirst().orElse(0);
+  }
+
+  /**
+   * @param nums
+   * @return Problem: 2784: Check if array is good
+   */
+  public static boolean isGood(int[] nums) {
+    Arrays.sort(nums);
+    int x = 1;
+    int length = nums.length;
+    for (int i = 0; i < length; i++) {
+      if (x != nums[i]) {
+        return false;
+      }
+      if (i < length - 2) {
+        x++;
+      }
+    }
+    return nums.length == nums[length - 1] + 1;
+  }
+
+  /**
+   * @param A
+   * @param B
+   * @return Problem 2657: Find the prefix common array of two arrays
+   */
+  public static int[] findThePrefixCommonArray(int[] A, int[] B) {
+    int n = A.length;
+    int[] res = new int[n];
+    int[] freq = new int[n + 1];
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+      freq[A[i]]++;
+      if (freq[A[i]] == 2) {
+        count++;
+      }
+      freq[B[i]]++;
+      if (freq[B[i]] == 2) {
+        count++;
+      }
+      res[i] = count;
+    }
+    return res;
+  }
+
+  /**
+   * @param num
+   * @return problem: 2520
+   */
+  public static int countDigits(int num) {
+    int actual = num;
+    int count = 0;
+    while (num != 0) {
+      int digit = num % 10;
+      if (actual % digit == 0) {
+        count++;
+      }
+      num /= 10;
+    }
+    return count;
+  }
+
+  /**
+   * @param nums
+   * @return Problem: 1295: Find number of even number of digits
+   */
+  public static int findNumbers(int[] nums) {
+    int eventCount = 0;
+    for (int i : nums) {
+      int count = 0;
+      while (i > 0) {
+        i /= 10;
+        count++;
+      }
+      if (count % 2 == 0) {
+        eventCount++;
+      }
+    }
+    return eventCount;
+  }
+
+  /**
+   * @param x
+   * @return Problem:7 Reverse Integer
+   */
+  public static int reverse(int x) {
+    int original = x;
+    x = Math.abs(x);
+    int reversed = 0;
+    while (x > 0) {
+      int lastDigit = x % 10;
+      if (reversed > Integer.MAX_VALUE / 10 || (reversed == Integer.MAX_VALUE / 10 && lastDigit > 7)) {
+        return 0;
+      }
+      if (reversed < Integer.MIN_VALUE / 10 || (reversed == Integer.MIN_VALUE / 10 && lastDigit < -8)) {
+        return 0;
+      }
+      reversed = reversed * 10 + lastDigit;
+      x /= 10;
+    }
+    return original > 0 ? reversed : -reversed;
+  }
 }

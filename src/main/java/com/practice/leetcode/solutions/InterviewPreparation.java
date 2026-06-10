@@ -319,4 +319,21 @@ public class InterviewPreparation {
     return index;
   }
 
+  /**
+   * @param strs
+   * @return Problem:49: Group Anagrams
+   */
+  public static List<List<String>> groupAnagrams(String[] strs) {
+    Map<String, List<String>> map = new HashMap<>();
+    for (String word : strs) {
+      char[] charArray = word.toCharArray();
+      Arrays.sort(charArray);
+      String sortedKey = new String(charArray);
+      map.computeIfAbsent(sortedKey, x ->
+              new ArrayList<>()).add(word);
+      System.out.println(map);
+    }
+    return map.values().stream().toList();
+  }
+
 }

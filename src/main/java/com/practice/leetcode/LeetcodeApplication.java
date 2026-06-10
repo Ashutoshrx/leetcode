@@ -1,6 +1,6 @@
 package com.practice.leetcode;
 
-import com.practice.leetcode.solutions.InterviewPreparation;
+import com.practice.leetcode.solutions.StringSolutions;
 
 public class LeetcodeApplication {
 
@@ -323,8 +323,24 @@ public class LeetcodeApplication {
 //    System.out.println(GreedyAlgoDemo.maximumHappinessSum(new int[]{1, 3, 2}, 2));
 //    System.out.println(GreedyAlgoDemo.maximumHappinessSum(new int[]{1, 1, 1,1}, 2));
 //    System.out.println(GreedyAlgoDemo.bestClosingTime("YYNY"));
-    System.out.println(InterviewPreparation.bestClosingTime("YYNY"));
+//    System.out.println(InterviewPreparation.groupAnagrams(new String[]{"eat", "tea", "tan", "ate", "nat", "bat"}));
+//    System.out.println(GreedyAlgoDemo.arrayPairSum(new int[]{1,4,3,2}));
 //    System.out.println(i);
 //    i.show();
+    /*Practice about computerIfPresent and computeIfAbsent*/
+    /*Map<String, Integer> salaries = new HashMap<>() {
+      {
+        put("A", 5000);
+        put("B", 6000);
+      }
+    };
+    for (var entry : salaries.entrySet()) {
+      salaries.computeIfPresent(entry.getKey(), (key, val) -> (int) (val+val/0.1));
+    }*/
+//    var x = StringSolutions.isGood(new int[]{1, 3, 3, 2});
+//    var x = StringSolutions.isGood(new int[]{1,1,2});
+    var x = StringSolutions.reverse(1534236469);
+//    var x = StringSolutions.findThePrefixCommonArray(new int[]{1, 3, 2, 4}, new int[]{3, 1, 2, 4});
+    System.out.println(x);
   }
 }

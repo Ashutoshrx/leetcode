@@ -109,4 +109,18 @@ public class GreedyAlgoDemo {
     return true;
   }
 
+  /**
+   * @param nums
+   * @return Problem 561: Array partition
+   */
+  public static int arrayPairSum(int[] nums) {//6,2,6,5,1,2
+    Arrays.sort(nums);//1,2,2,5,6,6
+    int left = 0, max = 0;
+    while (left + 1 < nums.length) {
+      int minValue = Math.min(nums[left], nums[left + 1]);
+      max += minValue;
+      left+=2;
+    }
+    return max;
+  }
 }
