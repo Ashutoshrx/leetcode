@@ -2370,4 +2370,158 @@ public class StringSolutions {
     }
     return original > 0 ? reversed : -reversed;
   }
+
+  /**
+   * @param nums
+   * @return Problem: 1390: Four Divisors
+   */
+  public static int sumFourDivisors(int[] nums) {
+    int sum = 0;
+    for (int n : nums) {
+      int count = 0;
+      List<Integer> divisors = new ArrayList<>();
+      for (int i = 1; i <= n; i++) {
+        if (n % i == 0) {
+          count++;
+          divisors.add(i);
+        }
+      }
+      if (count == 4) {
+        sum = divisors.stream().reduce(0, Integer::sum);
+      }
+    }
+    return sum;
+  }
+
+  /**
+   * @param words
+   * @param weights
+   * @return Problem: 3838 Weighted word mapping
+   */
+  public static String mapWordWeights(String[] words, int[] weights) {
+    StringBuilder res = new StringBuilder();
+    for (String word : words) {
+      int sum = 0;
+      for (char ch : word.toCharArray()) {
+        sum += weights[ch - 'a'];
+      }
+      int ascii = 'z' - (sum % 26);
+      res.append((char) ascii);
+    }
+    return res.toString();
+  }
+
+  /**
+   * @param text
+   * @return Problem: 1189: Maximum number of Balloons
+   */
+  public static int maxNumberOfBalloons(String text) {
+    long res = Integer.MAX_VALUE;
+    Map<Character, Long> balloon = "balloon".chars().mapToObj(c -> (char) c).
+            collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+    Map<Character, Long> frequencyMap = text.chars().mapToObj(x -> (char) x).
+            collect(Collectors.groupingBy(x -> x, Collectors.counting()));
+    System.out.println(balloon);
+    System.out.println(frequencyMap);
+    for (Map.Entry<Character, Long> x : balloon.entrySet()) {
+      long current = frequencyMap.getOrDefault(x.getKey(), 0L) / x.getValue();
+      res = Math.min(res, current);
+    }
+    return (int) res;
+  }
+
+  /**
+   * @param s
+   * @return Problem: 409: Longest Palindrome
+   */
+  public static int longestPalindrome2(String s) {
+    if (s.length() == 1) {
+      return 1;
+    }
+    int res = 0;
+    Map<Character, Long> map = s.chars().mapToObj(c -> (char) c).collect
+            (Collectors.groupingBy(c -> c, Collectors.counting()));
+    System.out.println(map);
+    boolean oddCountExists = false;
+    for (long val : map.values()) {
+      if (val % 2 == 0) {
+        res += (int) val;
+      } else {
+        res = res + (int) val - 1;
+        oddCountExists = true;
+      }
+    }
+    if (oddCountExists) {
+      return res + 1;
+    }
+    return res;
+  }
+
+  /**
+   * @param sequence
+   * @param word
+   * @return Problem: 1668: Maximum repeating substring
+   */
+  public static int maxRepeating(String sequence, String word) {
+    int res = 0;
+    int sequenceLength = sequence.length();
+    int wordLength = word.length();
+    if (sequence.equals(word)) {
+      return 1;
+    }
+    for (int i = 0; i < sequenceLength - wordLength; i++) {
+      if (sequence.substring(i, i + wordLength).equals(word)) {
+        res++;
+      }
+    }
+    return res;
+  }
+
+  /**
+   * @param nums
+   * @return Problem: 53: Maximum subArray
+   */
+  public static int maxSubArray(int[] nums) {
+    int maxSubSum = Integer.MIN_VALUE, currentSum = 0;
+    for (int i : nums) {
+      currentSum += i;
+      maxSubSum = Math.max(currentSum, maxSubSum);
+      currentSum = Math.max(0, currentSum);
+    }
+    return maxSubSum;
+  }
+
+  /**
+   * @param prices //7,1,5,3,6,4
+   * @return Problem: 121: Best time to buy and sell stock
+   */
+  public static int maxProfit(int[] prices) {
+    int maxProfit = 0, stockBought = Integer.MAX_VALUE;
+    for (int i : prices) {
+      stockBought = Math.min(i, stockBought); // 1
+      int diff = i - stockBought;//4
+      maxProfit = Math.max(maxProfit, diff); //4
+    }
+    return maxProfit;
+  }
+
+  /**
+   * @param nums
+   * @return Problem: 152: Maximum Product Subarray
+   */
+  public static int maxProduct(int[] nums) {
+    int maxProduct = Integer.MIN_VALUE;
+    int currentProduct = 1;
+    for (int i : nums) {
+      currentProduct *= i;
+      maxProduct = Math.max(currentProduct, maxProduct);
+      currentProduct = Math.max(currentProduct, 1);
+      List<Integer> list = Arrays.stream(nums).boxed().toList();
+
+
+      list.contains(1);
+
+    }
+    return maxProduct;
+  }
 }

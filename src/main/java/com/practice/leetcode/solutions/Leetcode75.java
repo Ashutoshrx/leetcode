@@ -136,5 +136,120 @@ public class Leetcode75 {
     }
     return res;
   }
+
+  /**
+   * @param str1
+   * @param str2
+   * @return Problem 1071: Greatest Common Divisor of Strings
+   * @resolution Unresolved
+   */
+  public static String gcdOfStrings(String str1, String str2) {
+    String res = "";
+    int length1 = str1.length();
+    int length2 = str2.length();
+    if (length2 > length1) {
+      for (int i = 0; i < length1; i++) {
+        String prefix = str1.substring(0, i + 1);
+        if (str1.contains(prefix) && str2.contains(prefix) && prefix.length() > res.length()) {
+          res = prefix;
+        }
+      }
+    } else {
+      for (int i = 0; i < length2; i++) {
+        String prefix = str2.substring(0, i + 1);
+        if (str1.contains(prefix) && str2.contains(prefix) && prefix.length() > res.length()) {
+          res = prefix;
+        }
+      }
+    }
+    return res;
+  }
+
+  /**
+   * @param nums
+   * @Problem: 283: Move zeroes
+   */
+  public static void moveZeroes1(int[] nums) {
+    int l = 0, r = 0;
+    while (r < nums.length) {
+      if (nums[r] != 0) {
+        int temp = nums[r];
+        nums[r] = nums[l];
+        nums[l] = temp;
+        l++;
+      }
+      r++;
+    }
+    System.out.println(Arrays.toString(nums));
+  }
+
+  /**
+   * @param s
+   * @param t
+   * @return Problem: 392: Is Subsequence
+   */
+  public static boolean isSubsequence(String s, String t) {
+    if (!s.isEmpty()) {
+      int l1 = 0, l2 = 0;
+      while (l2 < t.length()) {
+        if (s.charAt(l1) == t.charAt(l2)) {
+          System.out.println("Fount match of: " + s.charAt(l1));
+          l1++;
+        }
+        l2++;
+      }
+      return l1 == s.length();
+    }
+    return false;
+  }
+
+  /**
+   * @param nums
+   * @return Problem: 238: Product of Array except self
+   */
+  public static int[] productExceptSelf(int[] nums) {
+    int[] prefix = new int[nums.length];
+    int[] postfix = new int[nums.length];
+    int[] res = new int[nums.length];
+    int currentProduct = 1;
+    for (int i = 0; i < nums.length; i++) {
+      currentProduct *= nums[i];
+      prefix[i] = currentProduct;
+    }
+    System.out.println(Arrays.toString(prefix));
+    currentProduct = 1;
+    for (int i = nums.length - 1; i >= 0; i--) {
+      currentProduct *= nums[i];
+      postfix[i] = currentProduct;
+    }
+    System.out.println(Arrays.toString(postfix));
+    res[0] = postfix[1];
+    res[nums.length - 1] = prefix[nums.length - 2];
+    for (int i = 1; i < nums.length - 1; i++) {
+      res[i] = prefix[i - 1] * postfix[i + 1];
+    }
+    return res;
+  }
+
+  /**
+   * @param height
+   * @return Problem:11 Container with most water
+   */
+  public static int maxArea(int[] height) {
+    int left = 0, right = height.length - 1;
+    int maxArea = 0;
+    while (left < right) {
+      int length = Math.min(height[left], height[right]);
+      int width = right - left;
+      int currentArea = length * width;
+      maxArea = Math.max(maxArea, currentArea);
+      if (height[left] < height[right]) {
+        left++;
+      } else {
+        right--;
+      }
+    }
+    return maxArea;
+  }
 }
 

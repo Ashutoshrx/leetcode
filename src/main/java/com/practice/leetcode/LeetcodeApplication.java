@@ -1,6 +1,6 @@
 package com.practice.leetcode;
 
-import com.practice.leetcode.solutions.StringSolutions;
+import com.practice.leetcode.solutions.Leetcode75;
 
 public class LeetcodeApplication {
 
@@ -339,8 +339,18 @@ public class LeetcodeApplication {
     }*/
 //    var x = StringSolutions.isGood(new int[]{1, 3, 3, 2});
 //    var x = StringSolutions.isGood(new int[]{1,1,2});
-    var x = StringSolutions.reverse(1534236469);
+//    var x = StringSolutions.sumFourDivisors(new int[]{21, 21});
 //    var x = StringSolutions.findThePrefixCommonArray(new int[]{1, 3, 2, 4}, new int[]{3, 1, 2, 4});
+//    var x = mapWordWeights(new String[]{"abcd", "def", "xyz"},
+//            new int[]{5, 3, 12, 14, 1, 2, 3, 2, 10, 6, 6, 9, 7, 8, 7, 10, 8, 9, 6, 9, 9, 8, 3, 7, 7, 2});
+//    int x = maxNumberOfBalloons("nlaebolko");
+//    int x = StringSolutions.maxProfit(new int[]{7, 1, 5, 3, 6, 4});
+//    int x = StringSolutions.maxProduct(new int[]{2, 3, -2, 4});
+//    int x = StringSolutions.maxProduct(new int[]{-3,-1,-1});
+//    var x= Leetcode75.gcdOfStrings("ABCABC","ABC");
+//    boolean x = Leetcode75.isSubsequence("axc", "ahbgdc");
+//    var x = Leetcode75.productExceptSelf(new int[]{1,2,3,4});
+    var x = Leetcode75.maxArea(new int[]{1, 8, 6, 2, 5, 4, 8, 3, 7});
     System.out.println(x);
   }
 }
