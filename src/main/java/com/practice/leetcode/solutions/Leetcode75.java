@@ -3,6 +3,7 @@ package com.practice.leetcode.solutions;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Leetcode75 {
   public static void main(String[] args) {
@@ -250,6 +251,186 @@ public class Leetcode75 {
       }
     }
     return maxArea;
+  }
+
+  /**
+   * @param nums
+   * @param k
+   * @return Problem: 1679: Max number of K-Sum Pairs
+   */
+  public static int maxOperations(int[] nums, int k) { //2,2,2,3,1,1,4,1, k = 4 expected = 2
+    int res = 0;
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i : nums) {
+      int complement = k - i;
+      if (map.containsKey(complement) && map.get(complement) > 0) {
+        res++;
+        map.put(complement, map.getOrDefault(complement, 0) - 1);
+      } else {
+        map.put(i, map.getOrDefault(i, 0) + 1);
+      }
+    }
+    return res;
+  }
+
+  /**
+   * @param flowerbed
+   * @param n
+   * @return Problem: 605: Can place flowers
+   */
+  public static boolean canPlaceFlowers(int[] flowerbed, int n) {
+    int i = 1;
+    int length = flowerbed.length;
+    if (length == 1 && flowerbed[0] == 0) {
+      return true;
+    }
+    if (flowerbed[0] == 0 && flowerbed[1] == 0 && n > 0) {
+      n--;
+      flowerbed[0] = 1;
+    }
+    if (flowerbed[length - 1] == 0 && flowerbed[length - 2] == 0) {
+      n--;
+      flowerbed[length - 1] = 1;
+    }
+    while (i < length - 1 && n > 0) {
+      if (flowerbed[i] == 0 && flowerbed[i - 1] == 0 && flowerbed[i + 1] == 0) {
+        n--;
+        flowerbed[i] = 1;
+      }
+      i++;
+    }
+    return n == 0;
+  }
+
+  /**
+   * @param nums
+   * @return Problem: 1979: Find Greatest Common Divisor of Array
+   */
+  public static int findGCD(int[] nums) {
+    int maxValue = Integer.MIN_VALUE, minValue = Integer.MAX_VALUE;
+    for (int i : nums) {
+      minValue = Math.min(minValue, i);
+      maxValue = Math.max(maxValue, i);
+    }
+    int gcd = 0;
+    int currentNumber = 1;
+    while (currentNumber <= maxValue) {
+      if (minValue % currentNumber == 0 && maxValue % currentNumber == 0) {
+        gcd = currentNumber;
+      }
+      currentNumber++;
+    }
+    return gcd;
+  }
+
+  /**
+   * @param gain
+   * @return Problem: 1732: Find the highest altitude
+   * @Input [-4,-3,-2,-1,4,3,2] ->
+   */
+  public static int largestAltitude(int[] gain) {
+    int currentSum = 0;
+    int maxSum = 0;
+    for (int i : gain) {
+      currentSum += i;
+      maxSum = Math.max(currentSum, maxSum);
+    }
+    return maxSum;
+  }
+
+  /**
+   * @param nums
+   * @return Problem: 724: Find Pivot Index
+   * @Input [1, 7, 3, 6, 5, 6]-->28 totalSum
+   */
+  public static int pivotIndex2(int[] nums) {
+    int totalSum = Arrays.stream(nums).reduce(0, Integer::sum);
+    int leftSum = 0;
+    for (int i = 0; i < nums.length; i++) {
+      totalSum -= nums[i];
+      if (leftSum == totalSum) {
+        return i;
+      }
+      leftSum += nums[i];
+    }
+    return -1;
+  }
+
+
+  public static int maxVowels(String s, int k) {
+    int res = 0, current = 0;
+    Set<Character> vowels = Set.of('a', 'e', 'i', 'o', 'u');
+    int i = 0;
+    for (; i < k; i++) {
+      if (vowels.contains(s.charAt(i))) {
+        current++;
+      }
+    }
+    res = Math.max(res, current);
+    for (; i < s.length(); i++) {
+      if (vowels.contains(s.charAt(i - k))) {
+        current--;
+      }
+      if (vowels.contains(s.charAt(i))) {
+        current++;
+      }
+      res = Math.max(res, current);
+    }
+    return res;
+  }
+
+  /**
+   * @param nums
+   * @param k
+   * @return Problem: 1004:Max consecutive Ones 1s
+   * @Input [0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1]
+   */
+  public static int longestOnes(int[] nums, int k) {
+    int res = 0;
+    int left = 0, right = 0, zeroCount = 0;
+    while (right < nums.length) {
+      if (nums[right] == 0) {
+        zeroCount++;
+      }
+      while (zeroCount > k) {
+        if (nums[left] == 0) {
+          zeroCount--;
+        }
+        left++;
+      }
+      int current = right - left + 1;
+      res = Math.max(current, res);
+      right++;
+    }
+    return res;
+  }
+
+  /**
+   * @param nums
+   * @return Problem: 1493: Longest subarrays of 1s after deleting one element
+   */
+  public static int longestSubarray(int[] nums) {
+    int left = 0, zeroCount = 0, currentCount = 0, res = 0;
+    for (int right = 0; right < nums.length; right++) {
+      if (nums[right] == 1) {
+        currentCount++;
+      } else {
+        zeroCount++;
+        while (zeroCount > 1) {
+          if (nums[left] == 0) {
+            zeroCount--;
+          } else {
+            currentCount--;
+          }
+          left++;
+        }
+      }
+      res = Math.max(currentCount, res);
+    }
+    if (res == nums.length) {
+      return res - 1;
+    }
+    return res;
   }
 }
 

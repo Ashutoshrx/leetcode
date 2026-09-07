@@ -2,10 +2,8 @@ package com.practice.leetcode.dto;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.TimeUnit;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 class Employee {
   private int id;
@@ -43,36 +41,90 @@ class Employee {
             .map(i -> i.stream().mapToInt(Integer::intValue).average().orElse(0)).toList();
 
     System.out.println(range);*/
-//    String sentence = "The quick, brown fox jumped over the lazy dog!";
-//    String s = Arrays.stream(sentence.split(" ")).max(Comparator.comparing(String::length)).orElse("");
-//    System.out.println(s);
-//    ExecutorService executorService = Executors.newFixedThreadPool(1);
-    ExecutorService customExecutor = Executors.newFixedThreadPool(4);
+////    String sentence = "The quick, brown fox jumped over the lazy dog!";
+////    String s = Arrays.stream(sentence.split(" ")).max(Comparator.comparing(String::length)).orElse("");
+////    System.out.println(s);
+////    ExecutorService executorService = Executors.newFixedThreadPool(1);
+//    ExecutorService customExecutor = Executors.newFixedThreadPool(4);
+//
+//    // Create a ForkJoinPool using the custom ExecutorService
+//    ForkJoinPool customForkJoinPool = new ForkJoinPool(
+//            4, // parallelism level
+//            ForkJoinPool.defaultForkJoinWorkerThreadFactory,
+//            null,
+//            true, // async mode
+//            0,
+//            Integer.MAX_VALUE,
+//            1,
+//            null,
+//            1L, // use the custom ExecutorService
+//            TimeUnit.MILLISECONDS // timeout for managed blocker
+//    );
+//    customForkJoinPool.submit(() -> employees.parallelStream().forEach(employee -> {
+////      System.out.println(employee);
+//      System.out.println("Thread name is: " + Thread.currentThread().getName());
+//      try {
+//        Thread.sleep(3000);
+//      } catch (InterruptedException e) {
+//        throw new RuntimeException(e);
+//      }
+//
+//    }));
+//    customForkJoinPool.shutdown();
+    for (Employee e : employees) {
+      System.out.println(e);
+    }
+    /*List<Employee> x = employees.stream().
+            sorted(Comparator.comparing(Employee::getSalary,Comparator.reverseOrder())).toList();
+    */
+    Double average = employees.stream().collect(Collectors.averagingInt(Employee::getSalary));
+//    System.out.println(average);
+    System.out.println("================================");
+    Map<Boolean, Long> collect = employees.stream().collect(Collectors.groupingBy(e -> e.getId() % 2 == 0,
+            Collectors.counting()));
+//    System.out.println(collect);
+    List<String> itmes = List.of("apple", "banana", "apple", "orange", "apple");
+    Map<String, Long> collect1 = itmes.stream().collect(Collectors.groupingBy(e -> e, Collectors.counting()));
+//    System.out.println(collect1);
+    String name = "Sushree Ananya Nayak";
+//x    System.out.println(collect2);
+    Map.Entry<Character, Long> collect3 = employees.stream().map(Employee::getName).
+            collect(Collectors.groupingBy(c -> c.charAt(0), Collectors.counting())).
+            entrySet().stream().max((Map.Entry.comparingByValue())).get();
+    System.out.println(collect3);
 
-    // Create a ForkJoinPool using the custom ExecutorService
-    ForkJoinPool customForkJoinPool = new ForkJoinPool(
-            4, // parallelism level
-            ForkJoinPool.defaultForkJoinWorkerThreadFactory,
-            null,
-            true, // async mode
-            0,
-            Integer.MAX_VALUE,
-            1,
-            null,
-            1L, // use the custom ExecutorService
-            TimeUnit.MILLISECONDS // timeout for managed blocker
-    );
-    customForkJoinPool.submit(() -> employees.parallelStream().forEach(employee -> {
-//      System.out.println(employee);
-      System.out.println("Thread name is: " + Thread.currentThread().getName());
-      try {
-        Thread.sleep(3000);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
+  }
 
-    }));
-    customForkJoinPool.shutdown();
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getDepartment() {
+    return department;
+  }
+
+  public void setDepartment(String department) {
+    this.department = department;
+  }
+
+  public int getSalary() {
+    return salary;
+  }
+
+  public void setSalary(int salary) {
+    this.salary = salary;
   }
 
   @Override
@@ -84,5 +136,7 @@ class Employee {
             ", salary=" + salary +
             '}';
   }
+
+
 }
 

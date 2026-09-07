@@ -350,7 +350,20 @@ public class LeetcodeApplication {
 //    var x= Leetcode75.gcdOfStrings("ABCABC","ABC");
 //    boolean x = Leetcode75.isSubsequence("axc", "ahbgdc");
 //    var x = Leetcode75.productExceptSelf(new int[]{1,2,3,4});
-    var x = Leetcode75.maxArea(new int[]{1, 8, 6, 2, 5, 4, 8, 3, 7});
+//    var x = Leetcode75.maxArea(new int[]{1, 8, 6, 2, 5, 4, 8, 3, 7});
+//    var x = Leetcode75.maxOperations(new int[]{1,2,3,4}, 5);
+//    var x = Leetcode75.maxOperations(new int[]{2, 2, 2, 3, 1, 1, 4, 1}, 4);
+//    var x = Leetcode75.findGCD(new int[]{7, 5, 6, 8, 3});
+//    var x = Leetcode75.findGCD(new int[]{2, 5, 6, 9, 10});
+//    var x = Leetcode75.canPlaceFlowers(new int[]{0,0,1,0,0}, 1);
+//    var x = Leetcode75.largestAltitude(new int[]{-4,-3,-2,-1,4,3,2});
+//    var x = Leetcode75.pivotIndex2(new int[]{1,7,3,6,5,6});
+//    var x = Leetcode75.maxVowels("abciiidef", 3);
+//    var x = Leetcode75.longestOnes(new int[]{0,0,0,1}, 4);
+//    var x = Leetcode75.longestOnes(new int[]{1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0}, 2);
+//    var x = Leetcode75.longestOnes(new int[]{0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1}, 3);
+    var x = Leetcode75.longestSubarray(new int[]{1, 1, 1});
+//    var x = Leetcode75.longestSubarray(new int[]{0, 1, 1, 1, 0, 1, 1, 0, 1});
     System.out.println(x);
   }
 }
