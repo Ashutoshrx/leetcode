@@ -1,6 +1,6 @@
 package com.practice.leetcode;
 
-import com.practice.leetcode.solutions.Leetcode75;
+import com.practice.leetcode.solutions.StringSolutions;
 
 public class LeetcodeApplication {
 
@@ -362,8 +362,11 @@ public class LeetcodeApplication {
 //    var x = Leetcode75.longestOnes(new int[]{0,0,0,1}, 4);
 //    var x = Leetcode75.longestOnes(new int[]{1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0}, 2);
 //    var x = Leetcode75.longestOnes(new int[]{0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1}, 3);
-    var x = Leetcode75.longestSubarray(new int[]{1, 1, 1});
+//    var x = Leetcode75.longestSubarray(new int[]{1, 1, 1});
 //    var x = Leetcode75.longestSubarray(new int[]{0, 1, 1, 1, 0, 1, 1, 0, 1});
-    System.out.println(x);
+//    var x = StringSolutions.longestSubstring("ababbc", 2);
+//    var x = StringSolutions.longestSubstring("aaabb", 3);
+//    var x = StringSolutions.longestSubstring("ababacb", 3);
+//    System.out.println(x);
   }
 }

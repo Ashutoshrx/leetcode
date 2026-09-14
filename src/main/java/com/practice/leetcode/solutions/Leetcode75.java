@@ -1,9 +1,6 @@
 package com.practice.leetcode.solutions;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Leetcode75 {
   public static void main(String[] args) {
@@ -429,6 +426,20 @@ public class Leetcode75 {
     }
     if (res == nums.length) {
       return res - 1;
+    }
+    return res;
+  }
+
+  /**
+   * @param candies
+   * @param extraCandies
+   * @return Problem: 1431 Kids with greatest number of candies
+   */
+  public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+    List<Boolean> res = new ArrayList<>(candies.length);
+    int max = Arrays.stream(candies).max().orElse(0);
+    for (int i : candies) {
+      res.add(i + extraCandies >= max);
     }
     return res;
   }
