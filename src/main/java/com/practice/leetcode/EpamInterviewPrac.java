@@ -16,8 +16,10 @@ public class EpamInterviewPrac {
 //    var res = findDuplicateElements(new int[]{1, 1, 2, 3, 4, 5, 5});
     //4. Move zeroes to right
 //    var res = moveZeroes(new int[]{0, 1, 0, 3, 12});
+//    var res = findSecondHighesWord("Mera naam hai Ashutosh Satapathy");
 //    var res = findSecondHighestLength("Mera naam hai Ashutosh Satapathy");
     //5. Find the missing number in a sequence of 1-n. JAVA steams
+//    var res = findMissingNumber(new int[]{1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13, 14});
 //    var res = findMissingNumber(new int[]{1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14});
     //6. Calculate sum of the current element and upto the previous k-1 elements
 //    slidingWindow(new int[]{1, 2, 3, 4, 5, 6}, 3);
@@ -25,13 +27,13 @@ public class EpamInterviewPrac {
 //    var res = findDuplicateNumber(new int[]{7, 3, 4, 4, 5, 6, 7});
 //    8. Convert sentence to hashtag
 //    String res = convertStringToHashtag("java 8 streams are powerful");
-//    String res = convertStringToHashtag("Hello World");
+    String res = convertStringToHashtag("Hello World");
 //    9. Java-8- Filter palindrome words
 //    List<String> res = filterPalindromeWords("madam java level code radar");
 //    10. Merge two sorted integer arrays into a single sorted array.
 //    int[] res = mergerTwoSortedArray(new int[]{1, 2, 3}, new int[]{2, 5, 6});
 //    11. Filter out only the valid integers from a list of strings
-    List<Integer> res = validIntegers(List.of("10", "abc", "20", "hello", "30"));
+//    List<Integer> res = validIntegers(List.of("10", "abc", "20", "hello", "30"));
 //    System.out.println(Arrays.toString(res));
     System.out.println(res);
   }
@@ -70,7 +72,9 @@ public class EpamInterviewPrac {
       map.put(i, map.getOrDefault(i, 0) + 1);
     }
     System.out.println(map);
-    return map.entrySet().stream().filter(x -> x.getValue() > 1).map(Map.Entry::getKey).toList();
+//    return map.entrySet().stream().filter(x -> x.getValue() > 1).map(Map.Entry::getKey).toList();
+    Set<Integer> set = new HashSet<>();
+    return Arrays.stream(inputArray).filter(value -> !set.add(value)).boxed().toList();
   }
 
   /**
@@ -110,13 +114,15 @@ public class EpamInterviewPrac {
     System.out.println(Arrays.toString(sequence));
     int max = Arrays.stream(sequence).max().orElse(0);
     List<Integer> res = new ArrayList<>();
+    // @TODO NOT CORRECT LOGIC- FIX THIS
     int j = 0;
     for (int i = 1; i < max; i++) {
       if (i != sequence[j]) {
         res.add(i);
         i++;
+      } else {
+        j++;
       }
-      j++;
     }
     System.out.println(res);
     //approach 2
@@ -172,9 +178,8 @@ public class EpamInterviewPrac {
     }
     return res.toString();*/
     //APPROACH-2
-    return Arrays.stream(sentence.split(" ")).map(word ->
-                    Character.toUpperCase(word.charAt(0)) +
-                            word.substring(1)).
+    return Arrays.stream(sentence.split(" ")).
+            map(word -> Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase()).
             collect(Collectors.joining("", "#", ""));
 
   }
@@ -185,8 +190,10 @@ public class EpamInterviewPrac {
    */
   private static List<String> filterPalindromeWords(String sentence) {
     System.out.println(sentence);
-    return Arrays.stream(sentence.split(" ")).filter(word ->
-            new StringBuilder(word).reverse().toString().equals(word)).toList();
+/*    return Arrays.stream(sentence.split(" ")).filter(word ->
+            new StringBuilder(word).reverse().toString().equals(word)).toList();*/
+    // TODO Solve is using IntStream
+    return null;
   }
 
   /**
@@ -241,5 +248,10 @@ public class EpamInterviewPrac {
     } catch (Exception e) {
       return false;
     }
+  }
+
+  private static String findSecondHighesWord(String sentence) {
+    String[] words = sentence.split(" ");
+    return Arrays.stream(words).sorted(Comparator.comparing(String::length).reversed()).skip(1).findFirst().orElse(null);
   }
 }
