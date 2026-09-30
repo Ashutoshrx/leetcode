@@ -1,5 +1,7 @@
 package com.practice.leetcode.concepts;
 
+import java.util.Arrays;
+
 public class DynamicProgramming {
   public static int findFibonacci(int n, int[] qb) {
     //0,1,1,2,3,5,8,13,21,34,55
@@ -51,5 +53,39 @@ public class DynamicProgramming {
     var i = triFibN(n - 1, x) + triFibN(n - 2, x) + triFibN(n - 3, x);
     x[n] = i;
     return i;
+  }
+
+  /**
+   *
+   * @param coins
+   * @param amount
+   * @return Problem: 322: Coin Change
+   */
+  public static int coinChange(int[] coins, int amount) {
+    int[] dp = new int[amount + 1];
+    Arrays.fill(dp, -2);
+    dp[0] = 0;
+    int sol = coinChangeRec(coins, amount, dp);
+    System.out.println(Arrays.toString(dp));
+    return sol;
+  }
+
+  private static int coinChangeRec(int[] coins, int amount, int[] dp) {
+    if (dp[amount] != -2) {
+      System.out.println("Printed from existing data for value: " + amount + " which is : " + dp[amount]);
+      return dp[amount];
+    }
+    int res = Integer.MAX_VALUE;
+    for (int coin : coins) {
+      if (coin > amount) {
+        continue;
+      }
+      int subProblem = coinChangeRec(coins, amount - coin, dp);
+      if (subProblem != -1) {
+        res = Math.min(subProblem + 1, res);
+      }
+    }
+    dp[amount] = res != Integer.MAX_VALUE ? res : -1;
+    return dp[amount];
   }
 }

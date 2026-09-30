@@ -1,10 +1,11 @@
 package com.practice.leetcode.concepts;
 
-public class HelloWorld {
-
+class HelloWorld {
 
   public static void main(String[] args) throws Exception {
+    {
 
+    }
   }
 }
 

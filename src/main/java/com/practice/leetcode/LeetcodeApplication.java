@@ -1,10 +1,8 @@
 package com.practice.leetcode;
 
-import com.practice.leetcode.solutions.StringSolutions;
+import com.practice.leetcode.concepts.DynamicProgramming;
 
 public class LeetcodeApplication {
-
-  String x = "Ashutosh";
 
   public static void main(String[] args) throws CloneNotSupportedException {
 //		StringSolutions.lengthOfLastWord("Hello World");
@@ -367,6 +365,9 @@ public class LeetcodeApplication {
 //    var x = StringSolutions.longestSubstring("ababbc", 2);
 //    var x = StringSolutions.longestSubstring("aaabb", 3);
 //    var x = StringSolutions.longestSubstring("ababacb", 3);
-//    System.out.println(x);
+//    var x = DynamicProgramming.coinChange(new int[]{2}, 3);
+//    var x = DynamicProgramming.coinChange(new int[]{1, 2, 5}, 11);
+    var x = DynamicProgramming.coinChange(new int[]{1, 3, 4,5}, 7);
+    System.out.println(x);
   }
 }

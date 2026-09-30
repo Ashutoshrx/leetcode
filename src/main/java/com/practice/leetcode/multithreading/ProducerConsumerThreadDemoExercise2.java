@@ -5,7 +5,7 @@ class Queue {
   private boolean isSet = false;
 
   public void put(int input) throws InterruptedException {
-    synchronized (this) {
+    synchronized (Queue.class) {
       while (isSet) {
         wait();
       }
@@ -17,7 +17,7 @@ class Queue {
   }
 
   public void get() throws InterruptedException {
-    synchronized (this) {
+    synchronized (Queue.class) {
       while (!isSet) {
         wait();
       }
