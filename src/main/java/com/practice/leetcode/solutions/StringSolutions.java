@@ -2482,13 +2482,13 @@ public class StringSolutions {
    * @return Problem: 53: Maximum subArray
    */
   public static int maxSubArray(int[] nums) {
-    int maxSubSum = Integer.MIN_VALUE, currentSum = 0;
-    for (int i : nums) {
-      currentSum += i;
-      maxSubSum = Math.max(currentSum, maxSubSum);
+    int maxSum = Integer.MIN_VALUE, currentSum = 0;
+    for (int i = 0; i < nums.length; i++) {
+      currentSum += nums[i]; //-2
+      maxSum = Math.max(maxSum, currentSum);
       currentSum = Math.max(0, currentSum);
     }
-    return maxSubSum;
+    return maxSum;
   }
 
   /**
@@ -2510,18 +2510,24 @@ public class StringSolutions {
    * @return Problem: 152: Maximum Product Subarray
    */
   public static int maxProduct(int[] nums) {
-    int maxProduct = Integer.MIN_VALUE;
-    int currentProduct = 1;
-    for (int i : nums) {
-      currentProduct *= i;
-      maxProduct = Math.max(currentProduct, maxProduct);
-      currentProduct = Math.max(currentProduct, 1);
-      List<Integer> list = Arrays.stream(nums).boxed().toList();
-
-
-      list.contains(1);
-
+    int max = Integer.MIN_VALUE, prefixMax = 1, suffixMax = 1;
+    int length = nums.length;
+    for (int i = 0; i < length; i++) {
+//      while iterating from left to right-> if you find value as 0, reset value to 1
+      if (prefixMax == 0) {
+        prefixMax = 1;
+      }
+//      while iterating from right to left-> if you find value as 0, reset value to 1
+      if (suffixMax == 0) {
+        suffixMax = 1;
+      }
+      //iterate from left to right
+      prefixMax *= nums[i];
+      max = Math.max(prefixMax, max);
+      // iterate from right to left
+      suffixMax *= nums[length - 1 - i];
+      max = Math.max(suffixMax, max);
     }
-    return maxProduct;
+    return max;
   }
 }

@@ -1,6 +1,10 @@
 package com.practice.leetcode;
 
 import com.practice.leetcode.concepts.DynamicProgramming;
+import com.practice.leetcode.solutions.InterviewPreparation;
+import com.practice.leetcode.solutions.StringSolutions;
+
+import static com.practice.leetcode.solutions.StringSolutions.maxSubArray;
 
 public class LeetcodeApplication {
 
@@ -206,6 +210,7 @@ public class LeetcodeApplication {
                     new NArrayNode(2),
                     new NArrayNode(4))));*/
 //    int[] i = missingRolls(new int[]{1,2,3,4}, 6, 4);
+//    int[] i = missingRolls(new int[]{1,2,3,4}, 6, 4);
 //    var i = postorder(null);
 //    var i = modifiedList(new int[]{1, 2}, new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4)))));
 //    i.show();
@@ -299,7 +304,9 @@ public class LeetcodeApplication {
 //    var i = StringSolutions.topKFrequent(new int[]{1}, 1);
 //    var i = StringSolutions.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2);
 //    var i = InterviewPreparation.productExceptSelf(new int[]{1,2,3,4});
-//    var i = InterviewPreparation.maxProduct(new int[]{2,3,-2,4});
+//    var x = StringSolutions.maxProduct(new int[]{2,3,-2,4});
+//    var x = StringSolutions.maxProduct(new int[]{-2,0,-1});
+//    var x = StringSolutions.maxProduct(new int[]{0,2});
 //    var i = InterviewPreparation.threeSum(new int[]{0,0,0});
 //    var i = InterviewPreparation.threeSum(new int[]{-1,0,1,2,-1,-4});
 //    var i = StringSolutions.getNoZeroIntegers(1010);
@@ -366,8 +373,12 @@ public class LeetcodeApplication {
 //    var x = StringSolutions.longestSubstring("aaabb", 3);
 //    var x = StringSolutions.longestSubstring("ababacb", 3);
 //    var x = DynamicProgramming.coinChange(new int[]{2}, 3);
-//    var x = DynamicProgramming.coinChange(new int[]{1, 2, 5}, 11);
-    var x = DynamicProgramming.coinChange(new int[]{1, 3, 4,5}, 7);
+    var x = DynamicProgramming.coinChange(new int[]{1, 2, 5}, 11);
+//    var x = DynamicProgramming.coinChange(new int[]{1, 3, 4,5}, 7);
+//    int x = DynamicProgramming.convertTime("11:00", "11:01");
+//    int x = DynamicProgramming.convertTime("02:00", "02:45");
+//    int x = DynamicProgramming.minCostClimbingStairs(new int[]{10, 15, 20});
+//    int x = DynamicProgramming.minCostClimbingStairs(new int[]{1, 100, 1, 1, 1, 100, 1, 1, 100, 1});
     System.out.println(x);
   }
 }
