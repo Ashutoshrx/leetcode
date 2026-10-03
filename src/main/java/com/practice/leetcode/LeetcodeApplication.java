@@ -1,10 +1,6 @@
 package com.practice.leetcode;
 
 import com.practice.leetcode.concepts.DynamicProgramming;
-import com.practice.leetcode.solutions.InterviewPreparation;
-import com.practice.leetcode.solutions.StringSolutions;
-
-import static com.practice.leetcode.solutions.StringSolutions.maxSubArray;
 
 public class LeetcodeApplication {
 
@@ -373,12 +369,16 @@ public class LeetcodeApplication {
 //    var x = StringSolutions.longestSubstring("aaabb", 3);
 //    var x = StringSolutions.longestSubstring("ababacb", 3);
 //    var x = DynamicProgramming.coinChange(new int[]{2}, 3);
-    var x = DynamicProgramming.coinChange(new int[]{1, 2, 5}, 11);
+//    var x = DynamicProgramming.coinChange(new int[]{1, 2, 5}, 11);
 //    var x = DynamicProgramming.coinChange(new int[]{1, 3, 4,5}, 7);
 //    int x = DynamicProgramming.convertTime("11:00", "11:01");
 //    int x = DynamicProgramming.convertTime("02:00", "02:45");
 //    int x = DynamicProgramming.minCostClimbingStairs(new int[]{10, 15, 20});
 //    int x = DynamicProgramming.minCostClimbingStairs(new int[]{1, 100, 1, 1, 1, 100, 1, 1, 100, 1});
+//    DynamicProgramming.printAllSubsequences(new int[]{1,2,3,4},2);
+//    DynamicProgramming.sumSubseqWidths(new int[]{3, 1, 2});
+    int x = DynamicProgramming.rob(new int[]{1, 2, 3, 1});
+
     System.out.println(x);
   }
 }

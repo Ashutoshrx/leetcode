@@ -1,6 +1,8 @@
 package com.practice.leetcode.concepts;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class DynamicProgramming {
   public static int findFibonacci(int n, int[] qb) {
@@ -65,12 +67,12 @@ public class DynamicProgramming {
     int[] dp = new int[amount + 1];
     Arrays.fill(dp, -2);
     dp[0] = 0;
-    int sol = coinChangeRec(coins, amount, dp);
+    int sol = coinChange(coins, amount, dp);
     System.out.println(Arrays.toString(dp));
     return sol;
   }
 
-  private static int coinChangeRec(int[] coins, int amount, int[] dp) {
+  private static int coinChange(int[] coins, int amount, int[] dp) {
     if (dp[amount] != -2) {
       return dp[amount];
     }
@@ -79,7 +81,7 @@ public class DynamicProgramming {
       if (coin > amount) {
         continue;
       }
-      int subProblem = coinChangeRec(coins, amount - coin, dp);
+      int subProblem = coinChange(coins, amount - coin, dp);
       if (subProblem != -1) {
         res = Math.min(subProblem + 1, res);
       }
@@ -155,6 +157,62 @@ public class DynamicProgramming {
     int res = Math.min(l1, l2);
     dp[currentIndex] = res;
     return dp[currentIndex];
+  }
+
+  /**
+   *
+   * @param num
+   */
+  public static void printAllSubsequences(int[] num, int target) {
+    System.out.println(Arrays.toString(num));
+    List<Integer> array = new ArrayList<>();
+    printAllSubsequences(num, 0, array, target, 0);
+//    System.out.println(res);
+  }
+
+  private static void printAllSubsequences(int[] nums, int currentIndex, List<Integer> array, int target, int sum) {
+    if (currentIndex >= nums.length) {
+//      if (sum == target) {
+      System.out.println(array);
+//        return 1;
+//      }
+      return;
+    }
+//    System.out.println("Take for: "+currentIndex);
+    array.add(nums[currentIndex]);
+    printAllSubsequences(nums, currentIndex + 2, array, target, sum += nums[currentIndex]);
+//    System.out.println("Not Take for: "+currentIndex);
+    array.remove(array.size() - 1);
+    printAllSubsequences(nums, currentIndex + 1, array, target, sum -= nums[currentIndex]);
+//    return left + right;
+  }
+
+  /**
+   *
+   * @param nums
+   * @return Problem: 198: House Robber
+   */
+  public static int rob(int[] nums) {
+    int[] dp = new int[nums.length];
+    Arrays.fill(dp, -1);
+    dp[0] = nums[0];
+    int res = rob(nums, nums.length - 1, dp);
+    System.out.println(Arrays.toString(dp));
+    return res;
+  }
+
+  private static int rob(int[] nums, int currentIndex, int[] dp) {
+    if (currentIndex < 0) {
+      return 0;
+    }
+    if (dp[currentIndex] != -1) {
+      return dp[currentIndex];
+    }
+
+    int pick = nums[currentIndex] + rob(nums, currentIndex - 2, dp);
+    int notPick = rob(nums, currentIndex - 1, dp);
+    int maxSum = Math.max(pick, notPick);
+    return dp[currentIndex] = maxSum;
   }
 
 
