@@ -2530,4 +2530,104 @@ public class StringSolutions {
     }
     return max;
   }
+
+  public static int highestInvestment(String... investments) {
+    int maxAmount = -1;
+    for (String i : investments) {
+      String countryCode = i.substring(0, 2);
+      Integer amount = Integer.parseInt(i.substring(2));
+      System.out.println(countryCode);
+      System.out.println(amount);
+      maxAmount = Math.max(amount, maxAmount);
+    }
+    return maxAmount;
+  }
+
+  /**
+   *
+   * @param colors
+   * @param neededTime
+   * @return Problem: 1578: Minimum time to make the rope colorful
+   */
+  public static int minCost(String colors, int[] neededTime) {
+    int sum = 0;
+    int left = 0;
+    for (int right = 1; right < colors.length(); right++) {
+      if (colors.charAt(left) == colors.charAt(right)) {
+        if (neededTime[left] > neededTime[right]) {
+          sum += neededTime[right];
+        } else {
+          sum += neededTime[left];
+          left = right;
+        }
+      } else {
+        left = right;
+      }
+    }
+    return sum;
+  }
+
+  /**
+   *
+   * @param nums
+   * @param firstLen
+   * @param secondLen
+   * @return Problem: 1031: Maximum Sum of Two non-overlapping sub-array
+   */
+  public static int maxSumTwoNoOverlap(int[] nums, int firstLen, int secondLen) {
+    System.out.println(Arrays.toString(nums));
+    int[] dp = new int[nums.length];
+    int i = 0;
+    int leftSum = 0;
+    int maxLength = Math.max(firstLen, secondLen);
+    for (; i < maxLength; i++) {
+      leftSum += nums[i];
+      dp[i] = 1;
+    }
+    int maxSum = leftSum;
+    for (; i < nums.length; i++) {
+      leftSum += nums[i];
+      leftSum -= nums[i - maxLength];
+      if (leftSum > maxSum) {
+        maxSum = leftSum;
+        dp[i] = 1;
+        dp[i - maxLength] = 0;
+      }
+    }
+    System.out.println(Arrays.toString(dp));
+    System.out.println("maxSum: " + maxSum);
+    return 0;
+  }
+
+  /**
+   *
+   * @param nums
+   * @return Problem: 3551: Minimum swaps to sort by digit sum
+   * @resolution: Unsolved
+   */
+  public static int minSwaps(int[] nums) {
+    int[] sumArray = new int[nums.length];
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i = 0; i < nums.length; i++) {
+      int num = nums[i];
+      int sum = 0;
+      while (num != 0) {
+        sum += num % 10;
+        num /= 10;
+      }
+      sumArray[i] = sum;
+      map.put(i, sum);
+    }
+    Arrays.sort(sumArray);
+    System.out.println(Arrays.toString(sumArray));
+    System.out.println(map);
+    int res = 0;
+    for (int i = 0; i < sumArray.length; i++) {
+      if (map.get(i).equals(sumArray[i])) {
+        res++;
+      }
+    }
+    System.out.println(Arrays.toString(sumArray));
+    return res;
+  }
 }

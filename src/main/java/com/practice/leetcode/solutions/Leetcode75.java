@@ -1,6 +1,10 @@
 package com.practice.leetcode.solutions;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Leetcode75 {
   public static void main(String[] args) {
@@ -323,7 +327,7 @@ public class Leetcode75 {
   /**
    * @param gain
    * @return Problem: 1732: Find the highest altitude
-   * @Input [-4,-3,-2,-1,4,3,2] ->
+   * @Input [-4, -3, -2, -1, 4, 3, 2] ->
    */
   public static int largestAltitude(int[] gain) {
     int currentSum = 0;
@@ -431,17 +435,78 @@ public class Leetcode75 {
   }
 
   /**
-   * @param candies
-   * @param extraCandies
-   * @return Problem: 1431 Kids with greatest number of candies
+   *
+   * @param s
+   * @return Problem: 151: Reverse words in a string
+   * @Input : a good   example
    */
-  public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
-    List<Boolean> res = new ArrayList<>(candies.length);
-    int max = Arrays.stream(candies).max().orElse(0);
-    for (int i : candies) {
-      res.add(i + extraCandies >= max);
+  public static String reverseWords(String s) {
+    s = s.strip();
+    String[] res = s.split(" ");
+    System.out.println(Arrays.toString(res));
+    int left = 0, right = res.length - 1;
+    while (left < right) {
+      while (res[left].equals(" ")) {
+        left++;
+      }
+      while (res[right].equals(" ")) {
+        right--;
+      }
+      String temp = res[left];
+      res[left] = res[right];
+      res[right] = temp;
+      left++;
+      right--;
     }
-    return res;
+    return Arrays.stream(res).filter(word -> !word.isEmpty()).
+            collect(Collectors.joining(" "));
+  }
+
+  /**
+   *
+   * @param nums
+   * @return Problem: 334: Increasing triplet subsequence
+   * @Input: 20, 100, 10, 12, 5, 13}
+   */
+  public static boolean increasingTriplet(int[] nums) {
+    int min = Integer.MAX_VALUE, secondMin = Integer.MAX_VALUE;
+    for (int i = 0; i < nums.length; i++) {
+      min = Math.min(min, nums[i]);
+      if (nums[i] > min && nums[i] < secondMin) {
+        secondMin = nums[i];
+      }
+      if (nums[i] > secondMin && secondMin > min) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   *
+   * @param chars
+   * @return Problem: 443: String compression
+   * @Input {"a","a","b","b","c","c","c"}
+   */
+  public static int compress(char[] chars) {
+    int left = 0, right = 0, indexWrite = 0;
+    while (left < chars.length) {
+      int currentCount = 0;
+      char current = chars[left];
+      while (right < chars.length && chars[left] == chars[right]) {
+        currentCount++;
+        right++;
+      }
+      chars[indexWrite++] = current;
+      if (currentCount > 1) {
+        for (char a : String.valueOf(currentCount).toCharArray()) {
+          chars[indexWrite++] = a;
+        }
+      }
+      left = right;
+    }
+    System.out.println(Arrays.toString(chars));
+    return indexWrite;
   }
 }
 

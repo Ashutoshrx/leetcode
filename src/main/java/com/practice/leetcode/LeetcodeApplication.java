@@ -377,8 +377,19 @@ public class LeetcodeApplication {
 //    int x = DynamicProgramming.minCostClimbingStairs(new int[]{1, 100, 1, 1, 1, 100, 1, 1, 100, 1});
 //    DynamicProgramming.printAllSubsequences(new int[]{1,2,3,4},2);
 //    DynamicProgramming.sumSubseqWidths(new int[]{3, 1, 2});
-    int x = DynamicProgramming.rob(new int[]{1, 2, 3, 1});
-
+//    int x = DynamicProgramming.rob(new int[]{1, 2, 3, 1});
+//    int x = StringSolutions.highestInvestment(new String[]{"US123456", "UK987654", "US999999"});
+//    int x = StringSolutions.minCost("aaabbbabbbb",new int[]{3,5,10,7,5,3,5,5,4,8,1});
+//    int x = StringSolutions.maxSumTwoNoOverlap(new int[]{0, 6, 5, 2, 2, 5, 1, 9, 4}, 1, 2);
+//    var x = Leetcode75.compress(new char[]{'a', 'a', 'b', 'b', 'c', 'c', 'c'});
+//    var x = Leetcode75.compress(new char[]{
+//            'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a',
+//            'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a',
+//            'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a',
+//            'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a',
+//            'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'
+//    });
+    var x = DynamicProgramming.jump(new int[]{2, 3, 1, 1, 4});
     System.out.println(x);
   }
 }
