@@ -375,7 +375,7 @@ public class LeetcodeApplication {
 //    int x = DynamicProgramming.convertTime("02:00", "02:45");
 //    int x = DynamicProgramming.minCostClimbingStairs(new int[]{10, 15, 20});
 //    int x = DynamicProgramming.minCostClimbingStairs(new int[]{1, 100, 1, 1, 1, 100, 1, 1, 100, 1});
-//    DynamicProgramming.printAllSubsequences(new int[]{1,2,3,4},2);
+//    DynamicProgramming.printAllSubsequences(new int[]{1,2,1,2,4},4);
 //    DynamicProgramming.sumSubseqWidths(new int[]{3, 1, 2});
 //    int x = DynamicProgramming.rob(new int[]{1, 2, 3, 1});
 //    int x = StringSolutions.highestInvestment(new String[]{"US123456", "UK987654", "US999999"});
@@ -389,7 +389,10 @@ public class LeetcodeApplication {
 //            'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a',
 //            'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'
 //    });
-    var x = DynamicProgramming.jump(new int[]{2, 3, 1, 1, 4});
+//    var x = DynamicProgramming.jump2(new int[]{2, 3, 1, 1, 4});
+//    var x = DynamicProgramming.maximumJumpsApproach2(new int[]{1, 3, 6, 4, 1, 2}, 2);
+//    int x = DynamicProgramming.countSubstrings("abc");
+    var x = DynamicProgramming.jump1(new int[]{2, 3, 1, 1, 4});
     System.out.println(x);
   }
 }
