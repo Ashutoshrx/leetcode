@@ -2056,7 +2056,7 @@ public class StringSolutions {
    * @param k
    * @return Problem: 347. Top K Frequent Elements
    */
-  public static int[] topKFrequent(int[] nums, int k) {
+  public static int[] topKFrequentUnresolved(int[] nums, int k) {
     System.out.println(Arrays.toString(nums));
     Map<Integer, Integer> map = new HashMap<>();
     for (int i : nums) {
@@ -2628,6 +2628,90 @@ public class StringSolutions {
       }
     }
     System.out.println(Arrays.toString(sumArray));
+    return res;
+  }
+
+  /**
+   *
+   * @param arriveAlice
+   * @param leaveAlice
+   * @param arriveBob
+   * @param leaveBob
+   * @return Problem: 2409: Count days spent together
+   */
+  public static int countDaysTogether(String arriveAlice, String leaveAlice, String arriveBob, String leaveBob) {
+    int[] calender = new int[]{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int totalDays = 0;
+    int arrivalDate = Math.max(Integer.parseInt(arriveAlice.split("-")[1]),
+            Integer.parseInt(arriveBob.split("-")[1]));
+    System.out.println("arrivalDate:" + arrivalDate);
+
+    int leaveDate = Math.min(Integer.parseInt(leaveAlice.split("-")[1]),
+            Integer.parseInt(leaveBob.split("-")[1]));
+    System.out.println("leaveDate:" + leaveDate);
+
+    int arrivalMonth = Math.max(Integer.parseInt(arriveAlice.split("-")[0]),
+            Integer.parseInt(arriveBob.split("-")[0]));
+    System.out.println("arrivalMonth:" + arrivalMonth);
+
+    int leaveMonth = Math.max(Integer.parseInt(leaveAlice.split("-")[0]),
+            Integer.parseInt(leaveBob.split("-")[0]));
+    System.out.println("leaveMonth:" + arrivalMonth);
+    /**
+     * arrivalDate:16
+     * arrivalMonth:8
+     * leaveDate:18
+     * leaveMonth:8
+     */
+    while (arrivalDate < leaveDate && arrivalMonth <= leaveMonth) {
+      totalDays++;
+      if (arrivalDate == calender[arrivalMonth - 1]) {
+        arrivalDate = 1;
+        arrivalMonth++;
+      }
+      arrivalDate++;
+    }
+    return totalDays;
+  }
+
+  /**
+   * @param nums
+   * @param k
+   * @return Problem: 347. Top K Frequent Elements
+   */
+  public static int[] topKFrequent(int[] nums, int k) {
+    int[] res = new int[k];
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i : nums) {
+      map.put(i, map.getOrDefault(i, 0) + 1);
+    }
+    System.out.println(map);
+    //edge case
+    if (map.size() == 1) {
+      return new int[]{map.entrySet().iterator().next().getKey()};
+    }
+    List<Integer>[] buckets = new List[nums.length + 1];
+    for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+      int freq = entry.getValue();
+      if (buckets[freq] == null) {
+        buckets[freq] = new ArrayList<>();
+      }
+      buckets[freq].add(entry.getKey());
+    }
+
+    System.out.println(Arrays.toString(buckets));
+
+    int index = 0;
+    for (int f = buckets.length - 1; f >= 1 && index < k; f--) {
+      if (buckets[f] != null) {
+        for (int num : buckets[f]) {
+          res[index++] = num;
+          if (index == k){
+            break;
+          }
+        }
+      }
+    }
     return res;
   }
 }

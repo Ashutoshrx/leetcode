@@ -1,6 +1,6 @@
 package com.practice.leetcode;
 
-import com.practice.leetcode.concepts.DynamicProgramming;
+import com.practice.leetcode.solutions.StringSolutions;
 
 public class LeetcodeApplication {
 
@@ -392,7 +392,7 @@ public class LeetcodeApplication {
 //    var x = DynamicProgramming.jump2(new int[]{2, 3, 1, 1, 4});
 //    var x = DynamicProgramming.maximumJumpsApproach2(new int[]{1, 3, 6, 4, 1, 2}, 2);
 //    int x = DynamicProgramming.countSubstrings("abc");
-    var x = DynamicProgramming.jump1(new int[]{2, 3, 1, 1, 4});
+    var x = StringSolutions.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2);
     System.out.println(x);
   }
 }
