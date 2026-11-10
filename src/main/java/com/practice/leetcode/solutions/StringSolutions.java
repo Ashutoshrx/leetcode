@@ -2706,12 +2706,94 @@ public class StringSolutions {
       if (buckets[f] != null) {
         for (int num : buckets[f]) {
           res[index++] = num;
-          if (index == k){
+          if (index == k) {
             break;
           }
         }
       }
     }
     return res;
+  }
+
+  /**
+   *
+   * @param nums
+   * @return Problem: 453. Minimum Moves to Equal Array Elements
+   */
+  public static int minMoves(int[] nums) {
+    int res = 0;
+    int min = Arrays.stream(nums).min().getAsInt();
+    for (int i : nums) {
+      res += i - min;
+    }
+    return res;
+  }
+
+  /**
+   *
+   * @param nums
+   * @param x
+   * @param k
+   * @return 3505. Minimum Operations to Make Elements Within K Subarrays Equal
+   */
+  public static long minOperations(int[] nums, int x, int k) {
+    System.out.println(Arrays.toString(nums));
+    int res = 0;
+    int i = 0, mid = x / 2;
+    List<Integer> resList = new ArrayList<>();
+    PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(x);
+    for (; i < x; i++) {
+      priorityQueue.offer(nums[i]);
+    }
+    System.out.println(priorityQueue);
+
+    for (int num : priorityQueue) {
+      res += Math.abs(num - mid);
+    }
+    resList.add(res);
+    System.out.println(resList);
+    for (; i < nums.length; i++) {
+    }
+
+    return res;
+  }
+
+  /**
+   *
+   * @param nums
+   * @param k
+   * @return Problem: 560: Subarray sum equal K
+   */
+  public static int subarraySum(int[] nums, int k) {
+    Map<Integer, Integer> map = new HashMap<>();
+    map.put(0, 1);
+    int count = 0, currentSum = 0;
+    for (int num : nums) {
+      currentSum += num;
+      int complement = currentSum - k;
+      if (map.containsKey(complement)) {
+        count += map.get(complement);
+      }
+      map.put(currentSum, map.getOrDefault(currentSum, 0) + 1);
+    }
+    return count;
+  }
+
+  public static List<String> findSuspicious(List<String> events, int W, int K, int A) {
+    System.out.println(events);
+    List<String> resList = new ArrayList<>();
+    Map<String, Integer> durationMap = new HashMap<>();
+    for (String event : events) {
+      String[] split = event.split(",");
+      String customer = split[0];
+      String timestamp = split[1];
+      String amount = split[2];
+      if (Integer.parseInt(amount) >= A) {
+        resList.add(customer);
+      }
+    }
+    System.out.println(resList);
+    Collections.sort(resList);
+    return resList;
   }
 }

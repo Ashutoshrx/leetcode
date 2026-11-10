@@ -1,6 +1,9 @@
 package com.practice.leetcode;
 
+import com.practice.leetcode.concepts.DynamicProgramming;
 import com.practice.leetcode.solutions.StringSolutions;
+
+import java.util.List;
 
 public class LeetcodeApplication {
 
@@ -392,7 +395,20 @@ public class LeetcodeApplication {
 //    var x = DynamicProgramming.jump2(new int[]{2, 3, 1, 1, 4});
 //    var x = DynamicProgramming.maximumJumpsApproach2(new int[]{1, 3, 6, 4, 1, 2}, 2);
 //    int x = DynamicProgramming.countSubstrings("abc");
-    var x = StringSolutions.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2);
+//    var x = StringSolutions.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2);
+//    var x = StringSolutions.merge(new int[][]{{1, 3}, {2, 6}, {8, 10}, {15, 18}});
+//    var x = StringSolutions.minOperations(new int[]{5,-2,1,3,7,3,6,4,-1},3,2);
+//    var x = StringSolutions.subarraySum(new int[]{10, 15, -5, 15, -10, 5}, 5);
+//    var x = StringSolutions.subarraySum(new int[]{1, 2, 3}, 3);
+    int n = 4;
+    int[] costs = new int[]{1, 2, 3, 4};
+    var x= DynamicProgramming.climbStairs1(n,costs);
+    List<String> events = List.of("c1,100,500", "c1,200,700", "c1,250,300",
+            "c2,100,9000", "c3,50,100", "c3,5000,100");
+    int W = 300, K = 3, A = 9000;
+//    var x = StringSolutions.findSuspicious(events, W, K, A);
+
+//    Output: ["c1", "c2"]
     System.out.println(x);
   }
 }

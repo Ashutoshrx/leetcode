@@ -329,4 +329,39 @@ public class DynamicProgramming {
     System.out.println(Arrays.toString(dp));
     return dp[n - 1];
   }
+
+  /**
+   *
+   * @param n
+   * @param costs
+   * @return 3693. Climbing Stairs II
+   */
+  public static int climbStairs1(int n, int[] costs) {
+    int[] dp = new int[n + 1];
+    Arrays.fill(dp, -1);
+    dp[0] = 0;
+    int res = climbStairs1(n, costs, dp);
+    System.out.println(Arrays.toString(dp));
+    return res;
+  }
+
+  private static int climbStairs1(int currentIndex, int[] costs, int[] dp) {
+    if (currentIndex <= 0) {
+      return dp[0];
+    }
+    if (dp[currentIndex] != -1) {
+      return dp[currentIndex];
+    }
+    int min = Integer.MAX_VALUE;
+    for (int i = 1; i <= 3; i++) {
+      int newIndex = currentIndex - i;
+      if (newIndex >= 0) {
+        int current = climbStairs1(newIndex, costs, dp);
+        int cost = (currentIndex - newIndex) * (currentIndex - newIndex);
+        System.out.println("Cost: " + cost);
+        min = Math.min(min, current + costs[currentIndex - 1] + cost);
+      }
+    }
+    return dp[currentIndex] = min;
+  }
 }
