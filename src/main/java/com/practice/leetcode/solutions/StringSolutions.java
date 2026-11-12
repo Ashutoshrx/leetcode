@@ -2779,21 +2779,94 @@ public class StringSolutions {
     return count;
   }
 
-  public static List<String> findSuspicious(List<String> events, int W, int K, int A) {
-    System.out.println(events);
-    List<String> resList = new ArrayList<>();
-    Map<String, Integer> durationMap = new HashMap<>();
+  public static List<String> findSuspicious1(List<String> events, int W, int K, int A) {
+    Map<String, List<long[]>> byCustomer = new HashMap<>();
     for (String event : events) {
-      String[] split = event.split(",");
-      String customer = split[0];
-      String timestamp = split[1];
-      String amount = split[2];
-      if (Integer.parseInt(amount) >= A) {
-        resList.add(customer);
+      String[] p = event.split(",");
+      byCustomer.computeIfAbsent(p[0].trim(), k -> new ArrayList<>())
+              .add(new long[]{Long.parseLong(p[1].trim()), Long.parseLong(p[2].trim())});
+    }
+    System.out.println(byCustomer);
+    TreeSet<String> result = new TreeSet<>();
+    for (Map.Entry<String, List<long[]>> e : byCustomer.entrySet()) {
+      List<long[]> list = e.getValue();
+
+      list.sort(Comparator.comparingLong(a -> a[0]));   // sort by timestamp
+
+      int left = 0;
+      long sum = 0;
+      for (int right = 0; right < list.size(); right++) {
+        sum += list.get(right)[1];
+        while (list.get(right)[0] - list.get(left)[0] > W) {
+          sum -= list.get(left)[1];
+          left++;
+        }
+        if (right - left + 1 >= K || sum >= A) {
+          result.add(e.getKey());
+          break;                                     // already flagged, stop early
+        }
       }
     }
-    System.out.println(resList);
-    Collections.sort(resList);
-    return resList;
+    return new ArrayList<>(result);
+  }
+
+  /**
+   *
+   * @param transactions
+   * @return Problem: 1169: Invalid transactions
+   */
+  public static List<String> invalidTransactions(String[] transactions) {
+    Map<String, List<Transaction>> byName = new HashMap<>();
+    for (String transaction : transactions) {
+      String[] st = transaction.split(",");
+      String name = st[0];
+      int time = Integer.parseInt(st[1]);
+      int amount = Integer.parseInt(st[2]);
+      String city = st[3];
+      byName.computeIfAbsent(name, k -> new ArrayList<>())
+              .add(new Transaction(name, time, amount, city));
+    }
+    System.out.println(byName);
+    List<String> names = new ArrayList<>();
+    for (Map.Entry<String, List<Transaction>> entry : byName.entrySet()) {
+      List<Transaction> rValues = entry.getValue();
+      //sorted based on time   -- 0-> time 1-> amount
+      rValues.sort(Comparator.comparingInt(x -> x.time));
+
+      for (int i = 0; i < rValues.size(); i++) {
+        Transaction cur = rValues.get(i);
+        boolean invalid = cur.amount > 1000;
+        for (int j = 0; j < rValues.size() && !invalid; j++) {
+          Transaction other = rValues.get(j);
+          if (Math.abs(other.time - cur.time) <= 60
+                  && !other.city.equals(cur.city)) {
+            invalid = true;
+          }
+        }
+        if (invalid) {
+          names.add(cur.toString());
+        }
+      }
+    }
+    return names;
+  }
+
+  static class Transaction {
+    String name;
+    int time;
+    int amount;
+    String city;
+
+    public Transaction(String name, int time, int amount, String city) {
+      this.name = name;
+      this.time = time;
+      this.amount = amount;
+      this.city = city;
+    }
+
+    @Override
+    public String toString() {
+      return "\"" + name + ", " + time + ", " + amount + ", " + city + "\"";
+    }
   }
 }
