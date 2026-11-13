@@ -364,4 +364,45 @@ public class DynamicProgramming {
     }
     return dp[currentIndex] = min;
   }
+
+  /**
+   *
+   * @param n
+   * @param points
+   * @return https://www.naukri.com/code360/problems/ninja-s-training_3621003
+   */
+  public static int ninjaTraining(int n, int[][] points) {
+    int length = points[0].length;
+    int[][] dp = new int[n][length+1];
+    for (int[] row : dp) {
+      Arrays.fill(row, -1);
+    }
+    int res = ninjaTraining(n-1, points, length, dp);
+    System.out.println(Arrays.deepToString(dp));
+    return res;
+  }
+
+  public static int ninjaTraining(int currentIndex, int[][] points, int lastIndex, int[][] dp) {
+    System.out.println("currentIndex: "+ currentIndex);
+    if (currentIndex == 0) {
+      int max = Integer.MIN_VALUE;
+      for (int i = 0; i < points[currentIndex].length; i++) {
+        if (i != lastIndex) {
+          max = Math.max(max, points[0][i]);
+        }
+      }
+      return max;
+    }
+    if (dp[currentIndex][lastIndex] != -1) {
+      return dp[currentIndex][lastIndex];
+    }
+    int max = Integer.MIN_VALUE;
+    for (int i = 0; i < points[currentIndex].length; i++) {
+      if (i != lastIndex) {
+        int temp = ninjaTraining(currentIndex - 1, points, i, dp);
+        max = Math.max(max, points[currentIndex][i] + temp);
+      }
+    }
+    return dp[currentIndex][lastIndex] = max;
+  }
 }

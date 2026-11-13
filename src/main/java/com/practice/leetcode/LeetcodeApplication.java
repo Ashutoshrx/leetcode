@@ -1,6 +1,6 @@
 package com.practice.leetcode;
 
-import com.practice.leetcode.solutions.StringSolutions;
+import com.practice.leetcode.concepts.DynamicProgramming;
 
 public class LeetcodeApplication {
 
@@ -406,8 +406,9 @@ public class LeetcodeApplication {
 //    var x = StringSolutions.findSuspicious1(events, W, K, A);
 //    Output: ["c1", "c2"]
 //    String[] transactions = new String[]{"alice,20,800,mtv", "alice,50,100,beijing"};
-    String[] transactions = new String[]{"alice,20,800,mtv", "bob,50,1200,mtv"};
-    var x = StringSolutions.invalidTransactions(transactions);
+//    String[] transactions = new String[]{"alice,20,800,mtv", "bob,50,1200,mtv"};
+//    var x = StringSolutions.invalidTransactions(transactions);
+    var x = DynamicProgramming.ninjaTraining(3, new int[][]{{1, 2, 5}, {3, 1, 1}, {3, 3, 3}});
     System.out.println(x);
   }
 }
