@@ -2851,6 +2851,26 @@ public class StringSolutions {
     return names;
   }
 
+  public static int maximumUnits(int[][] boxTypes, int truckSize) {
+    int res = 0;
+    Arrays.sort(boxTypes, Comparator.comparingInt((int[] c) -> c[1]).reversed());
+    int k = 0;
+    int i = 0;
+    while (i < boxTypes.length && k <= truckSize) {
+      int totalCapacity = k + boxTypes[i][0];
+      if (totalCapacity <= truckSize) {
+        res += (boxTypes[i][0] * boxTypes[i][1]);
+        k = totalCapacity;
+      } else {
+        int neededCapacity = truckSize - k;
+        res += (neededCapacity * boxTypes[i][1]);
+        k += neededCapacity;
+      }
+      i++;
+    }
+    return res;
+  }
+
   static class Transaction {
     String name;
     int time;

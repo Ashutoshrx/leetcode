@@ -1,6 +1,7 @@
 package com.practice.leetcode;
 
 import com.practice.leetcode.concepts.DynamicProgramming;
+import com.practice.leetcode.solutions.StringSolutions;
 
 public class LeetcodeApplication {
 
@@ -408,7 +409,10 @@ public class LeetcodeApplication {
 //    String[] transactions = new String[]{"alice,20,800,mtv", "alice,50,100,beijing"};
 //    String[] transactions = new String[]{"alice,20,800,mtv", "bob,50,1200,mtv"};
 //    var x = StringSolutions.invalidTransactions(transactions);
-    var x = DynamicProgramming.ninjaTraining(3, new int[][]{{1, 2, 5}, {3, 1, 1}, {3, 3, 3}});
+//    var x = DynamicProgramming.ninjaTrainingTabulation(3, new int[][]{{1, 2, 5}, {3, 1, 1}, {3, 3, 3}});
+    int[][] boxTypes = new int[][]{{1, 3}, {2, 2}, {3, 1}};
+    int truckSize = 4;
+    var x= StringSolutions.maximumUnits(boxTypes,truckSize);
     System.out.println(x);
   }
 }
