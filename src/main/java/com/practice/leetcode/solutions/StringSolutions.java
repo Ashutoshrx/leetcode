@@ -2871,6 +2871,42 @@ public class StringSolutions {
     return res;
   }
 
+  /**
+   *
+   * @param s
+   * @return Problem: 451: Sort Character by frequency
+   */
+  public static String frequencySort(String s) {
+    Map<Character, Integer> map = new HashMap<>();
+    for (int i = 0; i < s.length(); i++) {
+      char current = s.charAt(i);
+      map.put(current, map.getOrDefault(current, 0) + 1);
+    }
+    System.out.println(map);
+    List<Character>[] array = new ArrayList[s.length()];
+    for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+      Integer freq = entry.getValue();
+      if (array[freq] == null) {
+        array[freq] = new ArrayList<>();
+      }
+      array[freq].add(entry.getKey());
+    }
+    System.out.println(Arrays.toString(array));
+    StringBuilder res = new StringBuilder();
+    for (int i = array.length - 1; i >= 0; i--) {
+      List<Character> currentCharacters = array[i];
+      if (currentCharacters != null) {
+        int j = 0;
+        while (j < currentCharacters.size()) {
+          res.append(String.valueOf(currentCharacters.get(j)).repeat(i));
+          j++;
+        }
+      }
+    }
+
+    return res.toString();
+  }
+
   static class Transaction {
     String name;
     int time;
