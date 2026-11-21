@@ -914,29 +914,26 @@ public class StringSolutions {
    * @return Problem: 1636. Sort Array by Increasing Frequency
    */
   public static int[] frequencySort(int[] nums) {
-    int[] frequencies = new int[nums.length];
     Map<Integer, Integer> map = new HashMap<>();
     for (int i : nums) {
       map.put(i, map.getOrDefault(i, 0) + 1);
     }
     System.out.println(map);
-    List<Integer> collect = map.entrySet().stream().sorted((o1, o2) -> {
-      int freq = o1.getValue().compareTo(o2.getValue());
-      if (freq != 0) {
-        return freq;
-      } else {
-        return o1.getKey().compareTo(o2.getKey()) >= 1 ? -1 : 1;
+    List<Integer> list = map.entrySet().stream().sorted((a, b) -> {
+      int x = a.getValue().compareTo(b.getValue());
+      if (x == 0) {
+        return a.getKey().compareTo(b.getKey());
       }
+      return x;
     }).map(Map.Entry::getKey).toList();
-    System.out.println(collect);
+    System.out.println(list);
     int index = 0;
-    for (int i : collect) {
-      for (int j = 0; j < map.get(i); j++) {
-        frequencies[index++] = i;
+    for (Integer integer : list) {
+      for (int i = 0; i < map.get(integer); i++) {
+        nums[index++] = integer;
       }
     }
-    System.out.println(Arrays.toString(frequencies));
-    return frequencies;
+    return nums;
   }
 
   /**

@@ -2,6 +2,10 @@ package com.practice.leetcode;
 
 import com.practice.leetcode.solutions.StringSolutions;
 
+import java.util.Arrays;
+
+import static com.practice.leetcode.solutions.StringSolutions.frequencySort;
+
 public class LeetcodeApplication {
 
   public static void main(String[] args) throws CloneNotSupportedException {
@@ -178,7 +182,7 @@ public class LeetcodeApplication {
 //            "This");
 //    hasCycle(new ListNode(3,new ListNode(2)));
 //    String[] res = sortPeople(new String[]{"Mary","John","Emma"}, new int[]{180,165,170});
-//    frequencySort(new int[]{1, 1, 2, 2, 2, 3});
+    var x=frequencySort(new int[]{1, 1, 2, 2, 2, 3});
 //    frequencySort(new int[]{2, 3, 1, 3, 2});
 //    frequencySort(new int[]{-1, 1, -6, 4, 5, -6, 1, 4, 1});
 //    int i = minimumDeletions("aababbab");
@@ -412,7 +416,7 @@ public class LeetcodeApplication {
 //    int[][] boxTypes = new int[][]{{1, 3}, {2, 2}, {3, 1}};
 //    int truckSize = 4;
 //    var x= StringSolutions.maximumUnits(boxTypes,truckSize);
-    var x = StringSolutions.frequencySort("tree");
-    System.out.println(x);
+//    var x = frequencySort("tree");
+    System.out.println(Arrays.toString(x));
   }
 }
